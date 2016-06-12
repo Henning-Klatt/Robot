@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="antwort"></p>
+<table cellspacing=0>
+<tr><td></td><td><img id="camera-up"></img></td><td></td></tr>
+<tr><td><img id="camera-left"></td><td><img src="pictures/camera.png" ></td><td><img id="camera-right"></td></tr>
+<tr><td></td><td><img id="camera-down"></td><td></td></tr>
+</table>
+
+<script>
+
+window.addEventListener("keydown", keysPressed, false);
+window.addEventListener("keyup", keysReleased, false);
+
+stopRobot();
+
+function stopRobot() {
+
+    document.getElementById("antwort").innerHTML = "Aktion: Warte auf Eingabe";
+
+    document.getElementById("camera-up").src="pictures/leer.png";
+    document.getElementById("camera-left").src="pictures/leer.png";
+    document.getElementById("camera-right").src="pictures/leer.png";
+    document.getElementById("camera-down").src="pictures/leer.png";
+}
+var keys = [];
+ 
+function keysPressed(e) {
+
+    e.preventDefault();
+
+    key = e.keyCode;
+    keys[key] = true;
+
+
+    if(key==37) {
+	key = "camera-left";
+	document.getElementById("camera-left").src="pictures/left.png";
+    }
+    if(key==38) {
+	key = "camera-up";
+	document.getElementById("camera-up").src="pictures/up.png";
+    }
+    if(key==39) {
+	key = "camera-right";
+	document.getElementById("camera-right").src="pictures/right.png";
+    }
+    if(key==40) {
+	key = "camera-down";
+	document.getElementById("camera-down").src="pictures/down.png";
+    }
+
+
+    document.getElementById("antwort").innerHTML = "Aktion: " + key;
+     
+    // Ctrl + f
+    if (keys[17] && keys[70]) {
+        // irgendwas
+     
+    }
+}
+ 
+function keysReleased(e) {
+    key = false;
+    keys[e.keyCode] = false;
+    stopRobot();
+
+}
+
+</script>
+</body>
+</html>
