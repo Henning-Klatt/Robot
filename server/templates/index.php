@@ -3,7 +3,7 @@
 <script type=text/javascript>
   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
-<script type="text/javascript" src= http://192.168.178.28/jquery.min.js></script>
+<script type="text/javascript" src= http://192.168.178.32/jquery.min.js></script>
 <style>
 
 #myProgress {
@@ -37,7 +37,7 @@
 <header>
   <title>Robot Remote</title>
 </header>
-<body onload="startTime(); checkonline();">
+<body onload="startTime(); checkonline(); getSensors();">
 <center>
 <table cellspacing=0 border=0>
 <tr><td></td>
@@ -54,20 +54,30 @@
       </font>
     </div>
   </td></tr>
-<tr><td>
+<tr><td valign="middle" align="center">
+  <div id="box">
+    Temperatur &uArr;:
+    <div id="temp1">
+    </div>
+  </div>
 <table cellspacing=0 border=0>
 <tr><td></td>
   <td valign="middle" align="center"><img id="camera-up" width="30" height="30" ></img></td><td></td></tr><tr>
   <td valign="middle" align="center"><img id="camera-left" width="30" height="30" ></td>
-  <td valign="middle" align="center"><img id="camera" width="30" height="30" ></td>
+  <td valign="middle" align="center"><img id="camera" width="30" height="30" onmousedown="resetCamera(); return false;" onmouseup="clearCamera(); return false;"></td>
   <td valign="middle" align="center"><img id="camera-right" width="30" height="30" ></td></tr>
 <tr><td></td><td valign="middle" align="center"><img id="camera-down" width="30" height="30" ></td><td></td></tr>
 </table></td>
-<td>
-<div id="stream" onmousemove="mousemove(event)" oncontextmenu="alert('Drücken sie STRG und bewegen sie gelichzeitig die Maus in dem Stream, um sich um zu schauen.');return false">
-  <img src="http://192.168.178.28/pictures/live.jpg"></td>
+<td valign="middle" align="center">
+<div id="stream" onmousemove="mousemove(event)" oncontextmenu="context=true;return false" onmouseup="context=false; clearCamera(); return false">
+  <img src="http://192.168.178.32/pictures/live.jpg"></td>
 </div>
-<td>
+<td valign="middle" align="center">
+  <div id="box">
+    Temperatur &dArr;:
+    <div id="temp2">
+    </div>
+  </div>
   <table cellspacing=0 border=0>
   <tr><td></td>
     <td valign="middle" align="center"><img id="bot-forward" width="30" height="30" ></img></td><td></td></tr><tr>
@@ -153,13 +163,13 @@ function help() {
 }
 
 function mousemove(event) {
-  if(strg == true) {
+  if(strg == true || context == true) {
     pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("stream").offsetLeft;
 	   pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("stream").offsetTop;
-     pos_x = (pos_x/640*180);
-     pos_y = (pos_y/480*180);
-     pos_x = pos_x.toFixed(0)
-     pos_y = pos_y.toFixed(0)
+     pos_x = (pos_x/640*10)+2.9;
+     pos_y = (pos_y/480*10)+2.5;
+     pos_x = pos_x.toFixed(1);
+     pos_y = pos_y.toFixed(1);
      $.ajax({
        type: "GET",
        url: $SCRIPT_ROOT + "/cameramove/",
@@ -170,7 +180,7 @@ function mousemove(event) {
 
 //Verbindung da?
 setInterval(checkonline, 3000)
-verbindung = true;
+verbindung = null;
 function checkonline() {
   $(function() {
            $.ajax({
@@ -207,6 +217,28 @@ function getServerIP() {
     document.getElementById("client-ip").innerHTML = clientIP;
   }
 }
+//Sensor Werte empfangen
+setInterval(getSensors, 5000)
+function getSensors() {
+  if(verbindung == true) {
+    $.ajax({
+       type: "GET",
+       url: $SCRIPT_ROOT + "/sensors/",
+       data: { aktion: "all" },
+       success: function(data) {
+         temp1 = data.temp1;
+         temp2 = data.temp2;
+         document.getElementById("temp1").innerHTML = temp1 + " &deg;C";
+         document.getElementById("temp2").innerHTML = temp2 + " &deg;C";
+       }
+     });
+  }
+  else {
+    document.getElementById("temp1").innerHTML = "-";
+    document.getElementById("temp2").innerHTML = "-";
+  }
+
+}
 
 //Alles reseten
 resetRobot();
@@ -235,6 +267,8 @@ function resetRobot() {
   bot_left = false;
   bot_right = false;
   bot_back = false;
+
+  clearCamera()
 
 }
 function stopRobot(direction) {
@@ -272,6 +306,20 @@ function stopCamera(direction) {
 
 var keys = [];
 
+function clearCamera() {
+  $.ajax({
+    type: "GET",
+    url: $SCRIPT_ROOT + "/camera/",
+    data: { aktion: "clear" },
+    });
+}
+function resetCamera() {
+  $.ajax({
+    type: "GET",
+    url: $SCRIPT_ROOT + "/camera/",
+    data: { aktion: "reset" },
+    });
+}
 
 
 function keysPressed(e) {
@@ -283,6 +331,11 @@ function keysPressed(e) {
     aktion = false
 
     switch(key) {
+
+      case 18: //alt
+        aktion = "Servos 0 stellen"
+        resetRobot();
+        break;
 
       case 17: //STRG
         strg = true;
