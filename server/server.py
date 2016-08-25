@@ -5,8 +5,8 @@ from flask import Flask, jsonify, render_template, request
 import RPi.GPIO as GPIO
 import time
 
-servo1PIN = 17
-servo2PIN = 18
+servo1PIN = 22
+servo2PIN = 23
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(servo1PIN, GPIO.OUT)
