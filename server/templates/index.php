@@ -2,6 +2,7 @@
 <html>
 <script type=text/javascript>
   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  alert($SCRIPT_ROOT);
 </script>
 <script type="text/javascript" src= http://192.168.178.32/jquery.min.js></script>
 <style>

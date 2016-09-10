@@ -3,7 +3,7 @@
 
 from flask import Flask, jsonify, render_template, request
 import RPi.GPIO as GPIO
-import time
+import time, sys, os
 
 servo1PIN = 22
 servo2PIN = 23
@@ -23,13 +23,32 @@ s2.ChangeDutyCycle(0)
 app = Flask(__name__)
 
 @app.route('/')
-def index():
-    return render_template('index.php')
+def all():
+    temp1 = 23.5
+    temp2 = 21.2
+    ip = request.remote_addr
+    callback = request.args.get('callback')
+    return '{0}({1})'.format(callback, {'client_ip':ip,'b':2,'temp1':temp1,'temp2':temp2})
 
 @app.route('/online/')
 def online():
-    ret_data = {"value": request.remote_addr}
-    return jsonify(ret_data)
+    callback = request.args.get('callback')
+    return '{0}({1})'.format(callback, {'online':'true'})
+
+@app.route('/action/')
+def action():
+    callback = request.args.get('callback')
+    action = request.args.get('action')
+    if(action == "stopScript"):
+        callback = request.args.get('callback')
+        s1.ChangeDutyCycle(0)
+        s2.ChangeDutyCycle(0)
+        GPIO.cleanup()
+        os.system("sudo pkill -9 python")
+        return '{0}({1})'.format(callback, {'online':'true'})
+
+
+
 
 @app.route('/camera/', methods=['GET'])
 def camera():
