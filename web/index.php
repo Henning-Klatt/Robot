@@ -7,9 +7,10 @@ if(!$_SESSION['logged_in'])
 <html>
 
 <head>
-    <title>LexoBot | Funk</title>
+    <title>LexoBot</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src= http://<?php echo $_SERVER['SERVER_ADDR']; ?>/jquery.min.js></script>
     <!-- Core CSS - Include with every page -->
     <link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -277,20 +278,20 @@ if(!$_SESSION['logged_in'])
                         </div>
                         <!--end user image section-->
                     </li>
-                    <li>
-                        <a href="index.php"><i class="fa fa-dashboard fa-fw"></i>&nbsp;Dashboard</a>
+                    <li id="dashboard_menu">
+                        <a href="#" onclick="clearselection(); show_dashboard(); return false;"><i class="fa fa-dashboard fa-fw"></i>&nbsp;Dashboard</a>
                     </li>
-                    <li>
-                        <a href="remote.php"><i class="fa fa-gamepad fa-fw"></i>&nbsp;Fernsteuerung</a>
+                    <li id="remote_menu">
+                        <a href="#" onclick="clearselection(); show_remote(); return false;"><i class="fa fa-gamepad fa-fw"></i>&nbsp;Fernsteuerung</a>
                     </li>
-                    <li>
-                        <a href="camera.php"><i class="fa fa-video-camera fa-fw"></i>&nbsp;Kamera</a>
+                    <li id="camera_menu">
+                        <a href="#" onclick="clearselection(); show_camera(); return false;"><i class="fa fa-video-camera fa-fw"></i>&nbsp;Kamera</a>
                     </li>
-                    <li class="selected">
-                        <a href="wireless.php"><i class="fa fa-signal fa-fw"></i>&nbsp;Funk</a>
+                    <li id="wireless_menu">
+                        <a href="#" onclick="clearselection(); show_wireless(); return false;"><i class="fa fa-signal fa-fw"></i>&nbsp;Funk</a>
                     </li>
-                    <li>
-                        <a href="settings.php"><i class="fa fa-wrench fa-fw"></i>&nbsp;Einstellungen</a>
+                    <li id="settings_menu">
+                        <a href="#" onclick="clearselection(); show_settings(); return false;"><i class="fa fa-wrench fa-fw"></i>&nbsp;Einstellungen</a>
                     </li>
                 </ul>
                 <!-- end side-menu -->
@@ -300,16 +301,49 @@ if(!$_SESSION['logged_in'])
         <!-- end navbar side -->
         <!--  page-wrapper -->
         <div id="page-wrapper">
+          <script>
 
-            <div class="row">
-                <!-- Page Header -->
-                <div class="col-lg-12">
-                    <h1 class="page-header">Funk</h1>
-                </div>
-                <!--End Page Header -->
-            </div>
+          function clearselection() {
+            document.getElementById("dashboard_menu").className = "";
+            document.getElementById("remote_menu").className = "";
+            document.getElementById("camera_menu").className = "";
+            document.getElementById("wireless_menu").className = "";
+            document.getElementById("settings_menu").className = "";
+          }
 
+          function show_dashboard() {
+            $(function(){
+              $("#Content").load("dashboard.php");
+            });
+            document.getElementById("dashboard_menu").className = "selected";
+          }
+          function show_remote() {
+            $(function(){
+              $("#Content").load("remote.php");
+            });
+            document.getElementById("remote_menu").className = "selected";
+          }
+          function show_camera() {
+            $(function(){
+              $("#Content").load("camera.php");
+            });
+            document.getElementById("camera_menu").className = "selected";
+          }
+          function show_wireless() {
+            $(function(){
+              $("#Content").load("wireless.php");
+            });
+            document.getElementById("wireless_menu").className = "selected";
+          }
+          function show_settings() {
+            $(function(){
+              $("#Content").load("settings.php");
+            });
+            document.getElementById("settings_menu").className = "selected";
+          }
+          </script>
 
+          <div id="Content"></div>
 
         </div>
         <!-- end page-wrapper -->

@@ -32,7 +32,7 @@
                         <form role="form" method="POST" action="check-login.php">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Benutzer" name="user" type="email" autofocus>
+                                    <input class="form-control" placeholder="Benutzer" name="user" type="name" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Passwort" name="password" type="password" value="">
