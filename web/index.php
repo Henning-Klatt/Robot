@@ -21,6 +21,25 @@ if(!$_SESSION['logged_in'])
 </head>
 
 <body>
+  <!-- PopUp -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Hilfe:</h4>
+        </div>
+        <div class="modal-body">
+        <li>Punkt 1</li>
+        <li>Punkt 2</li>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Schließen</button>
+        </div>
+        </div>
+      </div>
+    </div>
+    <!-- End PopUp -->
     <!--  wrapper -->
     <div id="wrapper">
         <!-- navbar top -->
