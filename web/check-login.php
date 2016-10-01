@@ -20,6 +20,10 @@ $usrdata = array(
     array(
         "usr" => "Henning",
         "pwd" => "passwort"
+    ),
+    array(
+	"usr" => "Florian",
+	"pwd" => "passwort"
     )
     /* ... */
 );

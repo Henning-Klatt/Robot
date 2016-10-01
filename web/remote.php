@@ -8,8 +8,36 @@ if(!$_SESSION['logged_in'])
     <div class="col-lg-12">
       <h1 class="page-header">Fernsteuerung</h1>
     </div>
-    <iframe src="http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080" height="1000" width="1000" style="border:none;">
-      <h3>Dein Browser unterstützt keine iFrames.</h3>
-    </iframe>
+    <!-- PopUp -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Hilfe:</h4>
+          </div>
+          <div class="modal-body">
+          <li>Punkt 1</li>
+          <li>Punkt 2</li>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Schließen</button>
+          </div>
+          </div>
+        </div>
+      </div>
+      <!-- End PopUp -->
+    <table cellspacing=1 border=!>
+      <tr><td>Bla
+    </table>
+
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Hilfe
+    </button>
+
+
+
+
+
                 <!--End Page Header -->
   </div>
