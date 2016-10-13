@@ -39,7 +39,7 @@ if(!$_SESSION['logged_in'])
       function checkonline() {
         var verbindung = false;
         $.ajax({
-          url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/online/",
+          url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/online/",
           type: 'get',
           dataType: 'jsonp',
           success: function(data) {
@@ -56,7 +56,7 @@ if(!$_SESSION['logged_in'])
 
       function stopScript() {
         $.ajax({
-          url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/action/?action=stopScript",
+          url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/action/?action=stopScript",
           type: 'get',
           dataType: 'jsonp',
         });

@@ -11,6 +11,7 @@ if(!$_SESSION['logged_in'])
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src= http://<?php echo $_SERVER['SERVER_ADDR']; ?>/jquery.min.js></script>
+    <script type="text/javascript" src= http://<?php echo $_SERVER['SERVER_ADDR']; ?>/rangeslider.js></script>
     <!-- Core CSS - Include with every page -->
     <link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -312,6 +313,9 @@ if(!$_SESSION['logged_in'])
                     <li id="settings_menu">
                         <a href="#" onclick="clearselection(); show_settings(); return false;"><i class="fa fa-wrench fa-fw"></i>&nbsp;Einstellungen</a>
                     </li>
+                    <li id="debug_menu">
+                        <a href="#" onclick="clearselection(); show_debug(); return false;"><i class="fa fa-code fa-fw"></i>&nbsp;Debug</a>
+                    </li>
                 </ul>
                 <!-- end side-menu -->
             </div>
@@ -328,6 +332,7 @@ if(!$_SESSION['logged_in'])
             document.getElementById("camera_menu").className = "";
             document.getElementById("wireless_menu").className = "";
             document.getElementById("settings_menu").className = "";
+            document.getElementById("debug_menu").className = "";
           }
 
           function show_dashboard() {
@@ -359,6 +364,12 @@ if(!$_SESSION['logged_in'])
               $("#Content").load("settings.php");
             });
             document.getElementById("settings_menu").className = "selected";
+          }
+          function show_debug() {
+            $(function(){
+              $("#Content").load("debug.php");
+            });
+            document.getElementById("debug_menu").className = "selected";
           }
           </script>
 

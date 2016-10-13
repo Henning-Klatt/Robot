@@ -5,8 +5,8 @@ from flask import Flask, jsonify, render_template, request
 import RPi.GPIO as GPIO
 import time, sys, os
 
-servo1PIN = 22
-servo2PIN = 23
+servo1PIN = 17
+servo2PIN = 4
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(servo1PIN, GPIO.OUT)
@@ -47,7 +47,18 @@ def action():
         os.system("sudo pkill -9 python")
         return '{0}({1})'.format(callback, {'online':'true'})
 
+    if(action == "startStream"):
+        callback = request.args.get('callback')
+        os.system("mkdir /tmp/stream")
+        os.system("raspistill --nopreview -w 640 -h 480 -q 5 -o /tmp/stream/pic.jpg -tl 500 -t 9999999 -th 0:0:0 &")
+        os.system("LD_LIBRARY_PATH=/usr/local/lib mjpg_streamer -i 'input_file.so -f /tmp/stream -n pic.jpg' -o 'output_http.so -w /usr/local/www'")
+        print ("Camera Stream gestartet!")
+        return '{0}({1})'.format(callback, {'online':'true'})
 
+    if(action == "stopStream"):
+        callback = request.args.get('callback')
+        os.system("sudo pkill -9 raspistill")
+        print ("camera Stream gestoppt")
 
 
 @app.route('/camera/', methods=['GET'])
@@ -116,4 +127,4 @@ def sensors():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug=False, threaded=True)
+    app.run(host='0.0.0.0', port=8081, debug=False, threaded=True)
