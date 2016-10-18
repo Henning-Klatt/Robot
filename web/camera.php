@@ -68,5 +68,5 @@ if(!$_SESSION['logged_in'])
         }
       });
     }
-    getStreamStatus
+    getStreamStatus();
     </script>
