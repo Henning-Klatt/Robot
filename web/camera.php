@@ -8,18 +8,20 @@ if(!$_SESSION['logged_in'])
     <div class="col-lg-12">
       <h1 class="page-header">Kamera</h1>
     </div>
-    <table cellspacing=0 border=0>
+    <table cellspacing=0 border=0 >
       <tr><td>
         <img src=http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream />
       </td>
       <td>
       </td>
     </tr>
+  </table>
+  <table cellspacing=0 border=0 >
     <tr>
-      <td><h5>&nbsp;<i class="fa fa-camera"></i>&nbsp;&nbsp;Stream&nbsp;&nbsp;</h5>
-      <button type="button" id="Stream_On" class="btn btn-success" onclick="startStream();" >Start</button>
-      &nbsp;&nbsp;
-      <button type="button" id="Stream_Off" class="btn btn-danger" onclick="stopStream();" >Stop</button>
+      <td><h5>&nbsp;<i class="fa fa-video-camera"></i>&nbsp;&nbsp;Stream&nbsp;&nbsp;</h5></td>
+      <td><button type="button" id="Stream_On" class="btn btn-success" onclick="startStream();" >Start</button>
+      &nbsp;&nbsp;</td>
+      <td><button type="button" id="Stream_Off" class="btn btn-danger" onclick="stopStream();" >Stop</button>
       &nbsp;&nbsp;</td>
     </tr>
   </table>
