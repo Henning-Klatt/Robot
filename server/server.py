@@ -50,7 +50,7 @@ def action():
     elif(action == "startStream"):
         callback = request.args.get('callback')
         os.system("mkdir /tmp/stream")
-        os.system("raspistill --nopreview -w 640 -h 480 -q 5 -o /tmp/stream/pic.jpg -tl 500 -t 9999999 -th 0:0:0 &")
+        os.system("raspistill --nopreview -w 640 -h 480 -q 5 -o /tmp/stream/pic.jpg -tl 100 -th 0:0:0 &")
         os.system("LD_LIBRARY_PATH=/usr/local/lib mjpg_streamer -i 'input_file.so -f /tmp/stream -n pic.jpg' -o 'output_http.so -w /usr/local/www'")
         print ("Camera Stream gestartet!")
         return '{0}({1})'.format(callback, {'stream':'online'})
