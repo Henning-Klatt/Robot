@@ -43,7 +43,7 @@ def status():
     if(statusfrom == "stream"):
         response = commands.getstatusoutput('sudo service motion status')
         print response
-        if('Active: active (running)' not in respone):
+        if('Active: active (running)' not in response):
             print "Camera Stream ist offline!"
             return '{0}({1})'.format(callback, {'online':'false'})
         else:
