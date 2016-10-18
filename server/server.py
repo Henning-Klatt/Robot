@@ -49,13 +49,13 @@ def action():
 
     elif(action == "startStream"):
         callback = request.args.get('callback')
-        os.system("sudo motion")
+        os.system("sudo service motion start")
         print ("Camera Stream gestartet!")
         return '{0}({1})'.format(callback, {'streamstatus':'online'})
 
     elif(action == "stopStream"):
         callback = request.args.get('callback')
-        os.system("sudo killall motion")
+        os.system("sudo service motion stop")
         print ("camera Stream gestoppt")
         return '{0}({1})'.format(callback, {'streamstatus':'offline'})
 
