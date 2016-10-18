@@ -43,12 +43,13 @@ def status():
     if(statusfrom == "stream"):
         response = commands.getstatusoutput('sudo service motion status')
         print response
-        if("Active: active (running)" in response):
-            print "Camera Stream ist online!"
-            return '{0}({1})'.format(callback, {'online':'true'})
-        else:
+        if response.finf('Active: active (running)') == -1:
             print "Camera Stream ist offline!"
             return '{0}({1})'.format(callback, {'online':'false'})
+        else:
+            print "Camera Stream ist online!"
+            return '{0}({1})'.format(callback, {'online':'true'})
+
 
 @app.route('/action/')
 def action():
