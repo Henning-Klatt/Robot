@@ -40,6 +40,14 @@ if(!$_SESSION['logged_in'])
           alert(streamstatus)
         }
       });
+      if(streamstatus == "online") {
+        document.getElementById('Stream_On').className = "btn btn-success disabled";
+        document.getElementById('Stream_Off').className = "btn btn-danger enabled";
+      }
+      if(streamstatus == "offline") {
+        document.getElementById('Stream_On').className = "btn btn-success enabled";
+        document.getElementById('Stream_Off').className = "btn btn-danger disabled";
+      }
     }
     function stopStream() {
       $.ajax({
@@ -50,8 +58,15 @@ if(!$_SESSION['logged_in'])
           var response = JSON.stringify(data);
           var obj = $.parseJSON(response);
           var streamstatus = obj.streamstatus;
-          alert(streamstatus)
         }
       });
+      if(streamstatus == "online") {
+        document.getElementById('Stream_On').className = "btn btn-success disabled";
+        document.getElementById('Stream_Off').className = "btn btn-danger enabled";
+      }
+      if(streamstatus == "offline") {
+        document.getElementById('Stream_On').className = "btn btn-success enabled";
+        document.getElementById('Stream_Off').className = "btn btn-danger disabled";
+      }
     }
     </script>
