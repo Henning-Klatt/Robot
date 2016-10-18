@@ -38,14 +38,15 @@ def online():
 @app.route('/status/')
 def status():
     callback = request.args.get('callback')
-    hostname = request.args.get('hostname')
-    response = os.system("ping -c 1 " + hostname)
-    if response == 0:
-        print hostname, ' ist online!'
-        return '{0}({1})'.format(callback, {'online':'true'})
-    else:
-        print hostname, ' ist offline!'
-        return '{0}({1})'.format(callback, {'online':'false'})
+    statusfrom = request.args.get('from')
+    if(statusfrom == "stream"):
+        response = os.system("sudo service motion status")
+        if("Active: active (running)" in response):
+            print "Camera Stream ist online!"
+            return '{0}({1})'.format(callback, {'online':'true'})
+        else:
+            print "Camera Stream ist offline!"
+            return '{0}({1})'.format(callback, {'online':'false'})
 
 @app.route('/action/')
 def action():

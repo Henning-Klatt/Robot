@@ -44,13 +44,13 @@ if(!$_SESSION['logged_in'])
     }
     function getStreamStatus() {
       $.ajax({
-        url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/status/?hostname=localhost:8080",
+        url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/status/?from=stream",
         success: function(data) {
           var response = JSON.stringify(data);
           var obj = $.parseJSON(response);
-          var onlinestatus = obj.online;
+          var streamstatus = obj.online;
         }
-          if(onlinestatus == "true") {
+          if(streamstatus == "online") {
             document.getElementById('Stream_On').className = "btn btn-success enabled";
             document.getElementById('Stream_Off').className = "btn btn-danger disabled";
           }
