@@ -40,24 +40,17 @@ if(!$_SESSION['logged_in'])
         url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/action/?action=stopStream",
         type: 'get',
         dataType: 'jsonp',
-        success: function(data) {
-          var response = JSON.stringify(data);
-          var obj = $.parseJSON(response);
-          var streamstatus = obj.streamstatus;
-          if(streamstatus == "offline") {
-            document.getElementById('Stream_On').className = "btn btn-success enabled";
-            document.getElementById('Stream_Off').className = "btn btn-danger disabled";
-          }
-        }
       });
     }
     function getStreamStatus() {
-      streamstatus = "offline";
       $.ajax({
-        url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080",
+        url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/status/?hostname=localhost:8080",
         success: function(data) {
-          streamstatus = "online";
-          if(streamstatus == "offline") {
+          var response = JSON.stringify(data);
+          var obj = $.parseJSON(response);
+          var onlinestatus = obj.online;
+        }
+          if(onlinestatus == "true") {
             document.getElementById('Stream_On').className = "btn btn-success enabled";
             document.getElementById('Stream_Off').className = "btn btn-danger disabled";
           }

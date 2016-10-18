@@ -35,6 +35,18 @@ def online():
     callback = request.args.get('callback')
     return '{0}({1})'.format(callback, {'online':'true'})
 
+@app.route('/status/')
+def status():
+    callback = request.args.get('callback')
+    hostname = request.args.get('hostname')
+    response = os.system("ping -c 1 " + hostname)
+    if response == 0:
+        print hostname, ' ist online!'
+        return '{0}({1})'.format(callback, {'online':'true'})
+    else:
+        print hostname, ' ist offline!'
+        return '{0}({1})'.format(callback, {'online':'false'})
+
 @app.route('/action/')
 def action():
     callback = request.args.get('callback')
