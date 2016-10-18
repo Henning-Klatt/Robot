@@ -51,13 +51,13 @@ def action():
         callback = request.args.get('callback')
         os.system("sudo motion")
         print ("Camera Stream gestartet!")
-        return '{0}({1})'.format(callback, {'stream':'online'})
+        return '{0}({1})'.format(callback, {'streamstatus':'online'})
 
     elif(action == "stopStream"):
         callback = request.args.get('callback')
         os.system("sudo killall motion")
         print ("camera Stream gestoppt")
-        return '{0}({1})'.format(callback, {'stream':'offline'})
+        return '{0}({1})'.format(callback, {'streamstatus':'offline'})
 
     else:
         return '{0}({1})'.format(callback, {'Unbekannter Befehl!'})

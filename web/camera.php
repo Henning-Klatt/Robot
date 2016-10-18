@@ -15,6 +15,14 @@ if(!$_SESSION['logged_in'])
       <td><iframe height="480" style="border:none;" src="http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8082/0/config/list">
       </td>
     </tr>
+    <tr>
+      <td><h5>&nbsp;<i class="fa fa-camera"></i>&nbsp;&nbsp;Stream&nbsp;&nbsp;</h5></td>
+      <td><button type="button" id="Stream_On" class="btn btn-success" onclick="startStream();" >Start</button>
+      &nbsp;&nbsp;</td>
+      <td><button type="button" id="Stream_Off" class="btn btn-danger" onclick="stopStream();" >Stop</button>
+      &nbsp;&nbsp;</td>
+    </tr>
+  </table>
       <!--End Page Header -->
     </div>
     <script>
@@ -23,6 +31,12 @@ if(!$_SESSION['logged_in'])
         url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/action/?action=startStream",
         type: 'get',
         dataType: 'jsonp',
+        success: function(data) {
+          var response = JSON.stringify(data);
+          var obj = $.parseJSON(response);
+          var streamstatus = obj.online;
+          alert(streamstatus)
+        }
       });
     }
     function stopStream() {
