@@ -16,12 +16,12 @@ if(!$_SESSION['logged_in'])
       </td>
     </tr>
     <tr>
-      <td><h5>&nbsp;<i class="fa fa-camera"></i>&nbsp;&nbsp;Stream&nbsp;&nbsp;</h5></td>
-      <td><button type="button" id="Stream_On" class="btn btn-success" onclick="startStream();" >Start</button>
+      <td><h5>&nbsp;<i class="fa fa-camera"></i>&nbsp;&nbsp;Stream&nbsp;&nbsp;</h5>
+      <button type="button" id="Stream_On" class="btn btn-success" onclick="startStream();" >Start</button>
+      &nbsp;&nbsp;
+      <button type="button" id="Stream_Off" class="btn btn-danger" onclick="stopStream();" >Stop</button>
       &nbsp;&nbsp;</td>
-      <td><button type="button" id="Stream_Off" class="btn btn-danger" onclick="stopStream();" >Stop</button>
-      &nbsp;&nbsp;</td>
-    </tr><tr><td>Zweite Spalte</td></tr>
+    </tr>
   </table>
       <!--End Page Header -->
     </div>
