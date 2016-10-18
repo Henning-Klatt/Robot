@@ -41,6 +41,7 @@ def status():
     statusfrom = request.args.get('from')
     if(statusfrom == "stream"):
         response = os.system("sudo service motion status")
+        print response
         if("Active: active (running)" in response):
             print "Camera Stream ist online!"
             return '{0}({1})'.format(callback, {'online':'true'})
