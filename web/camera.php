@@ -21,7 +21,7 @@ if(!$_SESSION['logged_in'])
       &nbsp;&nbsp;</td>
       <td><button type="button" id="Stream_Off" class="btn btn-danger" onclick="stopStream();" >Stop</button>
       &nbsp;&nbsp;</td>
-    </tr>
+    </tr><tr><td>Zweite Spalte</td></tr>
   </table>
       <!--End Page Header -->
     </div>
