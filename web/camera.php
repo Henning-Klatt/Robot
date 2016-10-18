@@ -12,7 +12,7 @@ if(!$_SESSION['logged_in'])
       <tr><td>
         <img src=http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream />
       </td>
-      <td><iframe src="http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8082/0/config/list/">
+      <td><iframe src="http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8082/0/config/list">
       </td>
     </tr>
       <!--End Page Header -->
