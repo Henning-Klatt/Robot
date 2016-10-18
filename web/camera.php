@@ -36,7 +36,7 @@ if(!$_SESSION['logged_in'])
         success: function(data) {
           var response = JSON.stringify(data);
           var obj = $.parseJSON(response);
-          var streamstatus = obj.online;
+          var streamstatus = obj.streamstatus;
           alert(streamstatus)
         }
       });
@@ -46,6 +46,12 @@ if(!$_SESSION['logged_in'])
         url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/action/?action=stopStream",
         type: 'get',
         dataType: 'jsonp',
+        success: function(data) {
+          var response = JSON.stringify(data);
+          var obj = $.parseJSON(response);
+          var streamstatus = obj.streamstatus;
+          alert(streamstatus)
+        }
       });
     }
     </script>
