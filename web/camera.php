@@ -11,7 +11,7 @@ if(!$_SESSION['logged_in'])
     <table cellspacing=0 border=0 >
       <tr><td>
         <object data="http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream" width=640 height=480>
-          <img src="test.png" alt="Just testing.">
+          <img src="http://<?php echo $_SERVER['SERVER_ADDR']; ?>/pictures/offline.png" alt="Just testing.">
         </object>
         <!--<img src=http://<?php //echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream />-->
       </td>
