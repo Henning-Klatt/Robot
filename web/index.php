@@ -20,7 +20,7 @@ if(!$_SESSION['logged_in'])
 
 </head>
 
-<body>
+<body onload="startTime()";>
   <!-- PopUp -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -324,6 +324,25 @@ if(!$_SESSION['logged_in'])
         <!--  page-wrapper -->
         <div id="page-wrapper">
           <script>
+
+          window.addEventListener("keydown", keysPressed, false);
+          window.addEventListener("keyup", keysReleased, false);
+
+          function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('clock').innerHTML =
+            h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+          }
+          function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+          }
 
           function clearselection() {
             document.getElementById("dashboard_menu").className = "";

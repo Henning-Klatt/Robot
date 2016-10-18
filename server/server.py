@@ -119,8 +119,8 @@ def camera():
     return jsonify(ret_data)
 
 def moveServo(x, y):
-    s1.ChangeDutyCycle(x)
-    s2.ChangeDutyCycle(y)
+    print x
+    print y
 
 @app.route('/cameramove/', methods=['GET'])
 def cameramove():
