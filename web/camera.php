@@ -8,7 +8,7 @@ if(!$_SESSION['logged_in'])
     <div class="col-lg-12">
       <h1 class="page-header">Kamera</h1>
     </div>
-    <table cellspacing=1 border=1>
+    <table cellspacing=0 border=0>
       <tr><td>
         <img src=http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream />
       </td>
