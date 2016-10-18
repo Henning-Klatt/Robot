@@ -4,6 +4,7 @@
 from flask import Flask, jsonify, render_template, request
 import RPi.GPIO as GPIO
 import time, sys, os
+import commands
 
 servo1PIN = 17
 servo2PIN = 4
@@ -40,7 +41,7 @@ def status():
     callback = request.args.get('callback')
     statusfrom = request.args.get('from')
     if(statusfrom == "stream"):
-        response = os.system("sudo service motion status")
+        response = commands.getstatusoutput('sudo service motion status')
         print response
         if("Active: active (running)" in response):
             print "Camera Stream ist online!"
