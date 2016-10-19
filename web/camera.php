@@ -66,10 +66,10 @@ if(!$_SESSION['logged_in'])
         success: function(data) {
           var response = JSON.stringify(data);
           var obj = $.parseJSON(response);
-          var streamstatus = obj.online;
-          alert(streamstatus)
+          var streamstatus = obj.streamstatus;
         }
       });
+      show_camera();
     }
     function stopStream() {
       $.ajax({
