@@ -10,7 +10,7 @@ if(!$_SESSION['logged_in'])
     <title>LexoBot</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<script type="text/javascript" src=http://<?php echo $_SERVER['SERVER_ADDR']; ?>/jquery.min.js></script>-->
+    <script type="text/javascript" src=http://<?php echo $_SERVER['SERVER_ADDR']; ?>/jquery.min.js></script>
     <!-- Core CSS - Include with every page -->
     <link href="assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -381,7 +381,7 @@ if(!$_SESSION['logged_in'])
     <!-- end wrapper -->
 
     <!-- Core Scripts - Include with every page -->
-    <script src="assets/plugins/jquery-1.10.2.js"></script>
+    <!--<script src="assets/plugins/jquery-1.10.2.js"></script>-->
     <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
     <script src="assets/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="assets/plugins/pace/pace.js"></script>
