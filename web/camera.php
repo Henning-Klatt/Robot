@@ -20,8 +20,9 @@ if(!$_SESSION['logged_in'])
       <td>
         <h5>Kamera Einstellungen:</h5>
         <?php
-        $configtext = file_get_contents('http://192.168.178.34:8082/0/config/list')
-        echo strip_tags($configtext, '<br><b><body><ul><li><a>') ?>
+        $configtext = file_get_contents('http://192.168.178.34:8082/0/config/list');
+        echo strip_tags($configtext, '<br><b><body><ul><li><a>');
+        ?>
       </td>
     </tr>
   </table>
