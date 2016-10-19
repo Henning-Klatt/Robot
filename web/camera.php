@@ -18,6 +18,10 @@ if(!$_SESSION['logged_in'])
         <!--<img src=http://<?php //echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream />-->
       </td>
       <td>
+        <h5>Kamera Einstellungen:</h5>
+        <?php
+        $configtext = file_get_contents('http://192.168.178.34:8082/0/config/list')
+        echo strip_tags($configtext, '<br><b><body><ul><li><a>') ?>
       </td>
     </tr>
   </table>
@@ -38,18 +42,18 @@ if(!$_SESSION['logged_in'])
       strg = true;
       if(strg == true) {
         pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("stream").offsetLeft;
-	       pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("stream").offsetTop;
-         pos_x = (pos_x/640*180);
-         pos_y = (pos_y/480*180);
-         pos_x = pos_x.toFixed(0)
-         pos_y = pos_y.toFixed(0)
-         $.ajax({
-           type: "GET",
-           url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/cameramove/?x=" + pos_x + "&y=" + pos_y,
-           data: { x: pos_x, y: pos_y },
-         });
-       }
-     }
+	      pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("stream").offsetTop;
+        pos_x = (pos_x/640*180);
+        pos_y = (pos_y/480*180);
+        pos_x = pos_x.toFixed(0)
+        pos_y = pos_y.toFixed(0)
+        $.ajax({
+          type: "GET",
+          url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/cameramove/",
+          data: { x: pos_x, y: pos_y },
+        });
+      }
+    }
 
     function startStream() {
       $.ajax({
