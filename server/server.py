@@ -126,7 +126,7 @@ def moveServo(x, y):
 def cameramove():
     ret_data = True
     x = request.args.get('x')
-    y = (request.args.get('y')
+    y = request.args.get('y')
     moveServo(x, y)
     return jsonify(ret_data)
 
