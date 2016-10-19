@@ -15,7 +15,6 @@ if(!$_SESSION['logged_in'])
           <img src="http://<?php echo $_SERVER['SERVER_ADDR']; ?>/pictures/offline.png" alt="Just testing.">
         </object>
       </div>
-        <!--<img src=http://<?php //echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream />-->
       </td>
       <td>
         <h5>Kamera Einstellungen:</h5>
@@ -54,7 +53,6 @@ if(!$_SESSION['logged_in'])
         $.ajax({
           type: "GET",
           url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/cameramove/",
-          data: { x: pos_x, y: pos_y },
         });
       }
     }
@@ -76,6 +74,8 @@ if(!$_SESSION['logged_in'])
     function getStreamStatus() {
       $.ajax({
         url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/status/?from=stream",
+        type: 'get',
+        dataType: 'jsonp',
         success: function(data) {
           var response = JSON.stringify(data);
           var obj = $.parseJSON(response);
