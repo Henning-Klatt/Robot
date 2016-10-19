@@ -11,13 +11,14 @@ if(!$_SESSION['logged_in'])
     <table cellspacing=1 border=1>
       <tr><td>
         <div id="stream" onmousemove="mousemove(event)" oncontextmenu="alert('Drücken sie STRG und bewegen sie gelichzeitig die Maus in dem Stream, um sich um zu schauen.');return false">
-          <object data="http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream" width=640 height=480>
-            <img src="http://<?php echo $_SERVER['SERVER_ADDR']; ?>/pictures/offline.png" alt="Stream offline!">
+          <object data="http://212.86.179.191:8080/?action=stream" width=640 height=480>
+            <img src="pictures/offline.png" alt="Stream offline!">
           </object>
         </div>
       </td>
       <td>
-      <h3>Kamera Einstellungen:</h3>
+      <h4>Kamera Einstellungen:</h4>
+      <input type="range" id="stream_quality" onchange="update_video_config();" value="20" min="0" max="100">
     </td>
   </tr>
   </table>
@@ -33,6 +34,11 @@ if(!$_SESSION['logged_in'])
       <!--End Page Header -->
     </div>
     <script>
+
+    function update_video_config() {
+      stream_quality = document.getElementById("stream_quality").value;
+      alert(stream_quality)
+    }
 
     function mousemove(event) {
       strg = true;
