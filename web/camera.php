@@ -10,9 +10,11 @@ if(!$_SESSION['logged_in'])
     </div>
     <table cellspacing=1 border=1>
       <tr><td>
-        <img src=http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream />
-      </td>
-      <td>
+        <div id="stream" onmousemove="mousemove(event)" oncontextmenu="alert('Drücken sie STRG und bewegen sie gelichzeitig die Maus in dem Stream, um sich um zu schauen.');return false">
+          <object data="http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream" width=640 height=480>
+            <img src="http://<?php echo $_SERVER['SERVER_ADDR']; ?>/pictures/offline.png" alt="Stream offline!">
+          </object>
+        </div>
       </td>
     </tr>
     <tr>
