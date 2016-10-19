@@ -53,7 +53,7 @@ if(!$_SESSION['logged_in'])
             var mousemovestatus = obj.status;
             if(mousemovestatus != "success") {
               alert("Server reagiert nicht mehr!");
-            }
+            },
           error: function(xhr, ajaxOptions, thrownError) {
             alert("Server reagiert nicht mehr!");
           }
