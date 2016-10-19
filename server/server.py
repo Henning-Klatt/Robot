@@ -80,55 +80,17 @@ def action():
         return '{0}({1})'.format(callback, {'Unbekannter Befehl!'})
 
 
-@app.route('/camera/', methods=['GET'])
-def camera():
-    ret_data = {"value": request.args.get('aktion')}
-    wert = request.args.get('aktion')
-
-    if(wert == "left"):
-        s1.ChangeDutyCycle(13)
-
-    elif(wert == "up"):
-        s2.ChangeDutyCycle(2.5)
-
-
-    elif(wert == "right"):
-        s1.ChangeDutyCycle(2.9)
-
-    elif(wert == "down"):
-        s2.ChangeDutyCycle(13)
-
-    elif(wert == "clear"):
-        s1.ChangeDutyCycle(0)
-        s2.ChangeDutyCycle(0)
-
-    elif(wert == "reset"):
-        s1.ChangeDutyCycle(7.5)
-        s2.ChangeDutyCycle(6.8)
-
-    elif(wert == "stop-camera-left" or wert == "stop-camera-right"):
-        s1.ChangeDutyCycle(7.5)
-
-    elif(wert == "stop-camera-up" or wert == "stop-camera-down"):
-        s2.ChangeDutyCycle(6.8)
-
-
-    else:
-        print "Unbekannter Befehl: " + str(wert)
-
-    return jsonify(ret_data)
-
 def moveServo(x, y):
     print str(x)
     print str(y)
 
 @app.route('/cameramove/', methods=['GET'])
 def cameramove():
-    ret_data = {"status": "success"}
+    callback = request.args.get('callback')
     x = request.args.get('x')
     y = request.args.get('y')
     moveServo(x, y)
-    return jsonify(ret_data)
+    return '{0}({1})'.format(callback, {'success'})
 
 @app.route('/drive/', methods=['GET'])
 def drive():
