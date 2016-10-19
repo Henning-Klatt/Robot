@@ -90,7 +90,7 @@ def cameramove():
     x = request.args.get('x')
     y = request.args.get('y')
     moveServo(x, y)
-    return '{0}({1})'.format(callback, {'success'})
+    return '{0}({1})'.format(callback, {'status':'success'})
 
 @app.route('/drive/', methods=['GET'])
 def drive():
