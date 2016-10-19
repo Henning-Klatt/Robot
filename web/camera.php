@@ -23,7 +23,7 @@ if(!$_SESSION['logged_in'])
   </table>
   <table cellspacing=1 border=1>
     <tr>
-      <td><h5>&nbsp;<i class="fa fa-camera"></i>&nbsp;&nbsp;Stream&nbsp;&nbsp;</h5></td>
+      <td><h5>&nbsp;<i class="fa fa-video-camera"></i>&nbsp;&nbsp;Stream&nbsp;&nbsp;</h5></td>
       <td><button type="button" id="Stream_On" class="btn btn-success" onclick="startStream();" >Start</button>
       &nbsp;&nbsp;</td>
       <td><button type="button" id="Stream_Off" class="btn btn-danger" onclick="stopStream();" >Stop</button>
@@ -52,8 +52,11 @@ if(!$_SESSION['logged_in'])
             var obj = $.parseJSON(response);
             var mousemovestatus = obj.status;
             if(mousemovestatus != "success") {
-              alert("Server reagiert nicht mehr!")
+              alert("Server reagiert nicht mehr!");
             }
+          error: function(xhr, ajaxOptions, thrownError) {
+            alert("Server reagiert nicht mehr!");
+          }
           }
         });
       }
