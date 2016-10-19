@@ -67,9 +67,10 @@ if(!$_SESSION['logged_in'])
           var response = JSON.stringify(data);
           var obj = $.parseJSON(response);
           var streamstatus = obj.streamstatus;
+
+          setTimeout(show_camera, 3000);
         }
       });
-      show_camera();
     }
     function stopStream() {
       $.ajax({
