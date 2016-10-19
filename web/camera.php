@@ -19,16 +19,12 @@ if(!$_SESSION['logged_in'])
       </td>
       <td>
         <h5>Kamera Einstellungen:</h5>
-        <input type="text" data-slider="true">
+        <input onchange="update_camera_setings();"id="stream_quality" type="range" min="0" max="100" value="50">
         <script>
-        $("#my-input").bind("slider:changed", function (event, data) {
-          // The currently selected value of the slider
-          alert(data.value);
-
-          // The value as a ratio of the slider (between 0 and 1)
-          alert(data.ratio);
-        });
-      </script>
+        function update_camera_settings() {
+          var stream_quality = document.getElementById("stream_quality").value;
+          alert(stream_quality);
+        }
       </td>
     </tr>
   </table>
