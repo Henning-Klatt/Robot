@@ -55,9 +55,6 @@ if(!$_SESSION['logged_in'])
               alert("Server reagiert nicht mehr!");
             }
           }
-          error: function(xhr, ajaxOptions, thrownError) {
-            alert("Server reagiert nicht mehr!");
-          }
         });
       }
     }
