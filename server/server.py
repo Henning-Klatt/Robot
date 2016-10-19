@@ -119,14 +119,14 @@ def camera():
     return jsonify(ret_data)
 
 def moveServo(x, y):
-    print x
-    print y
+    print str(x)
+    print str(y)
 
 @app.route('/cameramove/', methods=['GET'])
 def cameramove():
     ret_data = True
-    x = float(request.args.get('x'))
-    y = float(request.args.get('y'))
+    int(x = request.args.get('x'))
+    int(y = float(request.args.get('y'))
     moveServo(x, y)
     return jsonify(ret_data)
 
