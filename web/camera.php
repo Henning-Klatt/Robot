@@ -8,29 +8,15 @@ if(!$_SESSION['logged_in'])
     <div class="col-lg-12">
       <h1 class="page-header">Kamera</h1>
     </div>
-    <table cellspacing=0 border=0 >
+    <table cellspacing=1 border=1>
       <tr><td>
-        <div id="stream" onmousemove="mousemove(event)" oncontextmenu="alert('Drücken sie STRG und bewegen sie gelichzeitig die Maus in dem Stream, um sich um zu schauen.');return false">
-        <object data="http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream" width=640 height=480>
-          <img src="http://<?php echo $_SERVER['SERVER_ADDR']; ?>/pictures/offline.png" alt="Just testing.">
-        </object>
-      </div>
+        <img src=http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream />
       </td>
       <td>
-        <h5>Kamera Einstellungen:</h5>
-        <script>
-        function update_camera_settings() {
-          var stream_quality = document.getElementById("stream_quality").value;
-          alert(stream_quality);
-        }
-        </script>
-        <input onchange="update_camera_setings()" id="stream_quality" type="range" min="0" max="100" value="50">
       </td>
     </tr>
-  </table>
-  <table cellspacing=0 border=0 >
     <tr>
-      <td><h5>&nbsp;<i class="fa fa-video-camera"></i>&nbsp;&nbsp;Stream&nbsp;&nbsp;</h5></td>
+      <td><h5>&nbsp;<i class="fa fa-camera"></i>&nbsp;&nbsp;Stream&nbsp;&nbsp;</h5></td>
       <td><button type="button" id="Stream_On" class="btn btn-success" onclick="startStream();" >Start</button>
       &nbsp;&nbsp;</td>
       <td><button type="button" id="Stream_Off" class="btn btn-danger" onclick="stopStream();" >Stop</button>
@@ -40,28 +26,17 @@ if(!$_SESSION['logged_in'])
       <!--End Page Header -->
     </div>
     <script>
-
-    function mousemove(event) {
-      strg = true;
-      if(strg == true) {
-        pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("stream").offsetLeft;
-	      pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("stream").offsetTop;
-        pos_x = (pos_x/640*180);
-        pos_y = (pos_y/480*180);
-        pos_x = pos_x.toFixed(0)
-        pos_y = pos_y.toFixed(0)
-        $.ajax({
-          type: "GET",
-          url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/cameramove/",
-        });
-      }
-    }
-
     function startStream() {
       $.ajax({
         url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/action/?action=startStream",
         type: 'get',
         dataType: 'jsonp',
+        success: function(data) {
+          var response = JSON.stringify(data);
+          var obj = $.parseJSON(response);
+          var streamstatus = obj.online;
+          alert(streamstatus)
+        }
       });
     }
     function stopStream() {
@@ -71,26 +46,4 @@ if(!$_SESSION['logged_in'])
         dataType: 'jsonp',
       });
     }
-    function getStreamStatus() {
-      $.ajax({
-        url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/status/?from=stream",
-        type: 'get',
-        dataType: 'jsonp',
-        success: function(data) {
-          var response = JSON.stringify(data);
-          var obj = $.parseJSON(response);
-          var streamstatus = obj.online;
-        }
-          if(streamstatus == "online") {
-            document.getElementById('Stream_On').className = "btn btn-success enabled";
-            document.getElementById('Stream_Off').className = "btn btn-danger disabled";
-          }
-          else{
-            document.getElementById('Stream_On').className = "btn btn-success disabled";
-            document.getElementById('Stream_Off').className = "btn btn-danger enabled";
-          }
-        }
-      });
-    }
-    getStreamStatus();
     </script>
