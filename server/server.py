@@ -81,8 +81,7 @@ def action():
 
 
 def moveServo(x, y):
-    print str(x)
-    print str(y)
+    print "Servo bewegt! ( x: " + str(x) + " | y: " + str(y) +" )"
 
 @app.route('/cameramove/', methods=['GET'])
 def cameramove():
