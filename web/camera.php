@@ -16,8 +16,7 @@ if(!$_SESSION['logged_in'])
           </object>
         </div>
       </td>
-    </tr>
-    <tr><td>
+      <td>
       <h3>Kamera Einstellungen:</h3>
     </td>
   </tr>
