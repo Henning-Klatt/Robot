@@ -24,7 +24,7 @@ if(!$_SESSION['logged_in'])
         $('input[type="range"]').rangeslider();
         $('input[type="range"]').rangeslider('destroy');
         $('input[type="range"]').rangeslider('update', true);
-</script>
+        </script>
       </td>
     </tr>
   </table>
