@@ -18,7 +18,7 @@ if(!$_SESSION['logged_in'])
     <link href="assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
     <link href="assets/css/main-style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/scripts/rangeSlider.css">
+    <link rel="stylesheet" href="assets/scripts/rangeslider.css">
 
 </head>
 
