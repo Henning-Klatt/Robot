@@ -125,8 +125,8 @@ def moveServo(x, y):
 @app.route('/cameramove/', methods=['GET'])
 def cameramove():
     ret_data = True
-    int x = request.args.get('x')
-    int y = (request.args.get('y')
+    x = request.args.get('x')
+    y = (request.args.get('y')
     moveServo(x, y)
     return jsonify(ret_data)
 
