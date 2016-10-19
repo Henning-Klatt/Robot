@@ -19,12 +19,16 @@ if(!$_SESSION['logged_in'])
       </td>
       <td>
         <h5>Kamera Einstellungen:</h5>
-        <input type="range" min="0" max="100" step="1" value="50" data-orientation="horizontal">
+        <input type="text" data-slider="true">
         <script>
-        $('input[type="range"]').rangeslider();
-        $('input[type="range"]').rangeslider('destroy');
-        $('input[type="range"]').rangeslider('update', true);
-        </script>
+        $("#my-input").bind("slider:changed", function (event, data) {
+          // The currently selected value of the slider
+          alert(data.value);
+
+          // The value as a ratio of the slider (between 0 and 1)
+          alert(data.ratio);
+        });
+      </script>
       </td>
     </tr>
   </table>
