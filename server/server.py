@@ -124,11 +124,10 @@ def moveServo(x, y):
 
 @app.route('/cameramove/', methods=['GET'])
 def cameramove():
-    ret_data = {"status": "success"}
     x = request.args.get('x')
     y = request.args.get('y')
     moveServo(x, y)
-    return jsonify(ret_data)
+    return 'True'
 
 @app.route('/drive/', methods=['GET'])
 def drive():
