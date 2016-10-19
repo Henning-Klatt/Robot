@@ -18,7 +18,7 @@ if(!$_SESSION['logged_in'])
       </td>
       <td>
       <h4>Kamera Einstellungen:</h4>
-      <li>Stream Qualität: <p id="show_stream_quality"></li>
+      <li>Stream Qualität: <div id="show_stream_quality"></div></li>
       <input type="range" id="stream_quality" onchange="update_video_config();" value="20" min="0" max="100">
       <li>Helligkeit:</li>
       <input type="range" id="brightness" onchange="update_video_config();" value="20" min="0" max="100">
