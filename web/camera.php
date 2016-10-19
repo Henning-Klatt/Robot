@@ -19,10 +19,12 @@ if(!$_SESSION['logged_in'])
       </td>
       <td>
         <h5>Kamera Einstellungen:</h5>
-        <?php
-        $configtext = file_get_contents('http://192.168.178.34:8082/0/config/list');
-        echo strip_tags($configtext, '<br><b><body><ul><li><a>');
-        ?>
+        <input type="range" min="0" max="100" step="1" value="50" data-orientation="horizontal">
+        <script>
+        $('input[type="range"]').rangeslider();
+        $('input[type="range"]').rangeslider('destroy');
+        $('input[type="range"]').rangeslider('update', true);
+</script>
       </td>
     </tr>
   </table>
