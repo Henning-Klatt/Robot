@@ -10,7 +10,7 @@ if(!$_SESSION['logged_in'])
     </div>
     <table cellspacing=0 border=0 >
       <tr><td>
-        <div id="stream" onmousemove="mousemove(event)" oncontextmenu="alert('Drücken sie STRG und bewegen sie gelichzeitig die Maus in dem Stream, um sich um zu schauen.');return false">
+        <div id="stream" onmousemove="mousemove(event);" oncontextmenu="alert('Drücken sie STRG und bewegen sie gelichzeitig die Maus in dem Stream, um sich um zu schauen.');return false">
         <object data="http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream" width=640 height=480>
           <img src="http://<?php echo $_SERVER['SERVER_ADDR']; ?>/pictures/offline.png" alt="Just testing.">
         </object>
