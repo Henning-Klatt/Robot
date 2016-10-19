@@ -47,6 +47,14 @@ if(!$_SESSION['logged_in'])
           type: "GET",
           url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/cameramove/?x=" + pos_x + "&y=" + pos_y,
           dataType: 'jsonp',
+          success: function(data) {
+            var response = JSON.stringify(data);
+            var obj = $.parseJSON(response);
+            var mousemovestatus = obj.status;
+            if(mousemovestatus != "success") {
+              alert("Server reagiert nicht mehr!")
+            }
+          }
         });
       }
     }
