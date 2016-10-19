@@ -25,6 +25,7 @@ if(!$_SESSION['logged_in'])
           var stream_quality = document.getElementById("stream_quality").value;
           alert(stream_quality);
         }
+        </script>
       </td>
     </tr>
   </table>
