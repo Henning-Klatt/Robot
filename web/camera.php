@@ -18,7 +18,7 @@ if(!$_SESSION['logged_in'])
       </td>
       <td>
       <h4>Kamera Einstellungen:</h4>
-      <li>Stream Qualität: <div id="show_stream_quality"></div></li>
+      <li><p id="show_stream_quality"></li>
       <input type="range" id="stream_quality" onchange="update_video_config();" value="20" min="0" max="100">
       <li>Helligkeit:</li>
       <input type="range" id="brightness" onchange="update_video_config();" value="20" min="0" max="100">
@@ -38,9 +38,11 @@ if(!$_SESSION['logged_in'])
     </div>
     <script>
 
+    update_video_config();
+
     function update_video_config() {
       stream_quality = document.getElementById("stream_quality").value;
-      document.getElementById("show_stream_quality").innerHTML = stream_quality;
+      document.getElementById("show_stream_quality").innerHTML = "Stream Qualität: " + stream_quality;
     }
 
     function mousemove(event) {
