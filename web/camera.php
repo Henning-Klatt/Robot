@@ -17,6 +17,12 @@ if(!$_SESSION['logged_in'])
         </div>
       </td>
     </tr>
+    <tr><td>
+      <h3>Kamera Einstellungen:</h3>
+    </td>
+  </tr>
+  </table>
+  <table cellspacing=1 border=1>
     <tr>
       <td><h5>&nbsp;<i class="fa fa-camera"></i>&nbsp;&nbsp;Stream&nbsp;&nbsp;</h5></td>
       <td><button type="button" id="Stream_On" class="btn btn-success" onclick="startStream();" >Start</button>
@@ -28,6 +34,23 @@ if(!$_SESSION['logged_in'])
       <!--End Page Header -->
     </div>
     <script>
+
+    function mousemove(event) {
+      strg = true;
+      if(strg == true) {
+        pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("stream").offsetLeft;
+	      pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("stream").offsetTop;
+        pos_x = (pos_x/640*180);
+        pos_y = (pos_y/480*180);
+        pos_x = pos_x.toFixed(0)
+        pos_y = pos_y.toFixed(0)
+        $.ajax({
+          type: "GET",
+          url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/cameramove/?x=" + pos_x + "&y=" + pos_y,
+          dataType: 'jsonp',
+        });
+      }
+    }
     function startStream() {
       $.ajax({
         url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/action/?action=startStream",
