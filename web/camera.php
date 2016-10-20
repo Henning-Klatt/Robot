@@ -41,16 +41,16 @@ if(!$_SESSION['logged_in'])
     update_video_config();
 
     function update_video_config() {
-      stream_quality_value = document.getElementById("stream_quality").value;
+      stream_quality = document.getElementById("stream_quality").value;
       $.ajax({
-        url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8082/0/config/set?stream_quality=" + stream_quality_vlaue,
+        url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8082/0/config/set?stream_quality=" + stream_quality,
       });
-      document.getElementById("show_stream_quality").innerHTML = "Stream Qualität: " + stream_quality_value;
+      document.getElementById("show_stream_quality").innerHTML = "Stream Qualität: " + stream_quality;
     }
 
     function get_video_config() {
       $.ajax({
-        url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8082/0/config/get?query=" + stream_quality,
+        url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8082/0/config/get?query=stream_quality",
         type: 'get',
         dataType: 'jsonp',
         success: function(data) {
