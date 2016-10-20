@@ -48,6 +48,19 @@ if(!$_SESSION['logged_in'])
       document.getElementById("show_stream_quality").innerHTML = "Stream Qualität: " + stream_quality;
     }
 
+    function get_video_config() {
+      $.ajax({
+        url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/online/",
+        type: 'get',
+        dataType: 'jsonp',
+        success: function(data) {
+          var response = data;
+          alert(data);
+          Script_On();
+        }
+      });
+    }
+
     function mousemove(event) {
       strg = true;
       if(strg == true) {
