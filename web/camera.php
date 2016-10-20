@@ -61,6 +61,8 @@ if(!$_SESSION['logged_in'])
       });
     }
 
+    get_video_config();
+
     function mousemove(event) {
       strg = true;
       if(strg == true) {
