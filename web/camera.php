@@ -51,8 +51,6 @@ if(!$_SESSION['logged_in'])
     function get_video_config() {
       $.ajax({
         url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8082/0/config/get?query=stream_quality",
-        type: 'get',
-        dataType: 'jsonp',
         success: function(data) {
           var response = data;
           alert(data);
