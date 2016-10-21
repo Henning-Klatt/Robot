@@ -7,7 +7,11 @@ import time, sys, os
 import commands
 import serial
 
-arduino = serial.Serial('/dev/ttyACM0', 9600)
+try:
+    arduino = serial.Serial('/dev/ttyACM0', 9600)
+except:
+    arduino = serial.Serial('/dev/ttyACM1', 9600)
+
 servo1PIN = 17
 servo2PIN = 4
 GPIO.setwarnings(False)
