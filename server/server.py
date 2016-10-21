@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # coding: utf8
 
-from flask import Flask, jsonify, render_template, request
-import RPi.GPIO as GPIO
+from flask import Flask, jsonify, request
 import time, sys, os
 import commands
 import serial
@@ -11,21 +10,6 @@ try:
     arduino = serial.Serial('/dev/ttyACM0', 9600)
 except:
     arduino = serial.Serial('/dev/ttyACM1', 9600)
-
-servo1PIN = 17
-servo2PIN = 4
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(servo1PIN, GPIO.OUT)
-GPIO.setup(servo2PIN, GPIO.OUT)
-
-s1 = GPIO.PWM(servo1PIN, 50) # GPIO 17 als PWM mit 50Hz
-s2 = GPIO.PWM(servo2PIN, 50) # GPIO 18 als PWM mit 50Hz
-s1.start(7.5) # Initialisierung
-s2.start(6.8)
-time.sleep(0.8)
-s1.ChangeDutyCycle(0)
-s2.ChangeDutyCycle(0)
 
 app = Flask(__name__)
 
