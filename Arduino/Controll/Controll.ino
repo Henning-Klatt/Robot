@@ -51,7 +51,7 @@ void ExecuteSerialCommand(){
     
     */
     
-    Serial.println("\nRaw Data: " + serialData);
+    Serial.print("\nRaw Data: " + serialData);
 
     int Aktor = getValue(serialData, ',', 0).toInt();
     int Status = getValue(serialData, ',', 1).toInt();
@@ -72,6 +72,13 @@ void ExecuteSerialCommand(){
           servo_y.write(Aktion);
         }
         break;
+
+       case 3: //Motor A /Links
+        if((Aktion >= 0) && (Aktion <= 100)) {
+          Serial.print("\nMotor 1: " + Aktion);
+        }
+        break;
+        
       default:
         Serial.print("\nGebe Bitte einen Aktor an!");
     }
