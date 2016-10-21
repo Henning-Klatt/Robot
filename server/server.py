@@ -5,7 +5,9 @@ from flask import Flask, jsonify, render_template, request
 import RPi.GPIO as GPIO
 import time, sys, os
 import commands
+import serial
 
+arduino = serial.Serial('/dev/ttyACM0', 9600)
 servo1PIN = 17
 servo2PIN = 4
 GPIO.setwarnings(False)
@@ -82,6 +84,8 @@ def action():
 
 def moveServo(x, y):
     print "Servo bewegt! ( x: " + str(x) + " | y: " + str(y) +" )"
+    arduino.write('1,1,' + str(x))
+    arduino.write('2,1,' + str(y))
 
 @app.route('/cameramove/', methods=['GET'])
 def cameramove():
