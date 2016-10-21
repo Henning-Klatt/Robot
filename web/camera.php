@@ -17,9 +17,9 @@ if(!$_SESSION['logged_in'])
       <td>
       <h4>Kamera Einstellungen:</h4>
       <li><p id="show_stream_quality"></li>
-      <input type="range" id="stream_quality" onchange="update_video_config();" value="20" min="0" max="100">
+      <input type="range" id="stream_quality" onchange="update_video_config();" value="60" min="0" max="100">
       <li>Helligkeit:</li>
-      <input type="range" id="brightness" onchange="update_video_config();" value="20" min="0" max="100">
+      <input type="range" id="brightness" onchange="update_video_config();" value="50" min="0" max="100">
       <p id="servo_pos">
     </td>
   </tr>
@@ -121,7 +121,7 @@ if(!$_SESSION['logged_in'])
           var response = JSON.stringify(data);
           var obj = $.parseJSON(response);
           var streamstatus = obj.streamstatus;
-          setTimeout(show_camera, 2000);
+          setTimeout(show_camera, 200);
         }
       });
     }
