@@ -84,7 +84,7 @@ if(!$_SESSION['logged_in'])
             }
           }
         });
-        document.getElementById("servo_pos").innerHTML = "Servos: X: " + pos_x + " | Y: " + pos_x;
+        document.getElementById("servo_pos").innerHTML = "Servos: X: " + pos_x + " | Y: " + pos_y;
       }
     }
     function startStream() {
