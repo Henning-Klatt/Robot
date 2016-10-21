@@ -325,6 +325,11 @@ if(!$_SESSION['logged_in'])
         <div id="page-wrapper">
           <script>
 
+          function delay(ms) {
+            ms += new Date().getTime();
+            while (new Date() < ms){}
+          }
+
           function clearselection() {
             document.getElementById("dashboard_menu").className = "";
             document.getElementById("remote_menu").className = "";
