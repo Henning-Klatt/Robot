@@ -22,6 +22,7 @@ if(!$_SESSION['logged_in'])
       <input type="range" id="stream_quality" onchange="update_video_config();" value="20" min="0" max="100">
       <li>Helligkeit:</li>
       <input type="range" id="brightness" onchange="update_video_config();" value="20" min="0" max="100">
+      <p id="servo_pos">
     </td>
   </tr>
   </table>
@@ -83,6 +84,7 @@ if(!$_SESSION['logged_in'])
             }
           }
         });
+        document.getElementById("servo_pos").innerHTML = "Servos: X: " + pos_x + " | Y: " + pos_x;
       }
     }
     function startStream() {
