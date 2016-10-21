@@ -10,7 +10,7 @@ if(!$_SESSION['logged_in'])
     </div>
     <table cellspacing=1 border=1>
       <tr><td>
-        <div id="stream" onmousemove="delay(200); mousemove(event);" oncontextmenu="alert('Drücken sie STRG und bewegen sie gelichzeitig die Maus in dem Stream, um sich um zu schauen.');return false">
+        <div id="stream" onclick="moveServo();" onmousemove="mousemove(event);" oncontextmenu="alert('Drücken sie STRG und bewegen sie gelichzeitig die Maus in dem Stream, um sich um zu schauen.');return false">
           <object data="http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8080/?action=stream" width=640 height=480>
             <img src="pictures/offline.png" alt="Stream offline!">
           </object>
@@ -71,22 +71,26 @@ if(!$_SESSION['logged_in'])
         pos_y = (pos_y/480*180);
         pos_x = pos_x.toFixed(0)
         pos_y = pos_y.toFixed(0)
-        $.ajax({
-          type: "GET",
-          url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/cameramove/?x=" + pos_x + "&y=" + pos_y,
-          dataType: 'jsonp',
-          success: function(data) {
-            var response = JSON.stringify(data);
-            var obj = $.parseJSON(response);
-            var mousemovestatus = obj.status;
-            if(mousemovestatus != "success") {
-              alert("Server reagiert nicht mehr!");
-            }
-          }
-        });
         document.getElementById("servo_pos").innerHTML = "Servos: X: " + pos_x + " | Y: " + pos_y;
       }
     }
+
+    function moveServo() {
+      $.ajax({
+        type: "GET",
+        url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/cameramove/?x=" + pos_x + "&y=" + pos_y,
+        dataType: 'jsonp',
+        success: function(data) {
+          var response = JSON.stringify(data);
+          var obj = $.parseJSON(response);
+          var mousemovestatus = obj.status;
+          if(mousemovestatus != "success") {
+            alert("Server reagiert nicht mehr!");
+          }
+        }
+      });
+    }
+
     function startStream() {
       $.ajax({
         url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/action/?action=startStream",
