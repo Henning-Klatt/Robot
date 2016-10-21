@@ -40,7 +40,7 @@ if(!$_SESSION['logged_in'])
     update_video_config();
 
     var stream_image = document.getElementById('camera_stream');
-    image.onerror = function () {
+    stream_image.onerror = function () {
       this.src = 'pictures/offline.png ';
       streamstatus = false;
     };
