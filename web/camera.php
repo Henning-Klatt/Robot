@@ -38,6 +38,7 @@ if(!$_SESSION['logged_in'])
     <script>
 
     update_video_config();
+    document.getElementById("servo_pos").innerHTML = "Servos: X: ? | Y: ?";
 
     var stream_image = document.getElementById('camera_stream');
     stream_image.onerror = function () {
