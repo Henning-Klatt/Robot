@@ -325,11 +325,61 @@ if(!$_SESSION['logged_in'])
         <div id="page-wrapper">
           <script>
 
+          //Wenn Startseite aufgerufen wird, zeige Dashboard
+          show_dashboard();
+
+          //Public JS Functionen
           function delay(ms) {
             ms += new Date().getTime();
             while (new Date() < ms){}
           }
 
+          function startStream() {
+            $.ajax({
+              url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/action/?action=startStream",
+              type: 'get',
+              dataType: 'jsonp',
+              success: function(data) {
+                var response = JSON.stringify(data);
+                var obj = $.parseJSON(response);
+                var streamstatus = obj.streamstatus;
+
+                setTimeout(show_camera, 3000);
+              }
+            });
+          }
+
+          function stopStream() {
+            $.ajax({
+              url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/action/?action=stopStream",
+              type: 'get',
+              dataType: 'jsonp',
+              success: function(data) {
+                var response = JSON.stringify(data);
+                var obj = $.parseJSON(response);
+                var streamstatus = obj.streamstatus;
+                setTimeout(show_camera, 200);
+              }
+            });
+          }
+          
+          function moveServo() {
+            $.ajax({
+              type: "GET",
+              url: "http://<?php echo $_SERVER['SERVER_ADDR']; ?>:8081/cameramove/?x=" + pos_x + "&y=" + pos_y,
+              dataType: 'jsonp',
+              success: function(data) {
+                var response = JSON.stringify(data);
+                var obj = $.parseJSON(response);
+                var mousemovestatus = obj.status;
+                if(mousemovestatus != "success") {
+                  alert("Server reagiert nicht mehr!");
+                }
+              }
+            });
+          }
+
+          //Menü Funktionen
           function clearselection() {
             document.getElementById("dashboard_menu").className = "";
             document.getElementById("remote_menu").className = "";
