@@ -4,7 +4,7 @@ import os, struct, array
 from fcntl import ioctl
 import multiprocessing
 
-import server
+from server import cameramove
 
 class PS3:
     def listen(self):
