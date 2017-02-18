@@ -66,6 +66,12 @@ def action():
         print ("camera Stream gestoppt")
         return '{0}({1})'.format(callback, {'streamstatus':'offline'})
 
+    elif(action == "psConnect"):
+        callback = request.args.get('callback')
+        os.system("sudo sixad --start")
+        print ("PS3 Server started")
+        return '{0}({1})'.format(callback, {'psConnect':'true'})
+
     else:
         return '{0}({1})'.format(callback, {'Unbekannter Befehl!'})
 
