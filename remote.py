@@ -95,7 +95,7 @@ for btn in buf[:num_buttons]:
     button_map.append(btn_name)
     button_states[btn_name] = 0
 
-print ('%d axes found: %s' % (num_axes, ', '.join(axis_map)))
+print "Axis:", num_axes
 print ('%d buttons found: %s' % (num_buttons, ', '.join(button_map)))
 
 # Main event loop
