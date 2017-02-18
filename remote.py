@@ -31,7 +31,7 @@ axis_names = {
     0x0a : 'brake',
     0x10 : 'hat0x',
     0x11 : 'hat0y',
-    0x12 : 'hat1x',
+    0x12c : 'hat1x',
     0x13 : 'hat1y',
     0x14 : 'hat2x',
     0x15 : 'hat2y',
