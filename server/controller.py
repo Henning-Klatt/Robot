@@ -105,7 +105,7 @@ class PS3:
         listen.start()
 
 # Main event loop
-def get(self):
+def get():
     while True:
         evbuf = jsdev.read(8)
         if evbuf:
