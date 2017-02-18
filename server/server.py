@@ -4,8 +4,13 @@
 from flask import Flask, jsonify, request
 import time, sys, os
 import commands
+import serial
 from controller import PS3
-from action import Action
+
+try:
+    arduino = serial.Serial('/dev/ttyACM0', 9600)
+except:
+    arduino = serial.Serial('/dev/ttyACM1', 9600)
 
 app = Flask(__name__)
 
@@ -72,12 +77,18 @@ def action():
         return '{0}({1})'.format(callback, {'Unbekannter Befehl!'})
 
 
+def moveServo(x, y):
+    print "Servo bewegt! ( x: " + str(x) + " | y: " + str(y) +" )"
+    arduino.write('1,1,' + str(x))
+    time.sleep(0.1)
+    arduino.write('2,1,' + str(y))
+
 @app.route('/cameramove/', methods=['GET'])
 def cameramove():
     callback = request.args.get('callback')
     x = request.args.get('x')
     y = request.args.get('y')
-    Action().moveServo(x, y)
+    moveServo(x, y)
     return '{0}({1})'.format(callback, {'status':'success'})
 
 @app.route('/drive/', methods=['GET'])
@@ -97,4 +108,4 @@ def sensors():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8081, debug=True, threaded=True)
-    PS3().listen()
+    PS3().listen
