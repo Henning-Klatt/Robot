@@ -140,7 +140,7 @@ while True:
         time, value, type, number = struct.unpack('IhBB', evbuf)
 
         if type & 0x80:
-             print "(initial)"
+             print ("(initial)")
 
         if type & 0x01:
             button = button_map[number]
