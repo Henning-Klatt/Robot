@@ -4,7 +4,7 @@ import pygame
 import sys
 
 pygame.init()
-
+clock = pygame.time.Clock()
 j = pygame.joystick.Joystick(0)
 j.init()
 
