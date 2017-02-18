@@ -58,7 +58,7 @@ class PS3:
         }
 
         axis_map = []
-        button_map = []
+        self.button_map = []
 
         fn = '/dev/input/js0'
         print('Opening %s...' % fn)
@@ -95,7 +95,7 @@ class PS3:
 
         for btn in buf[:num_buttons]:
             btn_name = button_names.get(btn, 'unknown(0x%03x)' % btn)
-            button_map.append(btn_name)
+            self.button_map.append(btn_name)
             button_states[btn_name] = 0
 
         print "Axis:   ", num_axes
@@ -115,7 +115,7 @@ class PS3:
                      print ("(initial)")
 
                 if type & 0x01:
-                    button = button_map[number]
+                    button = self.button_map[number]
                     if button:
                         button_states[button] = value
                         if value:
