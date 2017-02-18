@@ -19,10 +19,10 @@ print "Numballs ", j.get_numballs()
 axes = [ 0.0 ] * j.get_numaxes()
 buttons = [ False ] * j.get_numbuttons()
 
-while self.keep_alive:
+while True:
     event = pygame.event.wait()
     if event.type == pygame.QUIT:
-        self.keep_alive = False
+        keep_alive = False
     elif event.type == pygame.JOYAXISMOTION:
         e = event.dict
         axes[e['axis']] = e['value']
