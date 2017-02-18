@@ -62,7 +62,7 @@ class PS3:
 
         fn = '/dev/input/js0'
         print('Opening %s...' % fn)
-        jsdev = open(fn, 'rb')
+        self.jsdev = open(fn, 'rb')
 
         # Get the device name.
         #buf = bytearray(63)
@@ -101,13 +101,13 @@ class PS3:
         print "Axis:   ", num_axes
         print "Buttons:", num_buttons
 
-        listen = multiprocessing.Process(target=get(), args = ())
+        listen = multiprocessing.Process(target=get(), args = (self))
         listen.start()
 
 # Main event loop
-def get():
+def get(self):
     while True:
-        evbuf = jsdev.read(8)
+        evbuf = self.jsdev.read(8)
         if evbuf:
             time, value, type, number = struct.unpack('IhBB', evbuf)
 
