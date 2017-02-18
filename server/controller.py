@@ -104,29 +104,29 @@ class PS3:
         listen = multiprocessing.Process(target=self.get(), args = ())
         listen.start()
 
-# Main event loop
-def get(self):
-    while True:
-        evbuf = self.jsdev.read(8)
-        if evbuf:
-            time, value, type, number = struct.unpack('IhBB', evbuf)
+    # Main event loop
+    def get(self):
+        while True:
+            evbuf = self.jsdev.read(8)
+            if evbuf:
+                time, value, type, number = struct.unpack('IhBB', evbuf)
 
-            if type & 0x80:
-                 print ("(initial)")
+                if type & 0x80:
+                     print ("(initial)")
 
-            if type & 0x01:
-                button = button_map[number]
-                if button:
-                    button_states[button] = value
-                    if value:
-                        print ("%s pressed" % (button))
-                    else:
-                        print ("%s released" % (button))
+                if type & 0x01:
+                    button = button_map[number]
+                    if button:
+                        button_states[button] = value
+                        if value:
+                            print ("%s pressed" % (button))
+                        else:
+                            print ("%s released" % (button))
 
-            if type & 0x02:
-                axis = axis_map[number]
-                if axis:
-                    fvalue = value / 32767.0
-                    axis_states[axis] = fvalue
-                    if(axis != "unknown"):
-                        print ("%s: %.3f" % (axis, fvalue))
+                if type & 0x02:
+                    axis = axis_map[number]
+                    if axis:
+                        fvalue = value / 32767.0
+                        axis_states[axis] = fvalue
+                        if(axis != "unknown"):
+                            print ("%s: %.3f" % (axis, fvalue))
