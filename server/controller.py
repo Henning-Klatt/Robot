@@ -135,4 +135,4 @@ class PS3:
                         if(axis == "Rx"):
                             x = int(round(90-(fvalue / -1.0*90), 1))
                             y = int(round(90+(fvalue / -1.0*90), 1))
-                            Action.moveServo(x, y)
+                            Action().moveServo(x, y)

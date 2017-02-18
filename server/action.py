@@ -9,7 +9,7 @@ class Action:
         except:
             arduino = serial.Serial('/dev/ttyACM1', 9600)
 
-    def moveServo(x, y):
+    def moveServo(self, x, y):
         print "Servo bewegt! ( x: " + str(x) + " | y: " + str(y) +" )"
         arduino.write('1,1,' + str(x))
         time.sleep(0.1)
