@@ -77,7 +77,7 @@ def cameramove():
     callback = request.args.get('callback')
     x = request.args.get('x')
     y = request.args.get('y')
-    Aktion().moveServo(x, y)
+    Action().moveServo(x, y)
     return '{0}({1})'.format(callback, {'status':'success'})
 
 @app.route('/drive/', methods=['GET'])
