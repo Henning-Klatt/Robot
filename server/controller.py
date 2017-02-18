@@ -143,7 +143,7 @@ class PS3:
                     if(button == "Lleft" and value):
                         print ("Links")
                         moveServo(90, 100)
-                    if(!value):
+                    if(!(value)):
                         print ("Reset")
                         moveServo(90, 90)
 
