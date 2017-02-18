@@ -4,6 +4,8 @@ import os, struct, array
 from fcntl import ioctl
 import multiprocessing
 
+from action import Action
+
 class PS3:
     def listen(self):
         print('Available devices:')
