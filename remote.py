@@ -18,8 +18,10 @@ button_states = {}
 
 # These constants were borrowed from linux/input.h
 axis_names = {
-    0x00 : 'x',
-    0x01 : 'y',
+    0x00 : 'Lx',
+    0x01 : 'Ly',
+    0x02 : 'Ry',
+    0x05 : 'Rx',
     0x2c : 'Lup',
     0x2d : 'Lright',
     0x2e : 'Ldown',
