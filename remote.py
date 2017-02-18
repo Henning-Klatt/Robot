@@ -15,23 +15,17 @@ print "Buttons: ", j.get_numbuttons()
 print "Axis:    ", j.get_numaxes()
 print "Numhats: ", j.get_numhats()
 print "Numballs ", j.get_numballs()
-axis = [0]*j.get_numaxes()
-button = [0]*j.get_numbuttons()
 
-def get_axis():
-    pygame.event.pump()
-    for i in range(0, j.get_numaxes()):
-        axis[i] = j.get_axis(i)
-    return axis
+axes = [ 0.0 ] * your_joystick.get_numaxes()
+buttons = [ False ] * your_joystick.get_numbuttons()
 
-def get_buttons():
-    pygame.event.pump()
-    for i in range(0, j.get_numbuttons()):
-        button[i] = j.get_axis(i)
-    return button
-
-try:
-    while 1:
-        print '[%s]' % ', '.join(map(str, get_axis()))
-#except KeyboardInterrupt:
-    #pygame.quit()
+while self.keep_alive:
+    event = pygame.event.wait()
+    if event.type == pygame.QUIT:
+        self.keep_alive = False
+    elif event.type == pygame.JOYAXISMOTION:
+        e = event.dict
+        axes[e['axis']] = e['value']
+    elif event.type in [pygame.JOYBUTTONUP, pygame.JOYBUTTONDOWN ]:
+        e = event.dict
+        buttons[e['button']] ^= True
