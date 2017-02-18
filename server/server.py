@@ -13,7 +13,6 @@ try:
 except:
     arduino = serial.Serial('/dev/ttyACM1', 9600)
 
-PS3().listen
 
 app = Flask(__name__)
 
@@ -72,7 +71,7 @@ def action():
 
     elif(action == "psConnect"):
         callback = request.args.get('callback')
-        os.system("sudo sixad --start")
+        PS3().listen
         print ("PS3 Server started")
         return '{0}({1})'.format(callback, {'psConnect':'true'})
 
