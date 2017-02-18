@@ -134,18 +134,22 @@ class PS3:
                     if button:
                         self.button_states[button] = value
                         if value:
+                            if(button == "Lright"):
+                                print ("Rechts")
+                                moveServo(90, 80)
+                            if(button == "Lleft"):
+                                print ("Links")
+                                moveServo(90, 100)
                             print ("%s pressed" % (button))
                         else:
                             print ("%s released" % (button))
-                    if(button == "Lright" and value):
-                        print ("Rechts")
-                        moveServo(90, 80)
-                    if(button == "Lleft" and value):
-                        print ("Links")
-                        moveServo(90, 100)
-                    if(!(value)):
-                        print ("Reset")
-                        moveServo(90, 90)
+                            if(button == "Lright"):
+                                print ("Rechts Reset")
+                                moveServo(90, 90)
+                            if(button == "Lleft"):
+                                print ("Links Reset")
+                                moveServo(90, 90)
+
 
                 if type & 0x02:
                     axis = self.axis_map[number]
