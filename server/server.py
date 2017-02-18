@@ -7,7 +7,6 @@ import commands
 
 from controller import PS3
 from controller import moveServo
-import multiprocessing
 
 app = Flask(__name__)
 

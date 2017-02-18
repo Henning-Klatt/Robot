@@ -2,7 +2,7 @@
 # coding: utf8
 import os, struct, array
 from fcntl import ioctl
-import multiprocessing
+import threading
 import serial
 
 try:
@@ -116,6 +116,8 @@ class PS3:
         self.x = 90
         #listen = multiprocessing.Process(target=self.get(), args = ())
         #listen.start()
+        listener = threading.Thread(target=self.get(), args=()))
+        listener.start()
 
     # Main event loop
     def get(self):
