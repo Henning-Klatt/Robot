@@ -156,4 +156,4 @@ while True:
             if axis:
                 fvalue = value / 32767.0
                 axis_states[axis] = fvalue
-                print "%s: %.3f" % (axis, fvalue)
+                print ("%s: %.3f" % (axis, fvalue))
