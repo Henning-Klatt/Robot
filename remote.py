@@ -16,8 +16,8 @@ print "Axis:    ", j.get_numaxes()
 print "Numhats: ", j.get_numhats()
 print "Numballs ", j.get_numballs()
 
-axes = [ 0.0 ] * your_joystick.get_numaxes()
-buttons = [ False ] * your_joystick.get_numbuttons()
+axes = [ 0.0 ] * j.get_numaxes()
+buttons = [ False ] * j.get_numbuttons()
 
 while self.keep_alive:
     event = pygame.event.wait()
