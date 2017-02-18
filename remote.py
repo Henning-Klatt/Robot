@@ -21,7 +21,7 @@ try:
         axis[i] = j.get_axis(i)
     for i in range(0, j.get_numbuttons()):
         button[i] = j.get_axis(i)
-    print button[]
+    print button
 except KeyboardInterrupt:
 	j.quit()
 	sys.exit()
