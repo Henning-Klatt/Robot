@@ -3,7 +3,10 @@
 import pygame
 import sys
 import os
-#pygame.init()
+import pygame.display
+
+pygame.init()
+pygame.display.init()
 clock = pygame.time.Clock()
 j = pygame.joystick.Joystick(0)
 j.init()
