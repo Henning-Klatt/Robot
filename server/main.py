@@ -3,5 +3,5 @@
 from controller import PS3
 from server import Server
 
-PS3().listen()
 server().start()
+PS3().listen()
