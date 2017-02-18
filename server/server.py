@@ -5,7 +5,7 @@ from flask import Flask, jsonify, request
 import time, sys, os
 import commands
 import serial
-from controller import PS3
+import controller
 import multiprocessing
 
 try:
