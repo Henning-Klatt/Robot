@@ -4,7 +4,6 @@ import os, struct, array
 from fcntl import ioctl
 import multiprocessing
 import serial
-import time
 
 try:
     arduino = serial.Serial('/dev/ttyACM0', 9600)
@@ -14,7 +13,6 @@ except:
 def moveServo(x, y):
     print "Servo bewegt! ( x: " + str(x) + " | y: " + str(y) +" )"
     arduino.write('1,1,' + str(x))
-    time.sleep(0.1)
     arduino.write('2,1,' + str(y))
 
 class PS3:
