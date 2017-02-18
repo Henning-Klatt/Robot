@@ -4,7 +4,7 @@ import pygame
 import sys
 
 pygame.init()
-#clock = pygame.time.Clock()
+clock = pygame.time.Clock()
 j = pygame.joystick.Joystick(0)
 j.init()
 
@@ -29,3 +29,4 @@ while True:
         elif event.type in [pygame.JOYBUTTONUP, pygame.JOYBUTTONDOWN ]:
             e = event.dict
             buttons[e['button']] ^= True
+        clock.tick(10)
