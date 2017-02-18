@@ -67,22 +67,22 @@ class PS3:
         # Get the device name.
         #buf = bytearray(63)
         buf = array.array('c', ['\0'] * 64)
-        ioctl(jsdev, 0x80006a13 + (0x10000 * len(buf)), buf) # JSIOCGNAME(len)
+        ioctl(self.jsdev, 0x80006a13 + (0x10000 * len(buf)), buf) # JSIOCGNAME(len)
         js_name = buf.tostring()
         print('Device name: %s' % js_name)
 
         # Get number of axes and buttons.
         buf = array.array('B', [0])
-        ioctl(jsdev, 0x80016a11, buf) # JSIOCGAXES
+        ioctl(self.jsdev, 0x80016a11, buf) # JSIOCGAXES
         num_axes = buf[0]
 
         buf = array.array('B', [0])
-        ioctl(jsdev, 0x80016a12, buf) # JSIOCGBUTTONS
+        ioctl(self.jsdev, 0x80016a12, buf) # JSIOCGBUTTONS
         num_buttons = buf[0]
 
         # Get the axis map.
         buf = array.array('B', [0] * 0x40)
-        ioctl(jsdev, 0x80406a32, buf) # JSIOCGAXMAP
+        ioctl(self.jsdev, 0x80406a32, buf) # JSIOCGAXMAP
 
         for axis in buf[:num_axes]:
             axis_name = axis_names.get(axis, 'unknown(0x%02x)' % axis)
@@ -91,7 +91,7 @@ class PS3:
 
         # Get the button map.
         buf = array.array('H', [0] * 200)
-        ioctl(jsdev, 0x80406a34, buf) # JSIOCGBTNMAP
+        ioctl(self.jsdev, 0x80406a34, buf) # JSIOCGBTNMAP
 
         for btn in buf[:num_buttons]:
             btn_name = button_names.get(btn, 'unknown(0x%03x)' % btn)
