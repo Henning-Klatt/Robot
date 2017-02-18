@@ -132,3 +132,7 @@ class PS3:
                         self.axis_states[axis] = fvalue
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
+                        if(axis == "Rx"):
+                            x = int(round(90-(fvalue / -1.0*90), 1))
+                            y = int(round(90+(fvalue / -1.0*90), 1))
+                            Aktion().moveServo(x, y)
