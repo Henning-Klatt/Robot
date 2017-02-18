@@ -3,10 +3,9 @@
 import pygame
 import sys
 import os
-import pygame.display
 
+os.environ["SDL_VIDEODRIVER"] = "dummy"
 pygame.init()
-pygame.display.init()
 clock = pygame.time.Clock()
 j = pygame.joystick.Joystick(0)
 j.init()
