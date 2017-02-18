@@ -107,5 +107,7 @@ def sensors():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8081, debug=True, threaded=True)
+    server = multiprocessing.Process(target=app.run, args = (host='0.0.0.0', port=8081, debug=True, threaded=True))
+    server.start()
+    #app.run(host='0.0.0.0', port=8081, debug=True, threaded=True)
     PS3().listen
