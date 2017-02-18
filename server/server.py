@@ -13,7 +13,9 @@ try:
 except:
     arduino = serial.Serial('/dev/ttyACM1', 9600)
 
+PS3().listen
 
+"""
 app = Flask(__name__)
 
 @app.route('/')
@@ -71,7 +73,6 @@ def action():
 
     elif(action == "psConnect"):
         callback = request.args.get('callback')
-        PS3().listen
         print ("PS3 Server started")
         return '{0}({1})'.format(callback, {'psConnect':'true'})
 
@@ -110,3 +111,4 @@ def sensors():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8081, debug=True, threaded=True)
+"""
