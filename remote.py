@@ -34,10 +34,16 @@ button_names = {
     0x123 : 'start',
     0x120 : 'select',
     0x2c0 : 'ps',
+    0x12a : 'L1',
+    0x12b : 'R1',
     0x12e : 'Rdown',
     0x12f : 'Rleft',
     0x12c : 'Rup',
     0x12d : 'Rright',
+    0x121 : 'Laxis',
+    0x122 : 'Raxis',
+    0x128 : 'L2',
+    0x129 : 'R2',
 }
 
 axis_map = []
