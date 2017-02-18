@@ -20,6 +20,9 @@ button_states = {}
 axis_names = {
     0x00 : 'x',
     0x01 : 'y',
+    0x2c : 'Lup',
+    0x2d : 'Lright',
+    0x2e : 'Ldown',
     0x30 : 'L2',
     0x31 : 'R2',
     0x32 : 'L1',
@@ -46,6 +49,10 @@ button_names = {
     0x12d : 'Rright',
     0x121 : 'Laxis',
     0x122 : 'Raxis',
+    0x124 : 'Lup',
+    0x125 : 'Lright',
+    0x126 : 'Ldown',
+    0x127 : 'Lleft',
     0x128 : 'L2',
     0x129 : 'R2',
 }
