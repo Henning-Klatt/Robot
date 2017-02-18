@@ -19,11 +19,13 @@ axis = [0]*j.get_numaxes()
 button = [0]*j.get_numbuttons()
 
 def get_axis():
+    pygame.event.pump()
     for i in range(0, j.get_numaxes()):
         axis[i] = j.get_axis(i)
     return axis
 
 def get_buttons():
+    pygame.event.pump()
     for i in range(0, j.get_numbuttons()):
         button[i] = j.get_axis(i)
     return button
