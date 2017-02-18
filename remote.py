@@ -2,7 +2,8 @@
 
 import pygame
 import sys
-
+import os
+os.putenv('DISPLAY', ':0.0')
 pygame.init()
 clock = pygame.time.Clock()
 j = pygame.joystick.Joystick(0)
