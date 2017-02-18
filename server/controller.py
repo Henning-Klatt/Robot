@@ -139,10 +139,10 @@ class PS3:
                         if value:
                             if(button == "Lright"):
                                 print ("Rechts")
-                                moveServo(90, 80)
+                                moveServo(90, 20)
                             if(button == "Lleft"):
                                 print ("Links")
-                                moveServo(90, 100)
+                                moveServo(90, 160)
                             print ("%s pressed" % (button))
                         else:
                             print ("%s released" % (button))

@@ -4,6 +4,7 @@ from flask import Flask, jsonify, request
 import sys, os
 import commands
 from controller import moveServo
+import threading
 
 class Server:
 
@@ -94,5 +95,11 @@ class Server:
         return jsonify(ret_data)
 
     def start():
+        server = threading.Thread(target=startServer(), args = ())
+        server.start()
+
+    def startServer():
         if __name__ == '__main__':
             app.run(host='0.0.0.0', port=8081, debug=True, threaded=True)
+        else:
+            print ("__name__ != __main__")
