@@ -1,32 +1,49 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
+import evdev
+import ev3dev.auto as ev3
+import threading
 
-import pygame
-import sys
-import os
-pygame.init()
-clock = pygame.time.Clock()
-j = pygame.joystick.Joystick(0)
-j.init()
+## Some helpers ##
+def scale(val, src, dst):
+    return (float(val - src[0]) / (src[1] - src[0])) * (dst[1] - dst[0]) + dst[0]
 
-print "Joystics:", pygame.joystick.get_count()
-print "ID:      ", j.get_id()
-print "Name:    ", j.get_name()
-print "Buttons: ", j.get_numbuttons()
-print "Axis:    ", j.get_numaxes()
-print "Numhats: ", j.get_numhats()
-print "Numballs ", j.get_numballs()
+def scale_stick(value):
+    return scale(value,(0,255),(-100,100))
 
-axes = [ 0.0 ] * j.get_numaxes()
-buttons = [ False ] * j.get_numbuttons()
+print("Finding ps3 controller...")
+devices = [evdev.InputDevice(fn) for fn in evdev.list_devices()]
+for device in devices:
+    if device.name == 'PLAYSTATION(R)3 Controller':
+        ps3dev = device.fn
 
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            keep_alive = False
-        elif event.type == pygame.JOYAXISMOTION:
-            e = event.dict
-            axes[e['axis']] = e['value']
-        elif event.type in [pygame.JOYBUTTONUP, pygame.JOYBUTTONDOWN ]:
-            e = event.dict
-            buttons[e['button']] ^= True
-        clock.tick(10)
+gamepad = evdev.InputDevice(ps3dev)
+
+speed = 0
+running = True
+
+class MotorThread(threading.Thread):
+    def __init__(self):
+        self.motor = ev3.LargeMotor(ev3.OUTPUT_A)
+        threading.Thread.__init__(self)
+
+    def run(self):
+        print("Engine running!")
+        while running:
+            self.motor.run_direct(duty_cycle_sp=speed)
+
+        self.motor.stop()
+
+motor_thread = MotorThread()
+motor_thread.setDaemon(True)
+motor_thread.start()
+
+
+for event in gamepad.read_loop():   #this loops infinitely
+    if event.type == 3:             #A stick is moved
+        if event.code == 5:         #Y axis on right stick
+            speed = scale_stick(event.value)
+
+    if event.type == 1 and event.code == 302 and event.value == 1:
+        print("X button is pressed. Stopping.")
+        running = False
+        break
