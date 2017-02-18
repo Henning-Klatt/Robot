@@ -21,6 +21,7 @@ axis_names = {
     0x00 : 'x',
     0x01 : 'y',
     0x3d : 'unknown',
+    0x3e : 'unknown',
 }
 
 button_names = {
