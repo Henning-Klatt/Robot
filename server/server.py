@@ -101,5 +101,5 @@ class Server:
             print ("__name__ != __main__")
 
     def start(self):
-        server = threading.Thread(target=startServer(), args = ())
+        server = threading.Thread(target=startServer, args = ())
         server.start()
