@@ -21,8 +21,8 @@ try:
     while j.get_button(3) == 0:
 
         pygame.event.pump()
-		speed= j.get_axis(13)
-		pwmout= speed * 1023
+		speed = j.get_axis(13)
+		pwmout = speed * 1023
 
 		if j.get_axis(13) != 0.00:
 			print int(pwmout)
