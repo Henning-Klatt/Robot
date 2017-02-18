@@ -2,7 +2,7 @@
 # coding: utf8
 
 from flask import Flask, jsonify, request
-import time, sys, os
+import sys, os
 import commands
 
 from controller import PS3

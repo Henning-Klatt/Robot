@@ -4,6 +4,7 @@ import os, struct, array
 from fcntl import ioctl
 import multiprocessing
 import serial
+import time
 
 try:
     arduino = serial.Serial('/dev/ttyACM0', 9600)
