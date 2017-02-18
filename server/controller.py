@@ -57,7 +57,7 @@ class PS3:
             0x129 : 'R2',
         }
 
-        axis_map = []
+        self.axis_map = []
         self.button_map = []
 
         fn = '/dev/input/js0'
@@ -86,7 +86,7 @@ class PS3:
 
         for axis in buf[:num_axes]:
             axis_name = axis_names.get(axis, 'unknown(0x%02x)' % axis)
-            axis_map.append(axis_name)
+            self.axis_map.append(axis_name)
             axis_states[axis_name] = 0.0
 
         # Get the button map.
@@ -124,7 +124,7 @@ class PS3:
                             print ("%s released" % (button))
 
                 if type & 0x02:
-                    axis = axis_map[number]
+                    axis = self.axis_map[number]
                     if axis:
                         fvalue = value / 32767.0
                         axis_states[axis] = fvalue
