@@ -3,6 +3,12 @@
 import os, struct, array
 from fcntl import ioctl
 
+print('Available devices:')
+
+for fn in os.listdir('/dev/input'):
+    if fn.startswith('js'):
+        print('  /dev/input/%s' % (fn))
+
 axis_states = {}
 button_states = {}
 
@@ -50,12 +56,6 @@ button_names = {
 
 axis_map = []
 button_map = []
-
-print('Available devices:')
-
-for fn in os.listdir('/dev/input'):
-    if fn.startswith('js'):
-        print('  /dev/input/%s' % (fn))
 
 fn = '/dev/input/js0'
 print('Opening %s...' % fn)
