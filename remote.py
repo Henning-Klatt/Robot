@@ -19,7 +19,7 @@ print "Numballs ", j.get_numballs()
 try:
     for i in range(0, j.get_numaxes()):
         axis[i] = j.get_axis(i)
-    for i in range(0, j.get_numbuttons())
+    for i in range(0, j.get_numbuttons()):
         button[i] = j.get_axis(i)
     print button[]
 except KeyboardInterrupt:
