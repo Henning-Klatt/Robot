@@ -101,7 +101,7 @@ class PS3:
         print "Axis:   ", num_axes
         print "Buttons:", num_buttons
 
-        listen = multiprocessing.Process(target=get(), args = (self,))
+        listen = multiprocessing.Process(target=self.get(), args = ())
         listen.start()
 
 # Main event loop
