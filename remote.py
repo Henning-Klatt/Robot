@@ -100,5 +100,5 @@ while True:
             if axis:
                 fvalue = value / 32767.0
                 axis_states[axis] = fvalue
-                if(axis != "unknown")
-                print ("%s: %.3f" % (axis, fvalue))
+                if(axis != "unknown"):
+                    print ("%s: %.3f" % (axis, fvalue))
