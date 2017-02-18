@@ -1,16 +1,17 @@
 #!/usr/bin/python
 import pygame
+import sys
 
 pygame.init()
 print "Joystics: ", pygame.joystick.get_count()
-my_joystick = pygame.joystick.Joystick(0)
-my_joystick.init()
-print "ID: ", my_joystick.get_id()
-print "Name: ", my_joystick.get_name()
-print "Buttons: ", my_joystick.get_numbuttons()
-print "Axis:    ", my_joystick.get_numaxes()
-print "Numhats: ", my_joystick.get_numhats()
-print "Numballs ", my_joystick.get_numballs()
+j = pygame.joystick.Joystick(0)
+j.init()
+print "ID: ", j.get_id()
+print "Name: ", j.get_name()
+print "Buttons: ", j.get_numbuttons()
+print "Axis:    ", j.get_numaxes()
+print "Numhats: ", j.get_numhats()
+print "Numballs ", j.get_numballs()
 clock = pygame.time.Clock()
 
 select = 0
@@ -31,11 +32,13 @@ rdown = 14
 rleft = 15
 ps = 16
 
+try:
+    while 1:
+        for event in pygame.event.get():
+            print "Axis 0: ", j.get_axis(0), "Axis 1:", j.get_axis(1), "Axis 2:", j.get_axis(2), "Axis 3:", j.get_axis(3)#, "Axis 11:", j.get_axis(11)
+            print "B0:", j.get_button(0), "B1:", j.get_button(1), "B2:", j.get_button(2), "B3:", j.get_button(3), "B4:", j.get_button(4), "B5:", j.get_button(5), "B6:", j.get_button(6), "B7:", j.get_button(7), "B8:", j.get_button(8), "B9:", j.get_button(9), "B10:", j.get_button(10), "B11:", j.get_button(11), "B12:", j.get_button(12), "B13:", j.get_button(13), "B14:", j.get_button(14), "B15:", j.get_button(15), "B16:", j.get_button(16)
+            clock.tick(10)
 
-while 1:
-    for event in pygame.event.get():
-        print "Axis 0: ", my_joystick.get_axis(0), "Axis 1: ", my_joystick.get_axis(1), "Axis 2: ", my_joystick.get_axis(2), "Axis 3: ", my_joystick.get_axis(3)
-        print "B0:", my_joystick.get_button(0), "B1:", my_joystick.get_button(1), "B2:", my_joystick.get_button(2), "B3:", my_joystick.get_button(3), "B4:", my_joystick.get_button(4), "B5:", my_joystick.get_button(5), "B6:", my_joystick.get_button(6), "B7:", my_joystick.get_button(7), "B8:", my_joystick.get_button(8), "B9:", my_joystick.get_button(9), "B10:", my_joystick.get_button(10), "B11:", my_joystick.get_button(11), "B12:", my_joystick.get_button(12), "B13:", my_joystick.get_button(13), "B14:", my_joystick.get_button(14), "B15:", my_joystick.get_button(15), "B16:", my_joystick.get_button(16)
-        clock.tick(10)
-
-pygame.quit()
+except KeyboardInterrupt:
+	j.quit()
+	sys.exit()
