@@ -20,6 +20,7 @@ button_states = {}
 axis_names = {
     0x00 : 'x',
     0x01 : 'y',
+    0x3d : 'unknown',
 }
 
 button_names = {
@@ -99,4 +100,5 @@ while True:
             if axis:
                 fvalue = value / 32767.0
                 axis_states[axis] = fvalue
+                if(axis != "unknown")
                 print ("%s: %.3f" % (axis, fvalue))
