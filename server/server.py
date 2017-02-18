@@ -94,7 +94,7 @@ class Server:
         ret_data = {"temp1": temp1, "temp2": temp2}
         return jsonify(ret_data)
 
-    def start():
+    def start(self):
         server = threading.Thread(target=startServer(), args = ())
         server.start()
 
