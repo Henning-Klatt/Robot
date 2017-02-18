@@ -13,7 +13,7 @@ try:
 except:
     arduino = serial.Serial('/dev/ttyACM1', 9600)
 
-PS3().listen
+PS3().listen()
 
 """
 app = Flask(__name__)
