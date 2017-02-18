@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf8
-
+import time
 import serial
+
 class Action:
     def __init__(self):
         try:
