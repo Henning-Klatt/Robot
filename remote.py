@@ -33,5 +33,5 @@ def get_buttons():
 try:
     while 1:
         print '[%s]' % ', '.join(map(str, get_axis()))
-except KeyboardInterrupt:
-    pygame.quit()
+#except KeyboardInterrupt:
+    #pygame.quit()
