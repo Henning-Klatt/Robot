@@ -12,7 +12,7 @@ class PS3:
             if fn.startswith('js'):
                 print('  /dev/input/%s' % (fn))
 
-        axis_states = {}
+        self.axis_states = {}
         self.button_states = {}
 
         axis_names = {
@@ -87,7 +87,7 @@ class PS3:
         for axis in buf[:num_axes]:
             axis_name = axis_names.get(axis, 'unknown(0x%02x)' % axis)
             self.axis_map.append(axis_name)
-            axis_states[axis_name] = 0.0
+            self.axis_states[axis_name] = 0.0
 
         # Get the button map.
         buf = array.array('H', [0] * 200)
@@ -127,6 +127,6 @@ class PS3:
                     axis = self.axis_map[number]
                     if axis:
                         fvalue = value / 32767.0
-                        axis_states[axis] = fvalue
+                        self.axis_states[axis] = fvalue
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
