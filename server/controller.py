@@ -116,7 +116,7 @@ class PS3:
         self.x = 90
         #listen = multiprocessing.Process(target=self.get(), args = ())
         #listen.start()
-        listener = threading.Thread(target=self.get(), args=()))
+        listener = threading.Thread(target=self.get(), args = ())
         listener.start()
 
     # Main event loop
