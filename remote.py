@@ -30,8 +30,7 @@ def get_buttons():
 
 try:
     while 1:
-        print get_axis
-        print get_buttons
+        print '[%s]' % ', '.join(map(str, get_axis()))
 except KeyboardInterrupt:
 	j.quit()
 	sys.exit()
