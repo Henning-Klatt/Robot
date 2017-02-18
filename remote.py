@@ -23,7 +23,7 @@ axis_names = {
 }
 
 button_names = {
-    0x120 : 'trigger',
+    0x12e : '[X]',
 }
 
 axis_map = []
