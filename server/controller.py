@@ -103,6 +103,8 @@ class PS3:
         print "Axis:   ", num_axes
         print "Buttons:", num_buttons
 
+        self.y = 90
+        self.x = 90
         listen = multiprocessing.Process(target=self.get(), args = ())
         listen.start()
 
@@ -130,9 +132,10 @@ class PS3:
                     if axis:
                         fvalue = value / 32767.0
                         self.axis_states[axis] = fvalue
+                        if(axis == "Ry"):
+                            self.y = int(round(90+(fvalue / -1.0*90), 1))
+                        if(axis == "Rx"):
+                            self.x = int(round(90-(fvalue / -1.0*90), 1))
+                        Action().moveServo(self.x, self.y)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
-                        if(axis == "Rx"):
-                            x = int(round(90-(fvalue / -1.0*90), 1))
-                            y = int(round(90+(fvalue / -1.0*90), 1))
-                            Action().moveServo(x, y)
