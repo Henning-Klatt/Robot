@@ -3,5 +3,7 @@
 from controller import PS3
 from server import Server
 
-server().start()
+Server().start()
+print "Aus Server"
 PS3().listen()
+print "Aus PS3"
