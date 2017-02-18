@@ -23,7 +23,13 @@ axis_names = {
 }
 
 button_names = {
-    0x12e : '[X]',
+    0x123 : 'start',
+    0x120 : 'select',
+    0x2c0 : 'ps',
+    0x12e : 'Rdown',
+    0x12f : 'Rleft',
+    0x12c : 'Rup',
+    0x12d : 'Rright',
 }
 
 axis_map = []
