@@ -35,4 +35,3 @@ try:
         print '[%s]' % ', '.join(map(str, get_axis()))
 except KeyboardInterrupt:
     pygame.quit()
-	sys.exit()
