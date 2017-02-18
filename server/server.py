@@ -13,6 +13,8 @@ try:
 except:
     arduino = serial.Serial('/dev/ttyACM1', 9600)
 
+PS3().listen
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -107,6 +109,5 @@ def sensors():
     return jsonify(ret_data)
 
 
-PS3().listen
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8081, debug=True, threaded=True)
