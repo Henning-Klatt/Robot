@@ -103,3 +103,4 @@ class Server:
             app.run(host='0.0.0.0', port=8081, debug=True, threaded=True)
         else:
             print ("__name__ != __main__")
+            app.run(host='0.0.0.0', port=8081, debug=True, threaded=True)
