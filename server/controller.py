@@ -4,7 +4,7 @@ import os, struct, array
 from fcntl import ioctl
 import multiprocessing
 
-from server import moveServo
+#from server import moveServo
 
 class PS3:
     def listen(self):
