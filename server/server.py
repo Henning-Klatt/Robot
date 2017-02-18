@@ -7,6 +7,8 @@ import commands
 import serial
 from controller import PS3
 
+PS3().listen()
+
 try:
     arduino = serial.Serial('/dev/ttyACM0', 9600)
 except:
