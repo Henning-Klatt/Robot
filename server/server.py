@@ -4,14 +4,10 @@
 from flask import Flask, jsonify, request
 import time, sys, os
 import commands
-import serial
-import controller
-import multiprocessing
 
-try:
-    arduino = serial.Serial('/dev/ttyACM0', 9600)
-except:
-    arduino = serial.Serial('/dev/ttyACM1', 9600)
+from controller import PS3
+from controller import moveServo
+import multiprocessing
 
 PS3().listen()
 
@@ -78,12 +74,6 @@ def action():
     else:
         return '{0}({1})'.format(callback, {'Unbekannter Befehl!'})
 
-
-def moveServo(x, y):
-    print "Servo bewegt! ( x: " + str(x) + " | y: " + str(y) +" )"
-    arduino.write('1,1,' + str(x))
-    time.sleep(0.1)
-    arduino.write('2,1,' + str(y))
 
 @app.route('/cameramove/', methods=['GET'])
 def cameramove():
