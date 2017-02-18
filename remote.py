@@ -34,5 +34,5 @@ try:
     while 1:
         print '[%s]' % ', '.join(map(str, get_axis()))
 except KeyboardInterrupt:
-	j.quit()
+	#j.quit()
 	sys.exit()
