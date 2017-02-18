@@ -140,16 +140,16 @@ while True:
         time, value, type, number = struct.unpack('IhBB', evbuf)
 
         if type & 0x80:
-             print "(initial)",
+             print "(initial)"
 
         if type & 0x01:
             button = button_map[number]
             if button:
                 button_states[button] = value
                 if value:
-                    print "%s pressed" % (button)
+                    print ("%s pressed" % (button))
                 else:
-                    print "%s released" % (button)
+                    print ("%s released" % (button))
 
         if type & 0x02:
             axis = axis_map[number]
