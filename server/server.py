@@ -11,6 +11,8 @@ import multiprocessing
 
 app = Flask(__name__)
 
+PS3().listen()
+
 @app.route('/')
 def all():
     temp1 = 23.5
@@ -97,5 +99,4 @@ def sensors():
 
 
 if __name__ == '__main__':
-    PS3().listen()
     app.run(host='0.0.0.0', port=8081, debug=True, threaded=True)
