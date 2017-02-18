@@ -18,12 +18,20 @@ print "Numballs ", j.get_numballs()
 axis = [0]*j.get_numaxes()
 button = [0]*j.get_numbuttons()
 
-try:
+def get_axis():
     for i in range(0, j.get_numaxes()):
         axis[i] = j.get_axis(i)
+    return axis
+
+def get_buttons():
     for i in range(0, j.get_numbuttons()):
         button[i] = j.get_axis(i)
-    print button
+    return button
+
+try:
+    while 1:
+        print get_axis
+        print get_buttons
 except KeyboardInterrupt:
 	j.quit()
 	sys.exit()
