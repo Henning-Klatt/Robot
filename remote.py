@@ -1,25 +1,20 @@
-# Released by rdb under the Unlicense (unlicense.org)
-# Based on information from:
-# https://www.kernel.org/doc/Documentation/input/joystick-api.txt
-
+#!/usr/bin/env python
+# coding: utf8
 import os, struct, array
 from fcntl import ioctl
 
-# Iterate over the joystick devices.
 print('Available devices:')
 
 for fn in os.listdir('/dev/input'):
     if fn.startswith('js'):
         print('  /dev/input/%s' % (fn))
 
-# We'll store the states here.
 axis_states = {}
 button_states = {}
 
-# These constants were borrowed from linux/input.h
 axis_names = {
-    0x00 : 'Lx',
-    0x01 : 'Ly',
+    0x00 : 'Ly',
+    0x01 : 'Lx',
     0x02 : 'Ry',
     0x05 : 'Rx',
     0x2c : 'Lup',
