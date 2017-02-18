@@ -8,7 +8,7 @@ String strSerialInput = "";
 void setup() {
   servo_x.attach(2); //Servo 1 an PIN 2 | min: 12 | max: 180 | norm: 101
   servo_y.attach(3); //Servo 2 an PIN 3 | min: 10 | max: 180 | norm: 100
-  Serial.begin(9600);  //Serieller Port on 57600
+  Serial.begin(57600);  //Serieller Port on 57600
   Serial.println("Initalisiert!");
 }
 

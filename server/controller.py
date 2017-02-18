@@ -8,9 +8,9 @@ import time
 
 try:
     print "Arduino definiert"
-    arduino = serial.Serial('/dev/ttyACM0', 9600)
+    arduino = serial.Serial('/dev/ttyACM0', 57600)
 except:
-    arduino = serial.Serial('/dev/ttyACM1', 9600)
+    arduino = serial.Serial('/dev/ttyACM1', 57600)
 
 def moveServo(x, y):
     print "Servo bewegt! ( x: " + str(x) + " | y: " + str(y) +" )"
