@@ -15,6 +15,7 @@ print "Buttons: ", j.get_numbuttons()
 print "Axis:    ", j.get_numaxes()
 print "Numhats: ", j.get_numhats()
 print "Numballs ", j.get_numballs()
+axis = [0]*j.get_numaxes()
 
 try:
     for i in range(0, j.get_numaxes()):
