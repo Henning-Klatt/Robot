@@ -4,7 +4,7 @@ import pygame
 import sys
 
 pygame.init()
-clock = pygame.time.Clock()
+#clock = pygame.time.Clock()
 j = pygame.joystick.Joystick(0)
 j.init()
 
@@ -20,12 +20,12 @@ axes = [ 0.0 ] * j.get_numaxes()
 buttons = [ False ] * j.get_numbuttons()
 
 while True:
-    event = pygame.event.wait()
-    if event.type == pygame.QUIT:
-        keep_alive = False
-    elif event.type == pygame.JOYAXISMOTION:
-        e = event.dict
-        axes[e['axis']] = e['value']
-    elif event.type in [pygame.JOYBUTTONUP, pygame.JOYBUTTONDOWN ]:
-        e = event.dict
-        buttons[e['button']] ^= True
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            keep_alive = False
+        elif event.type == pygame.JOYAXISMOTION:
+            e = event.dict
+            axes[e['axis']] = e['value']
+        elif event.type in [pygame.JOYBUTTONUP, pygame.JOYBUTTONDOWN ]:
+            e = event.dict
+            buttons[e['button']] ^= True
