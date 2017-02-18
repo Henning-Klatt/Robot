@@ -98,7 +98,7 @@ class Server:
         server = threading.Thread(target=self.startServer(), args = ())
         server.start()
 
-    def startServer():
+    def startServer(self):
         if __name__ == '__main__':
             app.run(host='0.0.0.0', port=8081, debug=True, threaded=True)
         else:
