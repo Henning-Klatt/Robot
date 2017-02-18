@@ -4,7 +4,7 @@ import os, struct, array
 from fcntl import ioctl
 import multiprocessing
 
-from action import Action
+import server
 
 class PS3:
     def listen(self):
@@ -134,9 +134,9 @@ class PS3:
                         self.axis_states[axis] = fvalue
                         if(axis == "Ry"):
                             self.y = int(round(90+(fvalue / -1.0*90), 1))
-                            Action().moveServo(self.x, self.y)
+                            moveServo(self.x, self.y)
                         if(axis == "Rx"):
                             self.x = int(round(90-(fvalue / -1.0*90), 1))
-                            Action().moveServo(self.x, self.y)
+                            moveServo(self.x, self.y)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
