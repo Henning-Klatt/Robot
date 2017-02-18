@@ -7,7 +7,7 @@ class Action:
         try:
             self.arduino = serial.Serial('/dev/ttyACM0', 9600)
         except:
-            self-arduino = serial.Serial('/dev/ttyACM1', 9600)
+            self.arduino = serial.Serial('/dev/ttyACM1', 9600)
 
     def moveServo(self, x, y):
         print "Servo bewegt! ( x: " + str(x) + " | y: " + str(y) +" )"
