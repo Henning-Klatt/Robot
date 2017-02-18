@@ -17,18 +17,11 @@ print "Numhats: ", j.get_numhats()
 print "Numballs ", j.get_numballs()
 
 try:
-
-    while j.get_button(3) == 0:
-
-        pygame.event.pump()
-		speed = j.get_axis(13)
-		pwmout = speed * 1023
-
-		if j.get_axis(13) != 0.00:
-			print int(pwmout)
-
-
-		elif j.get_axis(13) == 0.00:
+    for i in range(0, j.get_numaxes()):
+        axis[i] = j.get_axis(i)
+    for i in range(0, j.get_numbuttons())
+        button[i] = j.get_axis(i)
+    print button[]
 except KeyboardInterrupt:
 	j.quit()
 	sys.exit()
