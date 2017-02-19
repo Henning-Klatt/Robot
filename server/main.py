@@ -16,5 +16,5 @@ def controller():
 
 gevent.joinall([
     gevent.spawn(server),
-    gevent.spawn(bar),
+    gevent.spawn(controller),
 ])
