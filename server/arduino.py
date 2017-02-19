@@ -1,12 +1,15 @@
 import serial
 import time
 
-try:
-    print "Arduino definiert auf /dev/ttyACM0"
-    arduino = serial.Serial('/dev/ttyACM0', 57600)
-except:
-    print "Arduino definiert auf /dev/ttyACM1"
-    arduino = serial.Serial('/dev/ttyACM1', 57600)
+if('arduino' in vars()):
+    print "Arduino bereits definiert"
+else:
+    try:
+        print "Arduino definiert auf /dev/ttyACM0"
+        arduino = serial.Serial('/dev/ttyACM0', 57600)
+    except SerialException:
+        print "Arduino definiert auf /dev/ttyACM1"
+        arduino = serial.Serial('/dev/ttyACM1', 57600)
 
 def moveServo(x, y):
     print "Servo bewegt! ( x: " + str(x) + " | y: " + str(y) +" )"
