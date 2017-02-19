@@ -3,6 +3,7 @@
 import os, struct, array
 from fcntl import ioctl
 import threading
+from arduino import moveServo
 
 class PS3:
     def listen(self):
