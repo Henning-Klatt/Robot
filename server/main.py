@@ -2,9 +2,8 @@
 # coding: utf8
 
 import gevent
-
-import controller
 import server
+import controller
 
 print "Aus Server"
 #PS3().listen()
