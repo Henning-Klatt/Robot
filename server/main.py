@@ -3,8 +3,8 @@
 
 import gevent
 
-from controller import PS3
-from server import Server
+import controller
+import server
 
 print "Aus Server"
 #PS3().listen()
