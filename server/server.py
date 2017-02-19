@@ -94,13 +94,8 @@ class Server:
         ret_data = {"temp1": temp1, "temp2": temp2}
         return jsonify(ret_data)
 
-    def start(self):
-        server = threading.Thread(target=self.startServer(), args = ())
-        server.start()
-
-    def startServer(self):
-        if __name__ == '__main__':
-            app.run(host='0.0.0.0', port=8081, debug=True, threaded=True)
-        else:
-            print ("__name__ != __main__")
+    if __name__ == '__main__':
+        app.run(host='0.0.0.0', port=8081, debug=True, threaded=True)
+    else:
+        print ("__name__ != __main__")
             #app.run(host='0.0.0.0', port=8081, debug=True, threaded=True)

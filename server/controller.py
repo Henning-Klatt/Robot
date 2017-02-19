@@ -52,23 +52,23 @@ class PS3:
         }
 
         button_names = {
-            0x123 : 'start',
             0x120 : 'select',
-            0x2c0 : 'ps',
-            0x12a : 'L1',
-            0x12b : 'R1',
-            0x12e : 'Rdown',
-            0x12f : 'Rleft',
-            0x12c : 'Rup',
-            0x12d : 'Rright',
             0x121 : 'Laxis',
             0x122 : 'Raxis',
+            0x123 : 'start',
+            0x12a : 'L1',
+            0x12b : 'R1',
+            0x12c : 'Rup',
+            0x12d : 'Rright',
+            0x12e : 'Rdown',
+            0x12f : 'Rleft',
             0x124 : 'Lup',
             0x125 : 'Lright',
             0x126 : 'Ldown',
             0x127 : 'Lleft',
             0x128 : 'L2',
             0x129 : 'R2',
+            0x2c0 : 'ps',        
         }
 
         self.axis_map = []
@@ -138,11 +138,11 @@ class PS3:
                         self.button_states[button] = value
                         if value:
                             if(button == "Lright"):
-                                print ("Rechts")
                                 moveServo(90, 20)
                             if(button == "Lleft"):
-                                print ("Links")
                                 moveServo(90, 160)
+                            if(button == "Lup"):
+                                moveServo(20, 90)
                             print ("%s pressed" % (button))
                         else:
                             print ("%s released" % (button))
