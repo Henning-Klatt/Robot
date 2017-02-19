@@ -3,9 +3,18 @@
 
 import gevent
 
+def server():
+    print "In Server"
+    import server
+    print "Aus Server"
 
-print "Aus Server"
-#PS3().listen()
-print "Aus PS3"
-import server
-import controller
+
+def controller():
+    print "In Controller"
+    import controller
+    print "Aus Controller"
+
+gevent.joinall([
+    gevent.spawn(server),
+    gevent.spawn(bar),
+])
