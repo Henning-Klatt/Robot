@@ -154,3 +154,4 @@ class PS3:
                             moveServo(self.x, self.y)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
+PS3().listen()
