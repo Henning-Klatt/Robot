@@ -125,11 +125,13 @@ class PS3:
                         self.button_states[button] = value
                         if value:
                             if(button == "Lright"):
-                                moveServo(90, 20)
-                            if(button == "Lleft"):
-                                moveServo(90, 160)
-                            if(button == "Lup"):
                                 moveServo(20, 90)
+                            if(button == "Lleft"):
+                                moveServo(160, 90)
+                            if(button == "Lup"):
+                                moveServo(90, 20)
+                            if(button == "Ldown"):
+                                moveServo(90, 160)
                             print ("%s pressed" % (button))
                         else:
                             print ("%s released" % (button))
