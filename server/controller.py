@@ -131,15 +131,17 @@ class PS3:
                             if(button == "Lup"):
                                 moveServo(90, 20)
                             if(button == "Ldown"):
-                                moveServo(90, 160)
+                                moveServo(90, 130)
                             print ("%s pressed" % (button))
                         else:
                             print ("%s released" % (button))
                             if(button == "Lright"):
-                                print ("Rechts Reset")
                                 moveServo(90, 90)
                             if(button == "Lleft"):
-                                print ("Links Reset")
+                                moveServo(90, 90)
+                            if(button == "Lup"):
+                                moveServo(90, 90)
+                            if(button == "Ldown"):
                                 moveServo(90, 90)
 
 
