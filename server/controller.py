@@ -3,20 +3,6 @@
 import os, struct, array
 from fcntl import ioctl
 import threading
-import serial
-import time
-
-try:
-    print "Arduino definiert"
-    arduino = serial.Serial('/dev/ttyACM0', 57600)
-except:
-    arduino = serial.Serial('/dev/ttyACM1', 57600)
-
-def moveServo(x, y):
-    print "Servo bewegt! ( x: " + str(x) + " | y: " + str(y) +" )"
-    arduino.write('1,1,' + str(x))
-    #time.sleep(.05)
-    #arduino.write('2,1,' + str(y))
 
 class PS3:
     def listen(self):
@@ -68,7 +54,7 @@ class PS3:
             0x127 : 'Lleft',
             0x128 : 'L2',
             0x129 : 'R2',
-            0x2c0 : 'ps',        
+            0x2c0 : 'ps',
         }
 
         self.axis_map = []

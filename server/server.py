@@ -3,7 +3,7 @@
 from flask import Flask, jsonify, request
 import sys, os
 import commands
-from controller import moveServo
+from arduino import moveServo
 import threading
 
 class Server:
