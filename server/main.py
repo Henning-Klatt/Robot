@@ -2,9 +2,10 @@
 # coding: utf8
 
 import gevent
-import server
-import controller
+
 
 print "Aus Server"
 #PS3().listen()
 print "Aus PS3"
+import server
+import controller
