@@ -136,9 +136,9 @@ class PS3:
                         else:
                             print ("%s released" % (button))
                             if(button == "Lright"):
-                                moveServo(400, 90)
+                                moveServo(420, 90)
                             if(button == "Lleft"):
-                                moveServo(400, 90)
+                                moveServo(420, 90)
                             if(button == "Lup"):
                                 moveServo(90, 90)
                             if(button == "Ldown"):
@@ -151,6 +151,13 @@ class PS3:
                         fvalue = value / 32767.0
                         self.axis_states[axis] = fvalue
                         if(axis == "Ry"):
+                            old_value = 10000
+                            old_min = -16000
+                            old_max = 16000
+                            new_min = 0
+                            new_max = 100
+
+                            new_value = ( ( 10000 - -16000 ) / (16000 - -16000) ) * (100 - 0) + 0
                             self.x = int(round(90+(fvalue / -1.0*90), 1))
                             moveServo(self.x, self.y)
                         if(axis == "Rx"):
