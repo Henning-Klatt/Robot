@@ -105,8 +105,6 @@ class PS3:
 
         self.y = 90
         self.x = 90
-        #listen = multiprocessing.Process(target=self.get(), args = ())
-        #listen.start()
         listener = threading.Thread(target=self.get(), args = ())
         listener.start()
 
@@ -149,12 +147,12 @@ class PS3:
                         self.axis_states[axis] = fvalue
                         #links - rechts
                         if(axis == "Ry"):
-                            self.x = int(round(interp(fvalue, [-1,1], [180,700]), 1))
-                            moveServo(self.x, self.y)
+                            servovalue = int(round(interp(fvalue, [-1,1], [180,700]), 1))
+                            moveServo(0, servovalue)
                         #hoch - runter
                         if(axis == "Rx"):
-                            self.y = int(round(interp(fvalue, [-1,1], [193,570]), 1))
-                            moveServo(self.x, self.y)
+                            servovalue = int(round(interp(fvalue, [-1,1], [193,570]), 1))
+                            moveServo(1, servovalue)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
 PS3().listen()
