@@ -1,6 +1,6 @@
+from __future__ import division
 import Adafruit_PCA9685
 import time
-from __future__ import division
 
 pwm = Adafruit_PCA9685.PCA9685()
 
