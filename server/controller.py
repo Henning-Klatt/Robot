@@ -4,6 +4,7 @@ import os, struct, array
 from fcntl import ioctl
 import threading
 from arduino import moveServo
+from numpy import interp
 
 class PS3:
     def listen(self):
@@ -151,17 +152,10 @@ class PS3:
                         fvalue = value / 32767.0
                         self.axis_states[axis] = fvalue
                         if(axis == "Ry"):
-                            old_min = -16000
-                            old_max = 16000
-                            new_min = 0
-                            new_max = 100
-
-                            self.x = int(round(( ( 440 - 180 ) / (16000 - 180) ) + fvalue, 1))
-                            #self.x = int(round(90+(fvalue / -1.0*90), 1))
+                            self.x = int(round(interp(fvalue, [0,1], [180,780]), 1))
                             moveServo(self.x, self.y)
                         if(axis == "Rx"):
-                            self.y = int(round(( ( 440 - 180 ) / (16000 - 180) ) + fvalue, 1))
-                            #self.y = int(round(90-(fvalue / -1.0*90), 1))
+                            self.y = int(round(interp(fvalue, [0,1], [180,780]), 1))
                             moveServo(self.x, self.y)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
