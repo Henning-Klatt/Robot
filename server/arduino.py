@@ -7,5 +7,5 @@ pwm.set_pwm(0, 0, 300)
 pwm.set_pwm(1, 0, 300)
 
 def moveServo(servo, value):
-    print "Servo bewegt! ( x: " + str(servo) + " | y: " + str(value) +" )"
+    print "Servo bewegt! ( Servo: " + str(servo) + " | y: " + str(value) +" )"
     pwm.set_pwm(servo, 0, value)
