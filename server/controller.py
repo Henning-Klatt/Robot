@@ -125,9 +125,9 @@ class PS3:
                         self.button_states[button] = value
                         if value:
                             if(button == "Lright"):
-                                moveServo(20, 90)
+                                moveServo(150, 90)
                             if(button == "Lleft"):
-                                moveServo(160, 90)
+                                moveServo(600, 90)
                             if(button == "Lup"):
                                 moveServo(90, 20)
                             if(button == "Ldown"):
