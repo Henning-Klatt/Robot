@@ -126,24 +126,20 @@ class PS3:
                         self.button_states[button] = value
                         if value:
                             if(button == "Lright"):
-                                moveServo(180, 90)
+                                moveServo(0, 180)
                             if(button == "Lleft"):
-                                moveServo(780, 90)
+                                moveServo(0, 700)
                             if(button == "Lup"):
-                                moveServo(90, 20)
+                                moveServo(1, 193)
                             if(button == "Ldown"):
-                                moveServo(90, 130)
+                                moveServo(1, 570)
                             print ("%s pressed" % (button))
                         else:
                             print ("%s released" % (button))
-                            if(button == "Lright"):
-                                moveServo(440, 90)
-                            if(button == "Lleft"):
-                                moveServo(440, 90)
-                            if(button == "Lup"):
-                                moveServo(90, 90)
-                            if(button == "Ldown"):
-                                moveServo(90, 90)
+                            if(button == "Lright" || button == "Lleft"):
+                                moveServo(0, 380)
+                            if(button == "Lup" || button == "Ldown"):
+                                moveServo(1, 380)
 
 
                 if type & 0x02:
@@ -151,11 +147,13 @@ class PS3:
                     if axis:
                         fvalue = value / 32767.0
                         self.axis_states[axis] = fvalue
+                        #links - rechts
                         if(axis == "Ry"):
                             self.x = int(round(interp(fvalue, [-1,1], [180,700]), 1))
                             moveServo(self.x, self.y)
+                        #hoch - runter
                         if(axis == "Rx"):
-                            self.y = int(round(interp(fvalue, [-1,1], [180,700]), 1))
+                            self.y = int(round(interp(fvalue, [-1,1], [193,570]), 1))
                             moveServo(self.x, self.y)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
