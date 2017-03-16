@@ -136,9 +136,9 @@ class PS3:
                             print ("%s pressed" % (button))
                         else:
                             print ("%s released" % (button))
-                            if(button == "Lright" || button == "Lleft"):
+                            if(button == "Lright" or button == "Lleft"):
                                 moveServo(0, 380)
-                            if(button == "Lup" || button == "Ldown"):
+                            if(button == "Lup" or button == "Ldown"):
                                 moveServo(1, 380)
 
 
