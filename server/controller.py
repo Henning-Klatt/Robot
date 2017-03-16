@@ -127,7 +127,7 @@ class PS3:
                             if(button == "Lright"):
                                 moveServo(150, 90)
                             if(button == "Lleft"):
-                                moveServo(670, 90)
+                                moveServo(680, 90)
                             if(button == "Lup"):
                                 moveServo(90, 20)
                             if(button == "Ldown"):
@@ -136,9 +136,9 @@ class PS3:
                         else:
                             print ("%s released" % (button))
                             if(button == "Lright"):
-                                moveServo(300, 90)
+                                moveServo(400, 90)
                             if(button == "Lleft"):
-                                moveServo(300, 90)
+                                moveServo(400, 90)
                             if(button == "Lup"):
                                 moveServo(90, 90)
                             if(button == "Ldown"):
