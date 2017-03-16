@@ -152,10 +152,10 @@ class PS3:
                         fvalue = value / 32767.0
                         self.axis_states[axis] = fvalue
                         if(axis == "Ry"):
-                            self.x = int(round(interp(fvalue, [0,1], [180,780]), 1))
+                            self.x = int(round(interp(fvalue, [-1,1], [180,780]), 1))
                             moveServo(self.x, self.y)
                         if(axis == "Rx"):
-                            self.y = int(round(interp(fvalue, [0,1], [180,780]), 1))
+                            self.y = int(round(interp(fvalue, [-1,1], [180,780]), 1))
                             moveServo(self.x, self.y)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
