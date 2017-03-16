@@ -127,7 +127,7 @@ class PS3:
                             if(button == "Lright"):
                                 moveServo(150, 90)
                             if(button == "Lleft"):
-                                moveServo(680, 90)
+                                moveServo(700, 90)
                             if(button == "Lup"):
                                 moveServo(90, 20)
                             if(button == "Ldown"):
