@@ -19,12 +19,6 @@ def set_servo_pulse(channel, pulse):
 
 pwm.set_pwm_freq(60)
 
-while True:
-    pwm.set_pwm(0, 0, servo_min)
-    time.sleep(1)
-    pwm.set_pwm(0, 0, servo_max)
-    time.sleep(1)
-
 def moveServo(x, y):
     print "Servo bewegt! ( x: " + str(x) + " | y: " + str(y) +" )"
     pwm.set_pwm(0, 0, x)
