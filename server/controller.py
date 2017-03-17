@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf8
-import os, struct, array
+import os, struct, array, math
 from fcntl import ioctl
 import threading
 from arduino import moveServo, moveMotor
@@ -185,10 +185,10 @@ class PS3:
 
                         if(axis == "Ly" or axis == "Lx"):
                             if(bremse != True):
-                                M1vor = Xplus - (2 ** (Yminus * Yminus))
-                                M1ruck = Xminus - (2 ** (Yplus * Yplus))
-                                M2vor = Xplus - (2 ** (Yminus * Yminus))
-                                M2ruck = Xminus - (2 ** (Yplus * Yplus))
+                                M1vor = Xplus - int(math.sqrt(Yminus * Yminus))
+                                M1ruck = Xminus - int(math.sqrt(Yplus * Yplus))
+                                M2vor = Xplus - int(math.sqrt(Yminus * Yminus))
+                                M2ruck = Xminus - int(math.sqrt(Yplus * Yplus))
                                 #Motor 1 Links
                                 moveMotor(2, M1vor)
                                 #Motor 1 Rechts
