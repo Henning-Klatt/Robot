@@ -169,7 +169,7 @@ class PS3:
                                 moveMotor(3, motorvalue)
                                 moveMotor(5, motorvalue)
                             if(fvalue < 0):
-                                motorvalue = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+                                motorvalue = int(round(interp(fvalue, [-1,0], [0,4000]), 1))
                                 moveMotor(3, 0)
                                 moveMotor(5, 0)
                                 moveMotor(2, motorvalue)
