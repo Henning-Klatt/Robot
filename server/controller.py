@@ -204,9 +204,9 @@ class PS3:
 
                                 if(Xplus < 0.1 and Xminus < 0.1):
                                     moveMotor(2, Yplus)
-                                    moveMotor(4, Yplus)
+                                    moveMotor(4, Yminus)
                                     moveMotor(3, Yminus)
-                                    moveMotor(5, Yminus)
+                                    moveMotor(5, Yplus)
 
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
