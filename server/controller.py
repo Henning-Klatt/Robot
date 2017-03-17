@@ -196,7 +196,7 @@ class PS3:
                                 #Motor 1 Rechts
                                 moveMotor(3, int(Yplus - Xplus))
                                 #Motor 2 Links
-                                moveMotor(4, int(Yminus - Xplus))
+                                moveMotor(4, int(Yminus - Xminus))
                                 #Motor 2 Rechts
                                 moveMotor(5, int(Yplus - Xminus))
 
