@@ -147,11 +147,11 @@ class PS3:
                         self.axis_states[axis] = fvalue
                         #links - rechts
                         if(axis == "Ry"):
-                            servovalue = int(round(interp(fvalue, [-1,1], [700,180]), 1))
+                            servovalue = int(round(interp(fvalue, [-1,1], [700*3.3,180*3.3]), 1))
                             moveServo(0, servovalue)
                         #hoch - runter
                         if(axis == "Rx"):
-                            servovalue = int(round(interp(fvalue, [-1,1], [193,570]), 1))
+                            servovalue = int(round(interp(fvalue, [-1,1], [193*3.3,570*3.3]), 1))
                             moveServo(1, servovalue)
                         if(axis == "Lx"):
                             if(fvalue >= 0):
