@@ -182,7 +182,7 @@ class PS3:
                                 Xminus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
 
                         if(axis == "Ly" or axis == "Lx"):
-                            if(Xplus > 0):
+                            if(bremse != True):
                                 moveMotor(2, 0)
                                 moveMotor(4, 0)
                                 moveMotor(3, Xplus)
