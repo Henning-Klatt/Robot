@@ -155,11 +155,11 @@ class PS3:
                             moveServo(1, servovalue)
                         if(axis == "Lx"):
                             if(fvalue > 0):
-                                motorvalue = int(round(interp(fvalue, [0,1], [0,1000]), 1))
+                                motorvalue = int(round(interp(fvalue, [0,1], [0,255]), 1))
                                 moveMotor(3, 0)
                                 moveMotor(2, motorvalue)
                             if(fvalue < 0):
-                                motorvalue = int(round(interp(fvalue, [-1,0], [0,1000]), 1))
+                                motorvalue = int(round(interp(fvalue, [-1,0], [0,255]), 1))
                                 moveMotor(2, 0)
                                 moveMotor(3, motorvalue)
                         if(axis != "unknown"):
