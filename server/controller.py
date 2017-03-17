@@ -192,13 +192,13 @@ class PS3:
                                 print "Yminus: " + str(Yminus)
                                 print "======================"
                                 #Motor 1 Links
-                                moveMotor(2, int(Yminus - Xplus))
+                                moveMotor(2, int(Yminus - Xminus))
                                 #Motor 1 Rechts
-                                moveMotor(3, int(Yplus - Xminus))
+                                moveMotor(3, int(Yplus - Xplus))
                                 #Motor 2 Links
-                                moveMotor(4, int(Yminus - Xminus))
+                                moveMotor(4, int(Yminus - Xplus))
                                 #Motor 2 Rechts
-                                moveMotor(5, int(Yplus - Xplus))
+                                moveMotor(5, int(Yplus - Xminus))
 
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
