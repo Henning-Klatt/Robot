@@ -171,7 +171,7 @@ class PS3:
                             #servovalue = int(round(interp(fvalue, [-1,1], [193*3.3,570*3.3]), 1))
                             #moveServo(1, servovalue)
                         if(axis == "Lx"):
-                            if(bremse != True)
+                            if(bremse != True):
                                 if(fvalue >= 0):
                                     motorvalue = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                                     moveMotor(2, 0)
