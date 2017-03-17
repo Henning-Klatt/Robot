@@ -111,8 +111,10 @@ class PS3:
     # Main event loop
     def get(self):
         bremse = True
-        motor_left = 0
-        motor_right = 0
+        Yplus = 0
+        Yminus = 0
+        Xplus = 0
+        Xminus = 0
         while True:
             evbuf = self.jsdev.read(8)
             if evbuf:
