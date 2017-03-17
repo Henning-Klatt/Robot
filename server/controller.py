@@ -110,6 +110,7 @@ class PS3:
 
     # Main event loop
     def get(self):
+        bremse = True
         while True:
             evbuf = self.jsdev.read(8)
             if evbuf:
@@ -131,18 +132,21 @@ class PS3:
                                 moveServo(1, 193)
                             if(button == "Ldown"):
                                 moveServo(1, 570)
-                            print ("%s pressed" % (button))
                             if(button == "R2"):
+                                bremse = True
                                 moveMotor(2, 0)
                                 moveMotor(3, 0)
                                 moveMotor(4, 0)
                                 moveMotor(5, 0)
+                            print ("%s pressed" % (button))
                         else:
                             print ("%s released" % (button))
                             if(button == "Lright" or button == "Lleft"):
                                 moveServo(0, 380)
                             if(button == "Lup" or button == "Ldown"):
                                 moveServo(1, 380)
+                            if(button == "R2"):
+                                bremse = False
 
 
                 if type & 0x02:
@@ -167,18 +171,19 @@ class PS3:
                             #servovalue = int(round(interp(fvalue, [-1,1], [193*3.3,570*3.3]), 1))
                             #moveServo(1, servovalue)
                         if(axis == "Lx"):
-                            if(fvalue >= 0):
-                                motorvalue = int(round(interp(fvalue, [0,1], [0,4000]), 1))
-                                moveMotor(2, 0)
-                                moveMotor(4, 0)
-                                moveMotor(3, motorvalue)
-                                moveMotor(5, motorvalue)
-                            if(fvalue < 0):
-                                motorvalue = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
-                                moveMotor(3, 0)
-                                moveMotor(5, 0)
-                                moveMotor(2, motorvalue)
-                                moveMotor(4, motorvalue)
+                            if(bremse != True)
+                                if(fvalue >= 0):
+                                    motorvalue = int(round(interp(fvalue, [0,1], [0,4000]), 1))
+                                    moveMotor(2, 0)
+                                    moveMotor(4, 0)
+                                    moveMotor(3, motorvalue)
+                                    moveMotor(5, motorvalue)
+                                if(fvalue < 0):
+                                    motorvalue = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+                                    moveMotor(3, 0)
+                                    moveMotor(5, 0)
+                                    moveMotor(2, motorvalue)
+                                    moveMotor(4, motorvalue)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
 PS3().listen()
