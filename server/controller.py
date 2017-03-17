@@ -180,6 +180,14 @@ class PS3:
                             #Zurück
                             if(fvalue < 0):
                                 Xminus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+
+                        if(axis == "Ly" || axis == "Lx"):
+                            if(Xplus > 0):
+                                moveMotor(2, 0)
+                                moveMotor(4, 0)
+                                moveMotor(3, Xplus)
+                                moveMotor(5, Xplus)
+
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
 PS3().listen()
