@@ -157,11 +157,15 @@ class PS3:
                             if(fvalue >= 0):
                                 motorvalue = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                                 moveMotor(3, 0)
+                                moveMotor(5, 0)
                                 moveMotor(2, motorvalue)
+                                moveMotor(4, motorvalue)
                             if(fvalue < 0):
                                 motorvalue = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
                                 moveMotor(2, 0)
+                                moveMotor(4, 0)
                                 moveMotor(3, motorvalue)
+                                moveMotor(5, motorvalue)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
 PS3().listen()
