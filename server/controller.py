@@ -3,7 +3,7 @@
 import os, struct, array
 from fcntl import ioctl
 import threading
-from arduino import moveServo
+from arduino import moveServo, moveMotor
 from numpy import interp
 
 class PS3:
