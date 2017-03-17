@@ -188,9 +188,9 @@ class PS3:
                                 #Motor 1 Links
                                 moveMotor(2, Yplus - Xminus)
                                 #Motor 1 Rechts
-                                moveMotor(3, Yplus - Xminus)
+                                moveMotor(3, Yminus - Xplus)
                                 #Motor 2 Links
-                                moveMotor(4, Yminus - Xplus)
+                                moveMotor(4, Yplus - Xminus)
                                 #Motor 2 Rechts
                                 moveMotor(5, Yminus - Xplus)
 
