@@ -153,6 +153,9 @@ class PS3:
                         if(axis == "Rx"):
                             servovalue = int(round(interp(fvalue, [-1,1], [193,570]), 1))
                             moveServo(1, servovalue)
+                        if(axis == "Lx"):
+                            motorvalue = int(round(interp(fvalue, [-1,1], [0,1000]), 1))
+                            moveMotor(2, motorvalue)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
 PS3().listen()
