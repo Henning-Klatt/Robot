@@ -189,8 +189,8 @@ class PS3:
                                     moveMotor(5, 0)
                                     left = motorvalue-motor_right
                                     right = motorvalue-motor_left
-                                    moveMotor(2, left)
-                                    moveMotor(4, right)
+                                    moveMotor(2, right)
+                                    moveMotor(4, left)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
 PS3().listen()
