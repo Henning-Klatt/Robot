@@ -187,8 +187,10 @@ class PS3:
                                     motorvalue = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
                                     moveMotor(3, 0)
                                     moveMotor(5, 0)
-                                    moveMotor(2, motorvalue)
-                                    moveMotor(4, motorvalue)
+                                    left = motorvalue-motor_right
+                                    right = motorvalue-motor_left
+                                    moveMotor(2, left)
+                                    moveMotor(4, right)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
 PS3().listen()
