@@ -172,7 +172,7 @@ class PS3:
                             if(fvalue >= 0):
                                 Yplus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                             #Links
-                            if(fvalue < 0):
+                            if(fvalue <= 0):
                                 Yminus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
 
                         if(axis == "Lx"):
@@ -180,7 +180,7 @@ class PS3:
                             if(fvalue >= 0):
                                 Xminus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                             #Zurück
-                            if(fvalue < 0):
+                            if(fvalue <= 0):
                                 Xplus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
 
                         if(axis == "Ly" or axis == "Lx"):
