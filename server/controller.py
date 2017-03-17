@@ -196,9 +196,9 @@ class PS3:
                                 #Motor 1 Rechts
                                 moveMotor(3, Yminus)
                                 #Motor 2 Links
-                                moveMotor(4, Yplus)
+                                moveMotor(4, Yminus)
                                 #Motor 2 Rechts
-                                moveMotor(5, Yminus)
+                                moveMotor(5, Yplus)
 
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
