@@ -147,31 +147,29 @@ class PS3:
                         self.axis_states[axis] = fvalue
                         #links - rechts
                         if(axis == "Ry"):
-                            motorvalue = int(round(interp(fvalue, [0,1], [0,4000]), 1))
-                            moveMotor(5, 0)
-                            moveMotor(4, motorvalue)
-                            #servovalue = int(round(interp(fvalue, [-1,1], [700*3.3,180*3.3]), 1))
-                            #moveServo(0, servovalue)
+                            servovalue = int(round(interp(fvalue, [-1,1], [700*3.3,180*3.3]), 1))
+                            moveServo(0, servovalue)
                         #hoch - runter
                         if(axis == "Rx"):
-                            motorvalue = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
-                            moveMotor(4, 0)
-                            moveMotor(5, motorvalue)
+                            if(fvalue >= 0):
+                                motorvalue = int(round(interp(fvalue, [-1,0], [0,4000]), 1))
+                                moveMotor(4, 0)
+                                moveMotor(5, motorvalue)
+                            if(fvalue < 0):
+                                motorvalue = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+                                moveMotor(5, 0)
+                                moveMotor(4, motorvalue)
                             #servovalue = int(round(interp(fvalue, [-1,1], [193*3.3,570*3.3]), 1))
                             #moveServo(1, servovalue)
                         if(axis == "Lx"):
                             if(fvalue >= 0):
                                 motorvalue = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                                 moveMotor(3, 0)
-                                #moveMotor(5, 0)
                                 moveMotor(2, motorvalue)
-                                #moveMotor(4, motorvalue)
                             if(fvalue < 0):
                                 motorvalue = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
                                 moveMotor(2, 0)
-                                #moveMotor(4, 0)
                                 moveMotor(3, motorvalue)
-                                #moveMotor(5, motorvalue)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
 PS3().listen()
