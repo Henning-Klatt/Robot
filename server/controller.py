@@ -175,22 +175,24 @@ class PS3:
 
                         if(axis == "Lx"):
                             if(bremse != True):
+                                #Vor
                                 if(fvalue >= 0):
                                     motorvalue = int(round(interp(fvalue, [0,1], [0,4000]), 1))
-                                    moveMotor(2, 0)
-                                    moveMotor(4, 0)
-                                    left = motorvalue-motor_right
-                                    right = motorvalue-motor_left
-                                    moveMotor(3, left)
-                                    moveMotor(5, right)
-                                if(fvalue < 0):
-                                    motorvalue = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
                                     moveMotor(3, 0)
                                     moveMotor(5, 0)
                                     left = motorvalue-motor_right
                                     right = motorvalue-motor_left
-                                    moveMotor(2, right)
-                                    moveMotor(4, left)
+                                    moveMotor(2, left)
+                                    moveMotor(4, right)
+                                #Zurück
+                                if(fvalue < 0):
+                                    motorvalue = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+                                    moveMotor(2, 0)
+                                    moveMotor(4, 0)
+                                    left = motorvalue-motor_right
+                                    right = motorvalue-motor_left
+                                    moveMotor(3, right)
+                                    moveMotor(5, left)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
 PS3().listen()
