@@ -178,10 +178,10 @@ class PS3:
                         if(axis == "Lx"):
                             #Vor
                             if(fvalue >= 0):
-                                Xplus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
+                                Xminus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                             #Zurück
                             if(fvalue < 0):
-                                Xminus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+                                Xplus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
 
                         if(axis == "Ly" or axis == "Lx"):
                             if(bremse != True):
