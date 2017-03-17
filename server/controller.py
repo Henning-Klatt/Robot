@@ -173,7 +173,7 @@ class PS3:
                                 Yplus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                             #Links
                             if(fvalue <= 0):
-                                Yminus = int(round(interp(fvalue, [-1,0], [0,4000]), 1))
+                                Yminus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
 
                         if(axis == "Lx"):
                             #Vor
