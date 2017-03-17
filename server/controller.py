@@ -185,10 +185,14 @@ class PS3:
 
                         if(axis == "Ly" or axis == "Lx"):
                             if(bremse != True):
-                                moveMotor(2, Xminus)
-                                moveMotor(4, Xminus)
-                                moveMotor(3, Xplus)
-                                moveMotor(5, Xplus)
+                                #Motor 1 Links
+                                moveMotor(2, Xminus - Yplus)
+                                #Motor 1 Rechts
+                                moveMotor(3, Xplus - Yplus)
+                                #Motor 2 Links
+                                moveMotor(4, Xminus - Yminus)
+                                #Motor 2 Rechts
+                                moveMotor(5, Xplus - Yminus)
 
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
