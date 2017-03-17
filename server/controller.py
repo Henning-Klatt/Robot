@@ -173,7 +173,7 @@ class PS3:
                                 Yplus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                             #Links
                             if(fvalue <= 0):
-                                Yminus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+                                Yminus = int(round(interp(fvalue, [-1,0], [0,4000]), 1))
 
                         if(axis == "Lx"):
                             #Vor
@@ -192,11 +192,13 @@ class PS3:
                                 print "Yminus: " + str(Yminus)
                                 print "======================"
                                 #Motor 1 Links
-                                moveMotor(2, int(Xplus))
-                                #Motor 1 Rechts
-                                moveMotor(3, int(Xminus))
+                                moveMotor(2, abs(Xplus-Xminus))
                                 #Motor 2 Links
                                 moveMotor(4, int(Xplus))
+
+
+                                #Motor 1 Rechts
+                                moveMotor(3, int(Xminus))
                                 #Motor 2 Rechts
                                 moveMotor(5, int(Xminus))
 
