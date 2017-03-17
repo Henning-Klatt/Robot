@@ -192,9 +192,9 @@ class PS3:
                                 print "Yminus: " + str(Yminus)
                                 print "======================"
                                 #Motor 1 Links
-                                moveMotor(2, Yplus + Xminus)
+                                moveMotor(2, Yplus + Xplus)
                                 #Motor 1 Rechts
-                                moveMotor(3, Yminus + Xplus)
+                                moveMotor(3, Yminus + Xminus)
                                 #Motor 2 Links
                                 moveMotor(4, Yminus + Xplus)
                                 #Motor 2 Rechts
