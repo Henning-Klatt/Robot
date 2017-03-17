@@ -168,10 +168,10 @@ class PS3:
                         if(axis == "Ly"):
                             #Rechts
                             if(fvalue >= 0):
-                                motor_right = fvalue
+                                motor_right = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                             #Links
                             if(fvalue < 0):
-                                motor_left = fvalue
+                                motor_left = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
 
                         if(axis == "Lx"):
                             if(bremse != True):
