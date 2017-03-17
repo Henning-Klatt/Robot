@@ -188,7 +188,7 @@ class PS3:
                                 print "Xplus: " + str(Xplus)
                                 print "Xminus: " + str(Xminus)
                                 print "Yplus: " + str(Yplus)
-                                print "Yminus" + str(Yminus)
+                                print "Yminus: " + str(Yminus)
                                 M1vor = abs(Xplus) - abs(Yplus)
                                 M1ruck = abs(Xminus) - abs(Yminus)
                                 M2vor = abs(Xplus) - abs(Yplus)
