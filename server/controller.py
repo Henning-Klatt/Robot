@@ -111,6 +111,8 @@ class PS3:
     # Main event loop
     def get(self):
         bremse = True
+        motor_left = 0
+        motor_right = 0
         while True:
             evbuf = self.jsdev.read(8)
             if evbuf:
@@ -156,28 +158,29 @@ class PS3:
                         self.axis_states[axis] = fvalue
                         #links - rechts
                         if(axis == "Ry"):
-                            servovalue = int(round(interp(fvalue, [-1,1], [700*3.3,180*3.3]), 1))
+                            servovalue = int(round(interp(fvalue, [-1,1], [700,180]), 1))
                             moveServo(0, servovalue)
                         #hoch - runter
-                        #if(axis == "Rx"):
-                            #if(fvalue >= 0):
-                                #motorvalue = int(round(interp(fvalue, [0,1], [0,4000]), 1))
-                                #moveMotor(4, 0)
-                                #moveMotor(5, motorvalue)
-                            #if(fvalue < 0):
-                                #motorvalue = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
-                                #moveMotor(5, 0)
-                                #moveMotor(4, motorvalue)
-                            #servovalue = int(round(interp(fvalue, [-1,1], [193*3.3,570*3.3]), 1))
-                            #moveServo(1, servovalue)
+                        if(axis == "Rx"):
+                            servovalue = int(round(interp(fvalue, [-1,1], [193,570]), 1))
+                            moveServo(1, servovalue)
+
+                        if(axis == "Ly"):
+                            #Rechts
+                            if(fvalue >= 0):
+                                motor_right = fvalue
+                            #Links
+                            if(fvalue < 0):
+                                motor_left = fvalue
+
                         if(axis == "Lx"):
                             if(bremse != True):
                                 if(fvalue >= 0):
                                     motorvalue = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                                     moveMotor(2, 0)
                                     moveMotor(4, 0)
-                                    moveMotor(3, motorvalue)
-                                    moveMotor(5, motorvalue)
+                                    moveMotor(3, motorvalue-motor_left)
+                                    moveMotor(5, motorvalue-motor_right)
                                 if(fvalue < 0):
                                     motorvalue = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
                                     moveMotor(3, 0)
