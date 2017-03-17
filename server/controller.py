@@ -168,18 +168,18 @@ class PS3:
                         if(axis == "Ly"):
                             #Rechts
                             if(fvalue >= 0):
-                                Y+ = int(round(interp(fvalue, [0,1], [0,4000]), 1))
+                                Yplus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                             #Links
                             if(fvalue < 0):
-                                Y- = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+                                Yminus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
 
                         if(axis == "Lx"):
                             #Vor
                             if(fvalue >= 0):
-                                X+ = int(round(interp(fvalue, [0,1], [0,4000]), 1))
+                                Xplus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                             #Zurück
                             if(fvalue < 0):
-                                X- = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+                                Xminus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
 PS3().listen()
