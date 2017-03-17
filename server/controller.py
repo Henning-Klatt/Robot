@@ -185,10 +185,10 @@ class PS3:
 
                         if(axis == "Ly" or axis == "Lx"):
                             if(bremse != True):
-                                M1vor = Xplus - int(math.sqrt(Yminus * Yminus))
-                                M1ruck = Xminus - int(math.sqrt(Yplus * Yplus))
-                                M2vor = Xplus - int(math.sqrt(Yminus * Yminus))
-                                M2ruck = Xminus - int(math.sqrt(Yplus * Yplus))
+                                M1vor = Xplus - int(math.sqrt(Yplus * Yplus))
+                                M1ruck = Xminus - int(math.sqrt(Yminus * Yminus))
+                                M2vor = Xplus - int(math.sqrt(Yplus * Yplus))
+                                M2ruck = Xminus - int(math.sqrt(Yminus * Yminus))
                                 #Motor 1 Links
                                 moveMotor(2, M1vor)
                                 #Motor 1 Rechts
