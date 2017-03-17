@@ -152,7 +152,7 @@ class PS3:
                         #hoch - runter
                         if(axis == "Rx"):
                             if(fvalue >= 0):
-                                motorvalue = int(round(interp(fvalue, [-1,0], [0,4000]), 1))
+                                motorvalue = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                                 moveMotor(4, 0)
                                 moveMotor(5, motorvalue)
                             if(fvalue < 0):
