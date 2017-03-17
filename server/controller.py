@@ -202,6 +202,12 @@ class PS3:
                                 #Motor 2 Rechts
                                 moveMotor(5, abs(Xminus))
 
+                                if(Xplus and Xminus == 0):
+                                    moveMotor(2, Yplus)
+                                    moveMotor(4, Yplus)
+                                    moveMotor(3, Yminus)
+                                    moveMotor(5, Yminus)
+
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
 PS3().listen()
