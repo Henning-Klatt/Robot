@@ -185,8 +185,8 @@ class PS3:
 
                         if(axis == "Ly" or axis == "Lx"):
                             if(bremse != True):
-                                moveMotor(2, 0)
-                                moveMotor(4, 0)
+                                moveMotor(2, Xminus)
+                                moveMotor(4, Xminus)
                                 moveMotor(3, Xplus)
                                 moveMotor(5, Xplus)
 
