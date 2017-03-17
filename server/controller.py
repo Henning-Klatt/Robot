@@ -185,10 +185,12 @@ class PS3:
 
                         if(axis == "Ly" or axis == "Lx"):
                             if(bremse != True):
+                                print "======================"
                                 print "Xplus: " + str(Xplus)
                                 print "Xminus: " + str(Xminus)
                                 print "Yplus: " + str(Yplus)
                                 print "Yminus: " + str(Yminus)
+                                print "======================"
                                 M1vor = abs(Xplus) - abs(Yplus)
                                 M1ruck = abs(Xminus) - abs(Yminus)
                                 M2vor = abs(Xplus) - abs(Yplus)
