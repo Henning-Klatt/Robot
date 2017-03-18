@@ -10,11 +10,11 @@ class PS3:
     def listen(self):
         print('Searching devices:')
 
-        #while True:
-        for fn in os.listdir('/dev/input'):
-            if fn.startswith('js'):
-                print('  /dev/input/%s' % (fn))
-                    #break
+        while True:
+            for fn in os.listdir('/dev/input'):
+                if fn.startswith('js'):
+                    print('  /dev/input/%s' % (fn))
+                        break
 
         self.axis_states = {}
         self.button_states = {}
