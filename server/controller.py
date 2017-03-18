@@ -151,6 +151,8 @@ class PS3:
                                     os.system("sudo pkill -9 raspivid")
                                     stream = False
                                 else:
+                                    os.system("sudo pkill -9 gst-launch-1.0")
+                                    os.system("sudo pkill -9 raspivid")
                                     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
                                     s.connect(('192.168.178.1', 1027))
                                     ip = s.getsockname()[0]
