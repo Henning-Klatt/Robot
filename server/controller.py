@@ -8,11 +8,6 @@ from numpy import interp
 
 class PS3:
     def listen(self):
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(('192.168.178.1', 1027))
-        ip = s.getsockname()[0]
-        s.close()
-        print "Video Stream IP: " + ip
         print('Searching devices:')
         while True:
             for fn in os.listdir('/dev/input'):
@@ -155,6 +150,11 @@ class PS3:
                                     os.system("sudo killall -9 gst-launch-1.0")
                                     stream = False
                                 else:
+                                    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                                    s.connect(('192.168.178.1', 1027))
+                                    ip = s.getsockname()[0]
+                                    s.close()
+                                    print "Video Stream IP: " + ip
                                     os.system("raspivid -rot 180 -t 0 -h 720 -w 1080 -fps 25 -b 2000000 -o - | gst-launch-1.0 -v fdsrc ! h264parse ! gdppay ! tcpserversink host=" + ip + " port=5000&")
                                     stream = True
 
