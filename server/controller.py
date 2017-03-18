@@ -8,8 +8,12 @@ from numpy import interp
 
 class PS3:
     def listen(self):
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(('192.168.178.1', 1027))
+        ip = s.getsockname()[0]
+        s.close()
+        print "Video Stream IP: " + ip
         print('Searching devices:')
-
         while True:
             for fn in os.listdir('/dev/input'):
                 if fn.startswith('js'):
@@ -114,6 +118,7 @@ class PS3:
     # Main event loop
     def get(self):
         bremse = True
+        stream = False
         Yplus = 0
         Yminus = 0
         Xplus = 0
@@ -145,6 +150,14 @@ class PS3:
                                 moveMotor(3, 0)
                                 moveMotor(4, 0)
                                 moveMotor(5, 0)
+                            if(button == "select"):
+                                if(stream == True):
+                                    os.system("sudo killall -9 gst-launch-1.0")
+                                    stream = False
+                                else:
+                                    os.system("raspivid -rot 180 -t 0 -h 720 -w 1080 -fps 25 -b 2000000 -o - | gst-launch-1.0 -v fdsrc ! h264parse ! gdppay ! tcpserversink host=" + ip + " port=5000&")
+                                    stream = True
+
                             print ("%s pressed" % (button))
                         else:
                             print ("%s released" % (button))
