@@ -199,7 +199,7 @@ class PS3:
                         self.axis_states[axis] = fvalue
 
                         if(axis == "R2"):
-                            R2 = fvalues
+                            R2 = fvalue
                         if(axis == "L2"):
                             L2 = fvalue
 
@@ -267,7 +267,7 @@ class PS3:
                                         moveMotor(3, LXminus-LYplus)
                                         #Motor 2 Rechts
                                         moveMotor(5, LXminus-LYminus)
-                                        
+
                                 if(controll == 1):
                                     #Kettensteuerung
                                     moveMotor(2, RXplus)
