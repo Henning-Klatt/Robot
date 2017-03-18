@@ -119,6 +119,7 @@ class PS3:
         Yminus = 0
         Xplus = 0
         Xminus = 0
+        controll = 0
         while True:
                 #w = 119
                 #a = 97
@@ -167,6 +168,14 @@ class PS3:
                                     print "Video Stream IP: " + ip
                                     os.system("raspivid -rot 180 -t 0 -h 720 -w 1080 -fps 25 -b 2000000 -o - | gst-launch-1.0 -v fdsrc ! h264parse ! gdppay ! tcpserversink host=" + ip + " port=5000&")
                                     stream = True
+
+                            if(button == "Laxis"):
+                                if(controll == 0):
+                                    print "Steuerung Ketten (2x)"
+                                    controll = 1
+                                else:
+                                    print "Steuerung Joystick (1x)"
+                                    controll = 0
 
                             print ("%s pressed" % (button))
                         else:
