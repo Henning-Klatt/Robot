@@ -224,45 +224,47 @@ class PS3:
                                 RXplus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
 
 
-                        if(bremse != True):
-                            print "======================"
-                            print "LXplus: " + str(LXplus)
-                            print "LXminus: " + str(LXminus)
-                            print "LYplus: " + str(LYplus)
-                            print "LYminus: " + str(LYminus)
-                            print "======================"
+                        if(axis == "Ly" or axis == "Lx" or axis == "Ry" or axis == "Rx"):
+                            if(bremse != True):
+                                print "======================"
+                                print "LXplus: " + str(LXplus)
+                                print "LXminus: " + str(LXminus)
+                                print "LYplus: " + str(LYplus)
+                                print "LYminus: " + str(LYminus)
+                                print "======================"
 
-                            if(controll == 0):
+                                if(controll == 0):
 
-                                if(axis == "Ry"):
-                                    servovalue = int(round(interp(fvalue, [-1,1], [700,180]), 1))
-                                    moveServo(0, servovalue)
-                                if(axis == "Rx"):
-                                    servovalue = int(round(interp(fvalue, [-1,1], [193,570]), 1))
-                                    moveServo(1, servovalue)
+                                    #links - rechts
+                                    if(axis == "Ry"):
+                                        servovalue = int(round(interp(fvalue, [-1,1], [700,180]), 1))
+                                        moveServo(0, servovalue)
+                                    #hoch - runter
+                                    if(axis == "Rx"):
+                                        servovalue = int(round(interp(fvalue, [-1,1], [193,570]), 1))
+                                        moveServo(1, servovalue)
 
-                                if(LXplus < 20 and LXminus < 20):
-                                    moveMotor(2, LYminus)
-                                    moveMotor(4, LYplus)
-                                    moveMotor(3, LYplus)
-                                    moveMotor(5, LYminus)
+                                    if(LXplus < 20 and LXminus < 20):
+                                        moveMotor(2, LYminus)
+                                        moveMotor(4, LYplus)
+                                        moveMotor(3, LYplus)
+                                        moveMotor(5, LYminus)
 
-                                else:
-                                    #Motor 1 Links
-                                    moveMotor(2, LXplus-LYminus)
-                                    #Motor 2 Links
-                                    moveMotor(4, LXplus-LYplus)
+                                    else:
+                                        #Motor 1 Links
+                                        moveMotor(2, LXplus-LYminus)
+                                        #Motor 2 Links
+                                        moveMotor(4, LXplus-LYplus)
 
-                                    #Motor 1 Rechts
-                                    moveMotor(3, LXminus-LYplus)
-                                    #Motor 2 Rechts
-                                    moveMotor(5, LXminus-LYminus)
-                                    
-                            if(controll == 1):
-                                moveMotor(2, LXplus)
-                                moveMotor(3, LXminus)
-                                moveMotor(4, RXplus)
-                                moveMotor(5, RXminus)
+                                        #Motor 1 Rechts
+                                        moveMotor(3, LXminus-LYplus)
+                                        #Motor 2 Rechts
+                                        moveMotor(5, LXminus-LYminus)
+                                if(controll == 1):
+                                    moveMotor(2, RXplus)
+                                    moveMotor(3, RXminus)
+                                    moveMotor(4, LXplus)
+                                    moveMotor(5, LXminus)
 
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
