@@ -227,22 +227,29 @@ class PS3:
                                 print "Yminus: " + str(Yminus)
                                 print "======================"
 
-                                if(Xplus < 20 and Xminus < 20):
-                                    moveMotor(2, Yminus)
+                                if(controll == 0):
+
+                                    if(Xplus < 20 and Xminus < 20):
+                                        moveMotor(2, Yminus)
+                                        moveMotor(4, Yplus)
+                                        moveMotor(3, Yplus)
+                                        moveMotor(5, Yminus)
+
+                                    else:
+                                        #Motor 1 Links
+                                        moveMotor(2, Xplus-Yminus)
+                                        #Motor 2 Links
+                                        moveMotor(4, Xplus-Yplus)
+
+                                        #Motor 1 Rechts
+                                        moveMotor(3, Xminus-Yplus)
+                                        #Motor 2 Rechts
+                                        moveMotor(5, Xminus-Yminus)
+                                if(controll == 1):
+                                    moveMotor(2, Xplus)
+                                    moveMotor(3, Xminus)
                                     moveMotor(4, Yplus)
-                                    moveMotor(3, Yplus)
                                     moveMotor(5, Yminus)
-
-                                else:
-                                    #Motor 1 Links
-                                    moveMotor(2, Xplus-Yminus)
-                                    #Motor 2 Links
-                                    moveMotor(4, Xplus-Yplus)
-
-                                    #Motor 1 Rechts
-                                    moveMotor(3, Xminus-Yplus)
-                                    #Motor 2 Rechts
-                                    moveMotor(5, Xminus-Yminus)
 
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
