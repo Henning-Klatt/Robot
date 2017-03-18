@@ -212,10 +212,10 @@ class PS3:
                                 print "======================"
 
                                 if(Xplus < 20 and Xminus < 20):
-                                    moveMotor(2, Yplus)
-                                    moveMotor(4, Yminus)
-                                    moveMotor(3, Yminus)
-                                    moveMotor(5, Yplus)
+                                    moveMotor(2, Yminus)
+                                    moveMotor(4, Yplus)
+                                    moveMotor(3, Yplus)
+                                    moveMotor(5, Yminus)
 
                                 else:
                                     #Motor 1 Links
