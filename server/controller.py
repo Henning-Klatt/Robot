@@ -15,6 +15,7 @@ class PS3:
                 if fn.startswith('js'):
                     print('  /dev/input/%s' % (fn))
                     break
+            break
 
         self.axis_states = {}
         self.button_states = {}
