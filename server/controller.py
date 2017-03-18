@@ -125,8 +125,30 @@ class PS3:
         screen.keypad(True)
         while True:
             char = screen.getch()
-            if(char):
-                print char
+            if(char == 119):
+                moveMotor(2, 0)
+                moveMotor(4, 0)
+                moveMotor(3, 4000)
+                moveMotor(5, 4000)
+            elif(char == 115):
+                moveMotor(2, 4000)
+                moveMotor(4, 4000)
+                moveMotor(3, 0)
+                moveMotor(5, 0)
+            else:
+                moveMotor(2, 0)
+                moveMotor(4, 0)
+                moveMotor(3, 0)
+                moveMotor(5, 0)
+                #w = 119
+                #a = 97
+                #s = 115
+                #d = 100
+                #space 32
+                #links = 260
+                #rechts 261
+                #hoch = 259
+                #runter = 258
             evbuf = self.jsdev.read(8)
             if evbuf:
                 time, value, type, number = struct.unpack('IhBB', evbuf)
