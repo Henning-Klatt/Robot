@@ -5,6 +5,7 @@ from fcntl import ioctl
 import threading
 from arduino import moveServo, moveMotor
 from numpy import interp
+import curses
 
 class PS3:
     def listen(self):
@@ -118,7 +119,14 @@ class PS3:
         Yminus = 0
         Xplus = 0
         Xminus = 0
+        screen = curses.initscr()
+        curses.noecho()
+        curses.cbreak()
+        screen.keypad(True)
         while True:
+            char = screen.getch()
+            if(char):
+                print char
             evbuf = self.jsdev.read(8)
             if evbuf:
                 time, value, type, number = struct.unpack('IhBB', evbuf)
