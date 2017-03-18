@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+d #!/usr/bin/env python
 # coding: utf8
 import os, struct, array, math
 from fcntl import ioctl
@@ -8,11 +8,13 @@ from numpy import interp
 
 class PS3:
     def listen(self):
-        print('Available devices:')
+        print('Searching devices:')
 
-        for fn in os.listdir('/dev/input'):
-            if fn.startswith('js'):
-                print('  /dev/input/%s' % (fn))
+        while True:
+            for fn in os.listdir('/dev/input'):
+                if fn.startswith('js'):
+                    print('  /dev/input/%s' % (fn))
+                    break
 
         self.axis_states = {}
         self.button_states = {}
