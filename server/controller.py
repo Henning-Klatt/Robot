@@ -281,7 +281,7 @@ class PS3:
                                         servovalue = int(round(interp(L2, [-1,1], [380,700]), 1))
                                         moveServo(0, servovalue)
                                     if(R2 > -1):
-                                        servovalue = int(round(interp(R2, [-1,1], [180,380]), 1))
+                                        servovalue = int(round(interp(R2, [-1,1], [380,180]), 1))
                                         moveServo(0, servovalue)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
