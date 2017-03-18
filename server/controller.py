@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf8
-import os, commands, struct, array, math
+import os, struct, array, math
 from fcntl import ioctl
 import threading
 from arduino import moveServo, moveMotor
@@ -153,7 +153,7 @@ class PS3:
                                 else:
                                     os.system("sudo pkill -9 gst-launch-1.0")
                                     os.system("sudo pkill -9 raspivid")
-                                    ip = commands.getoutput("/sbin/ifconfig").split("\n")[1].split()[1][8:]
+                                    ip = "192.168.1.1"
                                     print "Video Stream IP: " + ip
                                     os.system("raspivid -rot 180 -t 0 -h 720 -w 1080 -fps 25 -b 2000000 -o - | gst-launch-1.0 -v fdsrc ! h264parse ! gdppay ! tcpserversink host=" + ip + " port=5000&")
                                     stream = True
