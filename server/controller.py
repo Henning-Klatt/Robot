@@ -181,7 +181,7 @@ class PS3:
                             #Vor
                             if(fvalue >= 0):
                                 Xminus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
-                            #Zurück
+                            #Zuruck
                             if(fvalue <= 0):
                                 Xplus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
 
