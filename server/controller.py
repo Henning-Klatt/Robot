@@ -125,21 +125,25 @@ class PS3:
         screen.keypad(True)
         while True:
             char = screen.getch()
-            if(char == 119):
-                moveMotor(2, 0)
-                moveMotor(4, 0)
-                moveMotor(3, 4000)
-                moveMotor(5, 4000)
-            elif(char == 115):
-                moveMotor(2, 4000)
-                moveMotor(4, 4000)
-                moveMotor(3, 0)
-                moveMotor(5, 0)
-            else:
-                moveMotor(2, 0)
-                moveMotor(4, 0)
-                moveMotor(3, 0)
-                moveMotor(5, 0)
+            if char == curses.KEY_UP:
+                print "Stop"
+                #moveMotor(2, 0)
+                #moveMotor(4, 0)
+                #moveMotor(3, 0)
+                #moveMotor(5, 0)
+            elif char == curses.KEY_DOWN:
+                if(char == 119):
+                    print "Vor"
+                    #moveMotor(2, 4000)
+                    #moveMotor(4, 4000)
+                    #moveMotor(3, 0)
+                    #moveMotor(5, 0)
+                elif(char == 115):
+                    print "Zurück"
+                    #moveMotor(2, 0)
+                    #moveMotor(4, 0)
+                    #moveMotor(3, 4000)
+                    #moveMotor(5, 4000)
                 #w = 119
                 #a = 97
                 #s = 115
