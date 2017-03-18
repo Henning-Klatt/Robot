@@ -231,8 +231,8 @@ class PS3:
                             if(fvalue <= 0):
                                 RXplus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
 
-
-                        if(axis == "Ly" or axis == "Lx" or axis == "Ry" or axis == "Rx"):
+                        achsen = ["Ly", "Lx", "Ry", "Rx", "L2", "R2"]
+                        if(axis in achsen):
                             if(bremse != True):
                                 print "======================"
                                 print "LXplus: " + str(LXplus)
