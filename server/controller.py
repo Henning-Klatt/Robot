@@ -200,9 +200,9 @@ class PS3:
                                 moveMotor(4, abs(Xplus-Yplus))
 
                                 #Motor 1 Rechts
-                                moveMotor(3, abs(Xminus))
+                                moveMotor(3, abs(Xminus-Yminus))
                                 #Motor 2 Rechts
-                                moveMotor(5, abs(Xminus))
+                                moveMotor(5, abs(Xminus-Yplus))
 
                                 if(Xplus < 0.1 and Xminus < 0.1):
                                     moveMotor(2, Yplus)
