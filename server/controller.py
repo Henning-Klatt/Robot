@@ -150,7 +150,7 @@ class PS3:
                                 moveServo(1, 193)
                             if(button == "Ldown"):
                                 moveServo(1, 570)
-                            if(button == "R2"):
+                            if(button == "R1"):
                                 bremse = True
                                 moveMotor(2, 0)
                                 moveMotor(3, 0)
@@ -176,6 +176,9 @@ class PS3:
                                 else:
                                     print "Steuerung Joystick (1x)"
                                     controll = 0
+                            if(button == "Raxis"):
+                                moveServo(0, 380)
+                                moveServo(1, 380)
 
                             print ("%s pressed" % (button))
                         else:
@@ -188,7 +191,7 @@ class PS3:
                                 moveServo(0, 380)
                             if(button == "Lup" or button == "Ldown"):
                                 moveServo(1, 380)
-                            if(button == "R2"):
+                            if(button == "R1"):
                                 bremse = False
 
 
