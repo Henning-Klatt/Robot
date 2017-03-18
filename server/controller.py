@@ -115,10 +115,10 @@ class PS3:
     def get(self):
         bremse = True
         stream = False
-        Yplus = 0
-        Yminus = 0
-        Xplus = 0
-        Xminus = 0
+        LYplus = 0
+        LYminus = 0
+        LXplus = 0
+        LXminus = 0
         controll = 0
         while True:
                 #w = 119
@@ -193,63 +193,78 @@ class PS3:
                     if axis:
                         fvalue = value / 32767.0
                         self.axis_states[axis] = fvalue
-                        #links - rechts
-                        if(axis == "Ry"):
-                            servovalue = int(round(interp(fvalue, [-1,1], [700,180]), 1))
-                            moveServo(0, servovalue)
-                        #hoch - runter
-                        if(axis == "Rx"):
-                            servovalue = int(round(interp(fvalue, [-1,1], [193,570]), 1))
-                            moveServo(1, servovalue)
+
 
                         if(axis == "Ly"):
                             #Rechts
                             if(fvalue >= 0):
-                                Yplus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
+                                LYplus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                             #Links
                             if(fvalue <= 0):
-                                Yminus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+                                LYminus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
 
                         if(axis == "Lx"):
                             #Vor
                             if(fvalue >= 0):
-                                Xminus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
+                                LXminus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
                             #Zuruck
                             if(fvalue <= 0):
-                                Xplus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+                                LXplus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+
+                        if(axis == "Ry"):
+                            if(fvalue >= 0):
+                                RYplus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
+                            if(fvalue <= 0):
+                                RYminus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+
+                        if(axis == "Rx"):
+                            if(fvalue >= 0):
+                                RXminus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
+                            if(fvalue <= 0):
+                                RXplus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+
 
                         if(axis == "Ly" or axis == "Lx"):
                             if(bremse != True):
                                 print "======================"
-                                print "Xplus: " + str(Xplus)
-                                print "Xminus: " + str(Xminus)
-                                print "Yplus: " + str(Yplus)
-                                print "Yminus: " + str(Yminus)
+                                print "LXplus: " + str(LXplus)
+                                print "LXminus: " + str(LXminus)
+                                print "LYplus: " + str(LYplus)
+                                print "LYminus: " + str(LYminus)
                                 print "======================"
 
                                 if(controll == 0):
 
-                                    if(Xplus < 20 and Xminus < 20):
-                                        moveMotor(2, Yminus)
-                                        moveMotor(4, Yplus)
-                                        moveMotor(3, Yplus)
-                                        moveMotor(5, Yminus)
+                                    #links - rechts
+                                    if(axis == "Ry"):
+                                        servovalue = int(round(interp(fvalue, [-1,1], [700,180]), 1))
+                                        moveServo(0, servovalue)
+                                    #hoch - runter
+                                    if(axis == "Rx"):
+                                        servovalue = int(round(interp(fvalue, [-1,1], [193,570]), 1))
+                                        moveServo(1, servovalue)
+
+                                    if(LXplus < 20 and LXminus < 20):
+                                        moveMotor(2, LYminus)
+                                        moveMotor(4, LYplus)
+                                        moveMotor(3, LYplus)
+                                        moveMotor(5, LYminus)
 
                                     else:
                                         #Motor 1 Links
-                                        moveMotor(2, Xplus-Yminus)
+                                        moveMotor(2, LXplus-LYminus)
                                         #Motor 2 Links
-                                        moveMotor(4, Xplus-Yplus)
+                                        moveMotor(4, LXplus-LYplus)
 
                                         #Motor 1 Rechts
-                                        moveMotor(3, Xminus-Yplus)
+                                        moveMotor(3, LXminus-LYplus)
                                         #Motor 2 Rechts
-                                        moveMotor(5, Xminus-Yminus)
+                                        moveMotor(5, LXminus-LYminus)
                                 if(controll == 1):
-                                    moveMotor(2, Xplus)
-                                    moveMotor(3, Xminus)
-                                    moveMotor(4, Yplus)
-                                    moveMotor(5, Yminus)
+                                    moveMotor(2, LXplus)
+                                    moveMotor(3, LXminus)
+                                    moveMotor(4, RXplus)
+                                    moveMotor(5, RXminus)
 
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
