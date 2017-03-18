@@ -1,4 +1,4 @@
-d #!/usr/bin/env python
+#!/usr/bin/env python
 # coding: utf8
 import os, struct, array, math
 from fcntl import ioctl
