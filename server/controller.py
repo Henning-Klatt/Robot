@@ -119,31 +119,7 @@ class PS3:
         Yminus = 0
         Xplus = 0
         Xminus = 0
-        screen = curses.initscr()
-        curses.noecho()
-        curses.cbreak()
-        screen.keypad(True)
         while True:
-            char = screen.getch()
-            if char == curses.KEY_UP:
-                print "Stop"
-                #moveMotor(2, 0)
-                #moveMotor(4, 0)
-                #moveMotor(3, 0)
-                #moveMotor(5, 0)
-            elif char == curses.KEY_DOWN:
-                if(char == 119):
-                    print "Vor"
-                    #moveMotor(2, 4000)
-                    #moveMotor(4, 4000)
-                    #moveMotor(3, 0)
-                    #moveMotor(5, 0)
-                elif(char == 115):
-                    print "Zurück"
-                    #moveMotor(2, 0)
-                    #moveMotor(4, 0)
-                    #moveMotor(3, 4000)
-                    #moveMotor(5, 4000)
                 #w = 119
                 #a = 97
                 #s = 115
