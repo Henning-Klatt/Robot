@@ -147,7 +147,8 @@ class PS3:
                                 moveMotor(5, 0)
                             if(button == "select"):
                                 if(stream == True):
-                                    os.system("sudo killall -9 gst-launch-1.0")
+                                    os.system("sudo pkill -9 gst-launch-1.0")
+                                    os.system("sudo pkill -9 raspivid")
                                     stream = False
                                 else:
                                     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
