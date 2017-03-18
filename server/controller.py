@@ -180,6 +180,10 @@ class PS3:
                             print ("%s pressed" % (button))
                         else:
                             print ("%s released" % (button))
+                            if(button == "R2"):
+                                R2 = -1
+                            if(button == "L2"):
+                                L2 = -1
                             if(button == "Lright" or button == "Lleft"):
                                 moveServo(0, 380)
                             if(button == "Lup" or button == "Ldown"):
@@ -194,6 +198,10 @@ class PS3:
                         fvalue = value / 32767.0
                         self.axis_states[axis] = fvalue
 
+                        if(axis == "R2"):
+                            R2 = fvalues
+                        if(axis == "L2"):
+                            L2 = fvalue
 
                         if(axis == "Ly"):
                             #Rechts
@@ -234,7 +242,6 @@ class PS3:
                                 print "======================"
 
                                 if(controll == 0):
-
                                     #links - rechts
                                     if(axis == "Ry"):
                                         servovalue = int(round(interp(fvalue, [-1,1], [700,180]), 1))
@@ -260,12 +267,19 @@ class PS3:
                                         moveMotor(3, LXminus-LYplus)
                                         #Motor 2 Rechts
                                         moveMotor(5, LXminus-LYminus)
+                                        
                                 if(controll == 1):
+                                    #Kettensteuerung
                                     moveMotor(2, RXplus)
                                     moveMotor(3, RXminus)
                                     moveMotor(4, LXplus)
                                     moveMotor(5, LXminus)
-
+                                    if(L2 > -1):
+                                        servovalue = int(round(interp(L2, [-1,1], [700,380]), 1))
+                                        moveServo(0, servovalue)
+                                    if(R2 > -1):
+                                        servovalue = int(round(interp(L2, [-1,1], [180,380]), 1))
+                                        moveServo(0, servovalue)
                         if(axis != "unknown"):
                             print ("%s: %.3f" % (axis, fvalue))
 PS3().listen()
