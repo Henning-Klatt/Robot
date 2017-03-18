@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf8
-import os, struct, array, math
+import os, struct, array, math, socket
 from fcntl import ioctl
 import threading
 from arduino import moveServo, moveMotor
