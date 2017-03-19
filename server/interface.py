@@ -12,13 +12,13 @@ GPIO.setup(13, GPIO.OUT)#M2 Links
 GPIO.setup(19, GPIO.OUT)#M2 Rechts
 #pwm = PWM(0x40)
 #pwm.setPWMFreq(200)
-pwm.set_pwm_freq(200)
+pwm.set_pwm_freq(60)
 pwm.set_pwm(0, 0, 300)
 pwm.set_pwm(1, 0, 300)
 
 def moveServo(servo, value):
     print "Servo bewegt! ( Servo: " + str(servo) + " | Value: " + str(value) +" )"
-    #pwm.set_pwm(servo, 0, value)
+    pwm.set_pwm(servo, 0, value)
 
 def stopMotor(pin):
     if(pin == 1):
