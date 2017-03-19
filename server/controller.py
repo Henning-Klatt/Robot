@@ -111,7 +111,6 @@ class PS3:
         listener = threading.Thread(target=self.get(), args = ())
         listener.start()
 
-    # Main event loop
     def get(self):
         bremse = True
         stopAll()
@@ -174,8 +173,10 @@ class PS3:
                             print ("%s released" % (button))
                             if(button == "R2"):
                                 R2 = -1
+                                moveServo(0, 380)
                             if(button == "L2"):
                                 L2 = -1
+                                moveServo(0, 380)
                             if(button == "Lright" or button == "Lleft"):
                                 moveServo(0, 440)
                             if(button == "Lup" or button == "Ldown"):
@@ -194,18 +195,15 @@ class PS3:
                             R2 = fvalue
                         if(axis == "L2"):
                             L2 = fvalue
-
                         if(axis == "Ly"):
                             Ly = fvalue
-
                         if(axis == "Lx"):
                             Lx = fvalue
-
                         if(axis == "Ry"):
                             Ry = fvalue
-
                         if(axis == "Rx"):
                             Rx = fvalue
+
                         achsen = ["Ly", "Lx", "Ry", "Rx", "L2", "R2"]
                         if(axis in achsen):
                             if(bremse != True):
@@ -217,11 +215,10 @@ class PS3:
                                 print "======================"
 
                                 if(controll == 0):
-                                    #links - rechts
+                                    ##### Kamera #####
                                     if(axis == "Ry"):
                                         servovalue = int(round(interp(fvalue, [-1,1], [700,180]), 1))
                                         moveServo(0, servovalue)
-                                    #hoch - runter
                                     if(axis == "Rx"):
                                         servovalue = int(round(interp(fvalue, [-1,1], [193,570]), 1))
                                         moveServo(1, servovalue)
@@ -245,6 +242,15 @@ class PS3:
 
                                 if(controll == 1):
                                     #Kettensteuerung
+                                    ##### Kamera #####
+                                    if(L2 > -1):
+                                        servovalue = int(round(interp(L2, [-1,1], [380,700]), 1))
+                                        moveServo(0, servovalue)
+                                    if(R2 > -1):
+                                        servovalue = int(round(interp(R2, [-1,1], [380,180]), 1))
+                                        moveServo(0, servovalue)
+
+                                    ##### Fahren #####
                                     if(Rx < 0):
                                         startMotor(1, int(round(interp(Rx, [-1,0], [4095,0]), 1)))
                                     if(Rx > 0):
@@ -260,12 +266,6 @@ class PS3:
                                         stopMotor(3)
                                         stopMotor(4)
 
-                                    if(L2 > -1):
-                                        servovalue = int(round(interp(L2, [-1,1], [380,700]), 1))
-                                        moveServo(0, servovalue)
-                                    if(R2 > -1):
-                                        servovalue = int(round(interp(R2, [-1,1], [380,180]), 1))
-                                        moveServo(0, servovalue)
-                        if(axis != "unknown"):
-                            print ("%s: %.3f" % (axis, fvalue))
+                        #if(axis != "unknown"):
+                            #print ("%s: %.3f" % (axis, fvalue))
 PS3().listen()
