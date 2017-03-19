@@ -10,12 +10,9 @@ import curses
 class PS3:
     def listen(self):
         print('Searching devices:')
-        while True:
-            for fn in os.listdir('/dev/input'):
-                if fn.startswith('js'):
-                    print('  /dev/input/%s' % (fn))
-                    break
-            break
+        for fn in os.listdir('/dev/input'):
+            if fn.startswith('js'):
+                print('  /dev/input/%s' % (fn))
 
         self.axis_states = {}
         self.button_states = {}
@@ -67,6 +64,9 @@ class PS3:
 
         fn = '/dev/input/js0'
         print('Opening %s...' % fn)
+        while(os.path.isfile(fn) == False):
+            print "Suche Joystick..."
+            time.sleep(1)
         self.jsdev = open(fn, 'rb')
 
         # Get the device name.
