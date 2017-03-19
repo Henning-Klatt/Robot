@@ -3,7 +3,7 @@
 import os, struct, array, math
 from fcntl import ioctl
 import threading
-from arduino import moveServo, moveMotor
+from interface import moveServo, moveMotor, stopMotor, stopAll
 from numpy import interp
 import curses
 
@@ -114,6 +114,7 @@ class PS3:
     # Main event loop
     def get(self):
         bremse = True
+        stopAll()
         stream = False
         LYplus = 0
         LYminus = 0
@@ -121,15 +122,6 @@ class PS3:
         LXminus = 0
         controll = 0
         while True:
-                #w = 119
-                #a = 97
-                #s = 115
-                #d = 100
-                #space 32
-                #links = 260
-                #rechts 261
-                #hoch = 259
-                #runter = 258
             evbuf = self.jsdev.read(8)
             if evbuf:
                 time, value, type, number = struct.unpack('IhBB', evbuf)
@@ -152,10 +144,7 @@ class PS3:
                                 moveServo(1, 570)
                             if(button == "R1"):
                                 bremse = True
-                                moveMotor(2, 0)
-                                moveMotor(3, 0)
-                                moveMotor(4, 0)
-                                moveMotor(5, 0)
+                                stopAll()
                             if(button == "select"):
                                 if(stream == True):
                                     os.system("sudo pkill -9 gst-launch-1.0")
@@ -207,33 +196,16 @@ class PS3:
                             L2 = fvalue
 
                         if(axis == "Ly"):
-                            #Rechts
-                            if(fvalue >= 0):
-                                LYplus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
-                            #Links
-                            if(fvalue <= 0):
-                                LYminus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+                            LY = fvalue
 
                         if(axis == "Lx"):
-                            #Vor
-                            if(fvalue >= 0):
-                                LXminus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
-                            #Zuruck
-                            if(fvalue <= 0):
-                                LXplus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+                            LX = fvalue
 
                         if(axis == "Ry"):
-                            if(fvalue >= 0):
-                                RYplus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
-                            if(fvalue <= 0):
-                                RYminus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
+                            RY = fvalue
 
                         if(axis == "Rx"):
-                            if(fvalue >= 0):
-                                RXminus = int(round(interp(fvalue, [0,1], [0,4000]), 1))
-                            if(fvalue <= 0):
-                                RXplus = int(round(interp(fvalue, [-1,0], [4000,0]), 1))
-
+                            RX = fvalue
                         achsen = ["Ly", "Lx", "Ry", "Rx", "L2", "R2"]
                         if(axis in achsen):
                             if(bremse != True):
@@ -254,29 +226,39 @@ class PS3:
                                         servovalue = int(round(interp(fvalue, [-1,1], [193,570]), 1))
                                         moveServo(1, servovalue)
 
-                                    if(LXplus < 20 and LXminus < 20):
-                                        moveMotor(2, LYminus)
-                                        moveMotor(4, LYplus)
-                                        moveMotor(3, LYplus)
-                                        moveMotor(5, LYminus)
+                                    #if(LXplus < 20 and LXminus < 20):
+                                        #moveMotor(2, LYminus)
+                                        #moveMotor(4, LYplus)
+                                        #moveMotor(3, LYplus)
+                                        #moveMotor(5, LYminus)
 
-                                    else:
+                                    #else:
                                         #Motor 1 Links
-                                        moveMotor(2, LXplus-LYminus)
+                                        #moveMotor(2, LXplus-LYminus)
                                         #Motor 2 Links
-                                        moveMotor(4, LXplus-LYplus)
+                                        #moveMotor(4, LXplus-LYplus)
 
                                         #Motor 1 Rechts
-                                        moveMotor(3, LXminus-LYplus)
+                                        #moveMotor(3, LXminus-LYplus)
                                         #Motor 2 Rechts
-                                        moveMotor(5, LXminus-LYminus)
+                                        #moveMotor(5, LXminus-LYminus)
 
                                 if(controll == 1):
                                     #Kettensteuerung
-                                    moveMotor(2, RXplus)
-                                    moveMotor(3, RXminus)
-                                    moveMotor(4, LXplus)
-                                    moveMotor(5, LXminus)
+                                    #Rechts rück
+                                    if(Rx <= 0):
+                                        stopMotor(1)
+                                        startMotor(2, int(round(interp(Rx, [-1,0], [0,4096]), 1)))
+                                    if(Rx > 0):
+                                        stopMotor(2)
+                                        startMotor(1, int(round(interp(Rx, [0,1], [0,4096]), 1)))
+                                    if(Lx <= 0):
+                                        stopMotor(3)
+                                        startMotor(4, int(round(interp(Lx, [-1,0], [0,4096]), 1)))
+                                    if(Lx > 0):
+                                        stopMotor(4)
+                                        startMotor(3, int(round(interp(Lx, [0,1], [0,4096]), 1)))
+
                                     if(L2 > -1):
                                         servovalue = int(round(interp(L2, [-1,1], [380,700]), 1))
                                         moveServo(0, servovalue)
