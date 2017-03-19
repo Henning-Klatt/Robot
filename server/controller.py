@@ -116,10 +116,10 @@ class PS3:
         bremse = True
         stopAll()
         stream = False
-        LYplus = 0
-        LYminus = 0
-        LXplus = 0
-        LXminus = 0
+        Lx = 0
+        Ly = 0
+        Rx = 0
+        Ry = 0
         controll = 0
         while True:
             evbuf = self.jsdev.read(8)
@@ -246,18 +246,24 @@ class PS3:
                                 if(controll == 1):
                                     #Kettensteuerung
                                     #Rechts rück
-                                    if(Rx <= 0):
+                                    if(Rx < 0):
                                         stopMotor(1)
                                         startMotor(2, int(round(interp(Rx, [-1,0], [0,4096]), 1)))
                                     if(Rx > 0):
                                         stopMotor(2)
                                         startMotor(1, int(round(interp(Rx, [0,1], [0,4096]), 1)))
-                                    if(Lx <= 0):
+                                    if(Rx == 0):
+                                        stopMotor(1)
+                                        stopMotor(2)
+                                    if(Lx < 0):
                                         stopMotor(3)
                                         startMotor(4, int(round(interp(Lx, [-1,0], [0,4096]), 1)))
                                     if(Lx > 0):
                                         stopMotor(4)
                                         startMotor(3, int(round(interp(Lx, [0,1], [0,4096]), 1)))
+                                    if(Lx == 0):
+                                        stopMotor(3)
+                                        stopMotor(4)
 
                                     if(L2 > -1):
                                         servovalue = int(round(interp(L2, [-1,1], [380,700]), 1))
