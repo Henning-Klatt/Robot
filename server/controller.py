@@ -246,16 +246,16 @@ class PS3:
                                 if(controll == 1):
                                     #Kettensteuerung
                                     if(Rx < 0):
-                                        startMotor(2, int(round(interp(Rx, [-1,0], [0,4096]), 1)))
+                                        startMotor(1, int(round(interp(Rx, [-1,0], [0,4095]), 1)))
                                     if(Rx > 0):
-                                        startMotor(1, int(round(interp(Rx, [0,1], [0,4096]), 1)))
+                                        startMotor(2, int(round(interp(Rx, [0,1], [0,4095]), 1)))
                                     if(Rx == 0):
                                         stopMotor(1)
                                         stopMotor(2)
                                     if(Lx < 0):
-                                        startMotor(4, int(round(interp(Lx, [-1,0], [0,4096]), 1)))
+                                        startMotor(4, int(round(interp(Lx, [-1,0], [0,4095]), 1)))
                                     if(Lx > 0):
-                                        startMotor(3, int(round(interp(Lx, [0,1], [0,4096]), 1)))
+                                        startMotor(3, int(round(interp(Lx, [0,1], [4095,0]), 1)))
                                     if(Lx == 0):
                                         stopMotor(3)
                                         stopMotor(4)
