@@ -3,7 +3,7 @@
 import os, struct, array, math
 from fcntl import ioctl
 import threading
-from interface import moveServo, stopMotor, ,startMotor, stopAll
+from interface import moveServo, stopMotor, startMotor, stopAll
 from numpy import interp
 import curses
 
