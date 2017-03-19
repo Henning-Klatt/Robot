@@ -252,18 +252,18 @@ class PS3:
                                     if(Rx > 0):
                                         stopMotor(2)
                                         startMotor(1, int(round(interp(Rx, [0,1], [0,4096]), 1)))
-                                    if(Rx == 0):
-                                        stopMotor(1)
-                                        stopMotor(2)
+                                    #if(Rx == 0):
+                                        #stopMotor(1)
+                                        #stopMotor(2)
                                     if(Lx < 0):
                                         stopMotor(3)
                                         startMotor(4, int(round(interp(Lx, [-1,0], [0,4096]), 1)))
                                     if(Lx > 0):
                                         stopMotor(4)
                                         startMotor(3, int(round(interp(Lx, [0,1], [0,4096]), 1)))
-                                    if(Lx == 0):
-                                        stopMotor(3)
-                                        stopMotor(4)
+                                    #if(Lx == 0):
+                                        #stopMotor(3)
+                                        #stopMotor(4)
 
                                     if(L2 > -1):
                                         servovalue = int(round(interp(L2, [-1,1], [380,700]), 1))
