@@ -196,16 +196,16 @@ class PS3:
                             L2 = fvalue
 
                         if(axis == "Ly"):
-                            LY = fvalue
+                            Ly = fvalue
 
                         if(axis == "Lx"):
-                            LX = fvalue
+                            Lx = fvalue
 
                         if(axis == "Ry"):
-                            RY = fvalue
+                            Ry = fvalue
 
                         if(axis == "Rx"):
-                            RX = fvalue
+                            Rx = fvalue
                         achsen = ["Ly", "Lx", "Ry", "Rx", "L2", "R2"]
                         if(axis in achsen):
                             if(bremse != True):
