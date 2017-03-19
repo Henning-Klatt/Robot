@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf8
-import os, struct, array, math
+import os, struct, array, math, time
 from fcntl import ioctl
 import threading
 from interface import moveServo, stopMotor, startMotor, stopAll
