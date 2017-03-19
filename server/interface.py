@@ -41,6 +41,7 @@ def stopAll():
     GPIO.output(19, GPIO.LOW)
 
 def startMotor(pin, speed):
+    print "Start Motor " + str(pin) + " (Speed: " + str(speed) + ")"
     if(pin == 1):
         GPIO.output(6, GPIO.LOW)
         GPIO.output(5, GPIO.HIGH)
