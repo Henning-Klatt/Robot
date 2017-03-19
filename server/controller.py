@@ -64,7 +64,7 @@ class PS3:
 
         fn = '/dev/input/js0'
         print('Opening %s...' % fn)
-        while(os.path.isfile(fn) == False):
+        while(os.path.exists(fn) == False):
             print "Suche Joystick..."
             time.sleep(1)
         self.jsdev = open(fn, 'rb')
