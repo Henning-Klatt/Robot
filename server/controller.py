@@ -210,10 +210,10 @@ class PS3:
                         if(axis in achsen):
                             if(bremse != True):
                                 print "======================"
-                                print "LXplus: " + str(LXplus)
-                                print "LXminus: " + str(LXminus)
-                                print "LYplus: " + str(LYplus)
-                                print "LYminus: " + str(LYminus)
+                                print "Lx: " + str(Lx)
+                                print "Ly: " + str(Ly)
+                                print "Rx: " + str(Rx)
+                                print "Ry: " + str(Ry)
                                 print "======================"
 
                                 if(controll == 0):
