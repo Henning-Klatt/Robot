@@ -121,7 +121,12 @@ class PS3:
         Ry = 0
         controll = 0
         while True:
-            evbuf = self.jsdev.read(8)
+            try:
+                evbuf = self.jsdev.read(8)
+            except IOError:
+                print "Joystick getrennt"
+                PS3().listen()
+                break
             if evbuf:
                 time, value, type, number = struct.unpack('IhBB', evbuf)
 
@@ -173,10 +178,10 @@ class PS3:
                             print ("%s released" % (button))
                             if(button == "R2"):
                                 R2 = -1
-                                moveServo(0, 380)
+                                moveServo(0, 440)
                             if(button == "L2"):
                                 L2 = -1
-                                moveServo(0, 380)
+                                moveServo(0, 440)
                             if(button == "Lright" or button == "Lleft"):
                                 moveServo(0, 440)
                             if(button == "Lup" or button == "Ldown"):
@@ -244,10 +249,10 @@ class PS3:
                                     #Kettensteuerung
                                     ##### Kamera #####
                                     if(L2 > -1):
-                                        servovalue = int(round(interp(L2, [-1,1], [380,700]), 1))
+                                        servovalue = int(round(interp(L2, [-1,1], [440,700]), 1))
                                         moveServo(0, servovalue)
                                     if(R2 > -1):
-                                        servovalue = int(round(interp(R2, [-1,1], [380,180]), 1))
+                                        servovalue = int(round(interp(R2, [-1,1], [440,180]), 1))
                                         moveServo(0, servovalue)
 
                                     ##### Fahren #####
