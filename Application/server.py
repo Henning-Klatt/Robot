@@ -14,12 +14,12 @@ serversocket.listen(1)
 pygame.camera.init()
 cam = pygame.camera.Camera("/dev/video0",(320,240))
 cam.start()
-cam.set_controls(hflip = True, vflip = False)
+#cam.set_controls(hflip = True, vflip = False)
 
 while True:
         connection, address = serversocket.accept()
         image = cam.get_image() # capture image
-        data = pygame.image.tostring(image,"RGB") # convert captured image to string, use RGB color scheme
+        data = pygame.image.tostring(image,"HSV") # convert captured image to string, use RGB color scheme
         connection.sendall(data)
         time.sleep(0.005)
         connection.close()
