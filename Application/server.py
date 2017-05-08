@@ -13,7 +13,7 @@ server.listen(5)
 pygame.init()
 pygame.camera.init()
 
-screen = pygame.display.set_mode((320,240))
+#screen = pygame.display.set_mode((320,240))
 
 cam = pygame.camera.Camera("/dev/video0",(320,240),"RGB")
 cam.start()
@@ -23,7 +23,7 @@ while True:
     s,add = server.accept()
     print("Connected from" + add)
     image = cam.get_image()
-    screen.blit(image,(0,0))
+    #screen.blit(image,(0,0))
     data = cam.get_raw()
     s.sendall(data)
     pygame.display.update()
