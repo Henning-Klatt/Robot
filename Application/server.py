@@ -1,34 +1,57 @@
-import socket,os
-from PIL import *
-import pygame,sys
+import socket
+
+import pygame
+
 import pygame.camera
-from pygame.locals import *
 
-#Create server:
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind(("192.168.1.1",5000))
-server.listen(5)
+import sys
 
-#Start Pygame
+import time
+
+
+
+#host = "192.168.100.9"
+
+host = "localhost"
+
+port = 5000
+
+
+
+
+
 pygame.init()
+
 pygame.camera.init()
 
-#screen = pygame.display.set_mode((320,240))
 
-cam = pygame.camera.Camera("/dev/video0",(320,240),"RGB")
-cam.start()
 
-#Send data
+cam_list = pygame.camera.list_cameras() # list available cameras
+
+webcam = pygame.camera.Camera(cam_list[0],(800,600)) # use first camera in list and set resolution
+
+webcam.start() # start camera
+
+
+
 while True:
-    s,add = server.accept()
-    print("Connected from" + str(add))
-    image = cam.get_image()
-    #screen.blit(image,(0,0))
-    data = cam.get_raw()
-    s.sendall(data)
-    pygame.display.update()
 
-#Interupt
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            sys.exit()
+    image = webcam.get_image() # capture image
+
+    data = pygame.image.tostring(image,"RGB") # convert captured image to string, use RGB color scheme
+
+    #print sys.getsizeof(data) # in case somebody wants to know the size of the captured image
+
+
+
+    # prepare for connection to server
+
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # TCP is used
+
+    s.connect((host, port))
+
+    s.sendall(data)
+
+    s.close()
+
+    time.sleep(0.1)

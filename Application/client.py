@@ -1,47 +1,69 @@
-import socket,sys
+import socket
+
 import pygame
-from PIL import Image
 
-#Create a var for storing an IP address:
-ip = "192.168.1.1"
+import sys
 
-#Start PyGame:
-pygame.init()
-screen = pygame.display.set_mode((320,240))
-pygame.display.set_caption('Remote Webcam Viewer')
-font = pygame.font.SysFont("Arial",14)
-clock = pygame.time.Clock()
-timer = 0
-previousImage = ""
-image = ""
 
-#Main program loop:
+
+port=5000
+
+
+
+#create pygame screen
+
+screen = pygame.display.set_mode((800,600),0)
+
+
+
 while True:
-  for event in pygame.event.get():
-    if event.type == pygame.QUIT:
-      sys.exit()
 
-#Receive data
-  if timer < 1:
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_socket.connect((str(ip),5000))
-    data = client_socket.recv(1024000)
-    timer = 30
+    s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-  else:
-    timer -= 1
-  previousImage = image
+    s.bind(("",port)) # server is available on the whole network by setting host to ""
 
-#Convert image
-  try:
-    image = Image.fromstring("RGB",(120,90),data)
-    image = image.resize((320,240))
-    image = pygame.image.frombuffer(image.tostring(),(320,240),"RGB")
+    s.listen(1)
 
-#Interupt
-  except:
-    image = previousImage
-  output = image
-  screen.blit(output,(0,0))
-  clock.tick(60)
-  pygame.display.flip()
+    connection, addr = s.accept()
+
+    received = []
+
+
+
+    # loop .recv, it returns empty string when done, then transmitted data is completely received
+
+    while True:
+
+        recvd_data = connection.recv(1440021)
+
+        if not recvd_data:
+
+            break
+
+        else:
+
+            received.append(recvd_data)
+
+
+
+    dataset = ''.join(received)
+
+    image = pygame.image.fromstring(dataset,(800,600),"RGB") # convert received image from string
+
+    #image = pygame.transform.scale(image,(800,600)) # scale image to 800*600
+
+    screen.blit(image,(0,0)) # "show image" on the screen
+
+    pygame.display.update()
+
+
+
+    # check for quit events
+
+    for event in pygame.event.get():
+
+        if event.type == pygame.QUIT:
+
+            pygame.quit()
+
+            sys.exit()
