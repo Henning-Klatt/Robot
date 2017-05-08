@@ -13,8 +13,8 @@ serversocket.listen(1)
 
 pygame.camera.init()
 cam = pygame.camera.Camera("/dev/video0",(320,240))
-cam.set_controls(hflip = True, vflip = False)
 cam.start()
+cam.set_controls(hflip = True, vflip = False)
 
 while True:
         connection, address = serversocket.accept()
