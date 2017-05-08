@@ -6,7 +6,6 @@ host = "192.168.1.1"
 port=5000
 screen = pygame.display.set_mode((1080,720),0)
 pygame.display.set_caption("LexoBot Remote")
-pygame.display.toggle_fullscreen()
 
 while True:
     clientsocket=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -20,7 +19,7 @@ while True:
             received.append(recvd_data)
 
     dataset = b''.join(v for v in received)
-    image = pygame.image.fromstring(dataset,(320,240),"P")
+    image = pygame.image.fromstring(dataset,(320,240),"RGB")
     screen.blit(image,(0,0))
     pygame.display.update()
 
