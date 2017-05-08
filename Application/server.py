@@ -12,7 +12,7 @@ serversocket.bind(("",port))
 serversocket.listen(1)
 
 pygame.camera.init()
-webcam = pygame.camera.Camera("/dev/video0",(640,480))
+webcam = pygame.camera.Camera("/dev/video0",(320,240))
 webcam.start()
 
 while True:
