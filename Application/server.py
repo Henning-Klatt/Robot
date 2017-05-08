@@ -12,12 +12,13 @@ serversocket.bind(("",port))
 serversocket.listen(1)
 
 pygame.camera.init()
-webcam = pygame.camera.Camera("/dev/video0",(320,240))
-webcam.start()
+cam = pygame.camera.Camera("/dev/video0",(320,240))
+cam.set_controls(hflip = True, vflip = False)
+cam.start()
 
 while True:
         connection, address = serversocket.accept()
-        image = webcam.get_image() # capture image
+        image = cam.get_image() # capture image
         data = pygame.image.tostring(image,"RGB") # convert captured image to string, use RGB color scheme
         connection.sendall(data)
         time.sleep(0.005)

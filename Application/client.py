@@ -4,7 +4,7 @@ import sys
 
 host = "192.168.1.1"
 port=5000
-screen = pygame.display.set_mode((1080,720),0)
+screen = pygame.display.set_mode((1280,720),0)
 pygame.display.set_caption("LexoBot Remote")
 
 while True:
@@ -20,6 +20,7 @@ while True:
 
     dataset = b''.join(v for v in received)
     image = pygame.image.fromstring(dataset,(320,240),"RGB")
+    image = pygame.transform.scale(image, (640, 480))
     screen.blit(image,(0,0))
     pygame.display.update()
 
