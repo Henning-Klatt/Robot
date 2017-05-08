@@ -18,7 +18,7 @@ webcam.start()
 while True:
         connection, address = serversocket.accept()
         image = webcam.get_image() # capture image
-        data = pygame.image.tostring(image,"RGB") # convert captured image to string, use RGB color scheme
+        data = pygame.image.tostring(image,"P") # convert captured image to string, use RGB color scheme
         connection.sendall(data)
         time.sleep(0.005)
         connection.close()

@@ -20,7 +20,7 @@ while True:
             received.append(recvd_data)
 
     dataset = b''.join(v for v in received)
-    image = pygame.image.fromstring(dataset,(640,480),"RGB")
+    image = pygame.image.fromstring(dataset,(320,240),"P")
     screen.blit(image,(0,0))
     pygame.display.update()
 
