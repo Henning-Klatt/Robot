@@ -1,81 +1,133 @@
-#!/usr/bin/env python
+import pygame
 
-import sys, os, gobject
-from Tkinter import *
-import pygst
-pygst.require("0.10")
-import gst
-
-# Goto GUI Class
-class Prototype(Frame):
-    def __init__(self, parent):
-        gobject.threads_init()
-        Frame.__init__(self, parent)    
-
-        # Parent Object
-        self.parent = parent
-        self.parent.title("WebCam")
-        self.parent.geometry("640x560+0+0")
-        self.parent.resizable(width=FALSE, height=FALSE)
-
-        # Video Box
-        self.movie_window = Canvas(self, width=640, height=480, bg="black")
-        self.movie_window.pack(side=TOP, expand=YES, fill=BOTH)
-
-        # Buttons Box
-        self.ButtonBox = Frame(self, relief=RAISED, borderwidth=1)
-        self.ButtonBox.pack(side=BOTTOM, expand=YES, fill=BOTH)
-
-        self.closeButton = Button(self.ButtonBox, text="Close", command=self.quit)
-        self.closeButton.pack(side=RIGHT, padx=5, pady=5)
-
-        gotoButton = Button(self.ButtonBox, text="Start", command=self.start_stop)
-        gotoButton.pack(side=RIGHT, padx=5, pady=5)
-
-        # Set up the gstreamer pipeline
-        self.player = gst.parse_launch ("v4l2src ! video/x-raw-yuv,width=640,height=480 ! ffmpegcolorspace ! xvimagesink")
-
-        bus = self.player.get_bus()
-        bus.add_signal_watch()
-        bus.enable_sync_message_emission()
-        bus.connect("message", self.on_message)
-        bus.connect("sync-message::element", self.on_sync_message)
-
-    def start_stop(self):
-        if self.gotoButton["text"] == "Start":
-            self.gotoButton["text"] = "Stop"
-            self.player.set_state(gst.STATE_PLAYING)
-        else:
-            self.player.set_state(gst.STATE_NULL)
-            self.gotoButton["text"] = "Start"
-
-    def on_message(self, bus, message):
-        t = message.type
-        if t == gst.MESSAGE_EOS:
-            self.player.set_state(gst.STATE_NULL)
-            self.button.set_label("Start")
-        elif t == gst.MESSAGE_ERROR:
-            err, debug = message.parse_error()
-            print "Error: %s" % err, debug
-            self.player.set_state(gst.STATE_NULL)
-            self.button.set_label("Start")
-
-    def on_sync_message(self, bus, message):
-        if message.structure is None:
-            return
-        message_name = message.structure.get_name()
-        if message_name == "prepare-xwindow-id":
-            # Assign the viewport
-            imagesink = message.src
-            imagesink.set_property("force-aspect-ratio", True)
-            imagesink.set_xwindow_id(self.movie_window.window.xid)
-
-def main():
-    root = Tk()
-    app = Prototype(root)
-    app.pack(expand=YES, fill=BOTH)
-    root.mainloop()  
+# Define some colors
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
 
 
-if __name__ == '__main__':
-     main()
+class TextPrint(object):
+    def __init__(self):
+        self.reset()
+        self.x_pos = 10
+        self.y_pos = 10
+        self.font = pygame.font.Font(None, 20)
+
+    def print(self, my_screen, text_string):
+        text_bitmap = self.font.render(text_string, True, BLACK)
+        my_screen.blit(text_bitmap, [self.x_pos, self.y_pos])
+        self.y_pos += self.line_height
+
+    def reset(self):
+        self.x_pos = 10
+        self.y_pos = 10
+        self.line_height = 15
+
+    def indent(self):
+        self.x_pos += 10
+
+    def unindent(self):
+        self.x_pos -= 10
+
+pygame.init()
+
+# Set the width and height of the screen [width,height]
+size = [500, 700]
+screen = pygame.display.set_mode(size)
+
+pygame.display.set_caption("LexoBot Remote")
+
+# Loop until the user clicks the close button.
+done = False
+
+# Used to manage how fast the screen updates
+clock = pygame.time.Clock()
+
+# Initialize the joysticks
+pygame.joystick.init()
+
+# Get ready to print
+textPrint = TextPrint()
+
+# -------- Main Program Loop -----------
+while not done:
+    # EVENT PROCESSING STEP
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            done = True
+
+        # Possible joystick actions: JOYAXISMOTION JOYBALLMOTION JOYBUTTONDOWN
+        # JOYBUTTONUP JOYHATMOTION
+        if event.type == pygame.JOYBUTTONDOWN:
+            print("Joystick button pressed.")
+        if event.type == pygame.JOYBUTTONUP:
+            print("Joystick button released.")
+
+    # DRAWING STEP
+    # First, clear the screen to white. Don't put other drawing commands
+    # above this, or they will be erased with this command.
+    screen.fill(WHITE)
+    textPrint.reset()
+
+    # Get count of joysticks
+    joystick_count = pygame.joystick.get_count()
+
+    textPrint.print(screen, "Number of joysticks: {}".format(joystick_count))
+    textPrint.indent()
+
+    # For each joystick:
+    for i in range(joystick_count):
+        joystick = pygame.joystick.Joystick(i)
+        joystick.init()
+
+        textPrint.print(screen, "Joystick {}".format(i))
+        textPrint.indent()
+
+        # Get the name from the OS for the controller/joystick
+        name = joystick.get_name()
+        textPrint.print(screen, "Joystick name: {}".format(name))
+
+        # Usually axis run in pairs, up/down for one, and left/right for
+        # the other.
+        axes = joystick.get_numaxes()
+        textPrint.print(screen, "Number of axes: {}".format(axes))
+        textPrint.indent()
+
+        for i in range(axes):
+            axis = joystick.get_axis(i)
+            textPrint.print(screen, "Axis {} value: {:>6.3f}".format(i, axis))
+        textPrint.unindent()
+
+        buttons = joystick.get_numbuttons()
+        textPrint.print(screen, "Number of buttons: {}".format(buttons))
+        textPrint.indent()
+
+        for i in range(buttons):
+            button = joystick.get_button(i)
+            textPrint.print(screen, "Button {:>2} value: {}".format(i, button))
+        textPrint.unindent()
+
+        # Hat switch. All or nothing for direction, not like joysticks.
+        # Value comes back in an array.
+        hats = joystick.get_numhats()
+        textPrint.print(screen, "Number of hats: {}".format(hats))
+        textPrint.indent()
+
+        for i in range(hats):
+            hat = joystick.get_hat(i)
+            textPrint.print(screen, "Hat {} value: {}".format(i, str(hat)))
+        textPrint.unindent()
+
+        textPrint.unindent()
+
+    # ALL CODE TO DRAW SHOULD GO ABOVE THIS COMMENT
+
+    # Go ahead and update the screen with what we've drawn.
+    pygame.display.flip()
+
+    # Limit to 60 frames per second
+    clock.tick(60)
+
+# Close the window and quit.
+# If you forget this line, the program will 'hang'
+# on exit if running from IDLE.
+pygame.quit()
