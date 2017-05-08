@@ -12,7 +12,7 @@ import time
 
 #host = "192.168.100.9"
 
-host = "localhost"
+host = "192.168.1.64"
 
 port = 5000
 
