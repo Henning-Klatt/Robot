@@ -21,7 +21,7 @@ cam.start()
 #Send data
 while True:
     s,add = server.accept()
-    print "Connected from",add
+    print("Connected from" + add)
     image = cam.get_image()
     screen.blit(image,(0,0))
     data = cam.get_raw()
