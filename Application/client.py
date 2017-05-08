@@ -3,7 +3,7 @@ import pygame
 from PIL import Image
 
 #Create a var for storing an IP address:
-ip = "192.168.178.23"
+ip = "192.168.1.1"
 
 #Start PyGame:
 pygame.init()
@@ -40,7 +40,7 @@ while True:
 
 #Interupt
   except:
-    image = previousImage 
+    image = previousImage
   output = image
   screen.blit(output,(0,0))
   clock.tick(60)
