@@ -19,7 +19,7 @@ while True:
             received.append(recvd_data)
 
     dataset = b''.join(v for v in received)
-    image = pygame.image.fromstring(dataset,(320,240),"HSV")
+    image = pygame.image.fromstring(dataset,(320,240),"RGB")
     image = pygame.transform.scale(image, (640, 480))
     screen.blit(image,(0,0))
     pygame.display.update()
