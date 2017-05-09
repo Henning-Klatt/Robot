@@ -162,7 +162,7 @@ class GUI(object):
 def main(DEBUG=True):
     screen_width  = 400
     screen_height = 300
-    stream_resolution = (800, 600)
+    stream_resolution = (640, 480)
 
     try:
 
