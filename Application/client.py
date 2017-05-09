@@ -9,9 +9,7 @@ import time
 from PIL import Image, ImageTk
 #from threading import Thread
 
-from multiprocessing import Process
-
-DEBUG=True
+DEBUG=False
 
 def printD(message):
     if DEBUG:
@@ -127,13 +125,13 @@ class GUI(object):
         self.master.bind("<KeyPress>", self.keypress)
         self.master.bind("<KeyRelease>", self.keyrelease)
         self.startstop_button = tk.Button(master=self.master, text="Start", bg="green", command=self.startstop_stream)
-        self.startstop_button.place(x=10, y=10, height=50, width=50)
+        self.startstop_button.place(x=10, y=10)
         self.stream_label = tk.Label(master=self.master)
         self.stream_label.place(x=60, y=10)
         self.exit_button = tk.Button(master=self.master, bg="#229", fg="white", text="Exit", command=self.quit)
         self.exit_button.place(x=10, y=200, height=50, width=50)
         self.timeLabel = tk.Label(master=self.master, text="Loading time", fg="black")
-        self.timeLabel.place(x=300, y=300)
+        #self.timeLabel.place(x=300, y=300)
 
     def startstop_stream(self):
         # start
@@ -162,7 +160,7 @@ class GUI(object):
 def main(DEBUG=True):
     screen_width  = 400
     screen_height = 300
-    stream_resolution = (640, 480)
+    stream_resolution = (360, 640)
 
     try:
 
