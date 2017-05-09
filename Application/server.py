@@ -148,7 +148,7 @@ class StreamServer(object):
 
 
 if __name__ == '__main__':
-    stream_resolution = (320, 240)
+    stream_resolution = (800, 600)
     stream_framerate = 15
     picamera_led = True
 

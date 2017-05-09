@@ -5,17 +5,17 @@ import struct
 import pickle
 import tkinter as tk
 from sys import exit, stdout
-from time import sleep, strftime
+import time
 from PIL import Image, ImageTk
-from threading import Thread
+#from threading import Thread
 
+from multiprocessing import Process
 
-DEBUG=False
-
+DEBUG=True
 
 def printD(message):
     if DEBUG:
-        print('[{}]  {}'.format(strftime('%H:%M:%S'), message))
+        print('[{}]  {}'.format(time.strftime('%H:%M:%S'), message))
         stdout.flush()
 
 
@@ -40,31 +40,35 @@ class PiVideoStream(object):
         self.connection = self.client_socket.makefile('rb')
         self.running = True
 
-        self.t = Thread(target=self.update, args=())
-        self.t.setDaemon(1)
-        self.t.start()
+        #self.t = Thread(target=self.update, args=())
+        #self.t.setDaemon(1)
+        #self.t.start()
+        self.update()
         #self.gui.master.after(70, self.update_2)
 
-        sleep(0.2) #give videostream some time to start befor frames can be read
+        time.sleep(0.2) #give videostream some time to start befor frames can be read
 
     def update(self):
-        while self.running:
+        #while self.running:
             # Read the length of the image as a 32-bit unsigned int.
-            data_len = struct.unpack('<L', self.connection.read(struct.calcsize('<L')))[0]
-            if data_len:
-                printD('Updating...')
-                printD('data_len: %s' % data_len)
-                data = self.connection.read(data_len)
-                deserialized_data = pickle.loads(data)
-                printD('Frame received')
+        data_len = struct.unpack('<L', self.connection.read(struct.calcsize('<L')))[0]
+        if data_len:
+            printD('Updating...')
+            printD('data_len: %s' % data_len)
+            data = self.connection.read(data_len)
+            deserialized_data = pickle.loads(data)
+            printD('Frame received')
                 #print(deserialized_data)
-                img = Image.fromarray(deserialized_data)
-                newImage = ImageTk.PhotoImage(img)
-                self.gui.stream_label.configure(image=newImage)
-                self.gui.stream_label.image = newImage
-                printD("image updated")
-            else:
-                time.sleep(0.1)
+            img = Image.fromarray(deserialized_data)
+            #img = img.resize((800,600), Image.ANTIALIAS)
+            newImage = ImageTk.PhotoImage(img)
+            self.gui.stream_label.configure(image=newImage)
+            self.gui.stream_label.image = newImage
+            printD("image updated")
+        else:
+            time.sleep(0.1)
+        if(self.running):
+            self.gui.stream_label.after(66, self.update)
 
     def update_2(self):
         if self.running == False:
@@ -110,16 +114,26 @@ class GUI(object):
         self.master.protocol("WM_DELETE_WINDOW", self.quit)
         self.main()
 
+    def keypress(self, event):
+        print("Pressed: " + repr(event.char))
+
+    def keyrelease(self, event):
+        print("Released: " + repr(event.char))
+
     def main(self):
         self.videostream = PiVideoStream(gui=self, host=self.host, port=self.port)
         self.master.geometry(self.gui_resolution)
-        self.master.title("picamera network stream to tkinter")
+        self.master.title("LexoBot Remote")
+        self.master.bind("<KeyPress>", self.keypress)
+        self.master.bind("<KeyRelease>", self.keyrelease)
         self.startstop_button = tk.Button(master=self.master, text="Start", bg="green", command=self.startstop_stream)
         self.startstop_button.place(x=10, y=10, height=50, width=50)
         self.stream_label = tk.Label(master=self.master)
         self.stream_label.place(x=60, y=10)
         self.exit_button = tk.Button(master=self.master, bg="#229", fg="white", text="Exit", command=self.quit)
         self.exit_button.place(x=10, y=200, height=50, width=50)
+        self.timeLabel = tk.Label(master=self.master, text="Loading time", fg="black")
+        self.timeLabel.place(x=300, y=300)
 
     def startstop_stream(self):
         # start
@@ -148,11 +162,11 @@ class GUI(object):
 def main(DEBUG=True):
     screen_width  = 400
     screen_height = 300
-    stream_resolution = (320, 240)
+    stream_resolution = (800, 600)
 
     try:
 
-        tkinter_app = GUI(host='192.168.1.1', port=8000, resolution="{0}x{1}".format(screen_width, screen_height), stream_resolution=stream_resolution)
+        tkinter_app = GUI(host='192.168.1.1', port=8000, resolution="1440x900", stream_resolution=stream_resolution)
         tkinter_app.run()
 
     except (KeyboardInterrupt, SystemExit):
