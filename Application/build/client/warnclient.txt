@@ -1,0 +1,20 @@
+missing module named 'org.python' - imported by pickle, /Users/henning/Projekte/LexoBot/Application/client.py, xml.sax
+missing module named ce - imported by os, /Users/henning/Projekte/LexoBot/Application/client.py
+excluded module named _frozen_importlib - imported by importlib, importlib.abc, /Users/henning/Projekte/LexoBot/Application/client.py
+missing module named _frozen_importlib_external - imported by importlib._bootstrap, importlib, importlib.abc, /Users/henning/Projekte/LexoBot/Application/client.py
+missing module named _winreg - imported by platform, /Users/henning/Projekte/LexoBot/Application/client.py
+missing module named java - imported by platform, /Users/henning/Projekte/LexoBot/Application/client.py
+missing module named 'java.lang' - imported by platform, /Users/henning/Projekte/LexoBot/Application/client.py, xml.sax._exceptions
+missing module named vms_lib - imported by platform, /Users/henning/Projekte/LexoBot/Application/client.py
+missing module named msvcrt - imported by subprocess, /Users/henning/Projekte/LexoBot/Application/client.py, getpass
+missing module named _winapi - imported by subprocess, /Users/henning/Projekte/LexoBot/Application/client.py
+missing module named winreg - imported by platform, mimetypes, /Users/henning/Projekte/LexoBot/Application/client.py, urllib.request
+missing module named _dummy_threading - imported by dummy_threading, /Users/henning/Projekte/LexoBot/Application/client.py
+missing module named nt - imported by os, ntpath, shutil, pathlib, /Users/henning/Projekte/LexoBot/Application/client.py
+missing module named org - imported by copy, /Users/henning/Projekte/LexoBot/Application/client.py
+missing module named 'PySide.QtCore' - imported by PIL.ImageQt
+missing module named 'PyQt4.QtCore' - imported by PIL.ImageQt
+missing module named 'PyQt5.QtCore' - imported by PIL.ImageQt
+missing module named cffi - imported by PIL.ImageTk, PIL.Image, PIL.PyAccess
+missing module named __builtin__ - imported by PIL.Image
+missing module named Tkinter - imported by /Users/henning/Projekte/LexoBot/Application/client.py, PIL.ImageTk

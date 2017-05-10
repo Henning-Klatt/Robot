@@ -1,0 +1,3 @@
+([('client',
+   '/Users/henning/Projekte/LexoBot/Application/dist/client',
+   'EXECUTABLE')],)
