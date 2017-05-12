@@ -32,7 +32,7 @@ class PiVideoStream(object):
             self.stop()
             return
         self.client_socket.settimeout(None)
-        # Make a file-like object out of the connection
+        # makefile Object aus der Verbindung
         self.connection = self.client_socket.makefile('rb')
         self.running = True
 
@@ -66,7 +66,7 @@ class PiVideoStream(object):
     def update_2(self):
         if self.running == False:
             return
-        # Read the length of the image as a 32-bit unsigned int.
+        # Länge des Bildes als ein 32-bit Int
         data_len = struct.unpack('<L', self.connection.read(struct.calcsize('<L')))[0]
         if data_len:
             printD('Updating...')
