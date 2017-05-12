@@ -1,7 +1,4 @@
 #!/usr/bin/python3
-#
-# Socket Server awaiting connection to stream raspicam
-#
 
 import socket
 import struct
@@ -32,41 +29,39 @@ class PiVideoStream(object):
         self.stream = self.camera.capture_continuous(self.rawCapture, format=format, use_video_port=True)
         self.frame = None
         self.running = False
-        #dirty but currently the only way so it works immediately
         self.start()
         self.stop()
 
     def start(self):
         printD("videostream: start")
-        # start the thread to read frames from the video stream
+        #Thread um die Frames der Kamera zu lesen
         if self.camera_led:
             self.camera.led = self.camera_led
         self.running = True
         Thread(target=self.update, args=()).start()
-        sleep(0.2) #give videostream some time to start befor frames can be read
+        sleep(0.2) #Bisschen Zeit zum starten geben
 
     def stop(self):
         printD("videostream: stop")
-        # indicate that the thread should be stopped
         self.camera.led = False
         self.running = False
 
     def update(self):
-        # keep looping infinitely until the thread is stopped
+        # Lasse laufen bis Thread gestoppt wird
         for frameBuf in self.stream:
-            # grab the frame from the stream and clear the stream in preparation for the next frame
+            # Bekomme Frame vom Stream und leere den stream für nächsten frame
             self.frame = frameBuf.array
             self.rawCapture.truncate(0)
-            # if the thread indicator variable is set, stop the thread
+            # Stoppe Thread
             if self.running == False:
                 return
 
     def read(self):
-        # return the frame most recently read
+        # Gebe Frame zurück
         return self.frame
 
     def quit(self):
-        # resource camera resources
+        # Schieße Kamera
         try:
             self.running = False
             self.stream.close()
@@ -108,11 +103,9 @@ class StreamServer(object):
 
     def stop(self):
         printD("streamserver: start")
-        # indicate that the thread should be stopped
         self.running = False
 
     def quit(self):
-        # resource resources
         try:
             self.running = False
             self.videostream.quit()
